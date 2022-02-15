@@ -2,7 +2,7 @@
 
 @section('title', 'Главная')
 @section('custom-css')
-    <link href="{{ asset('/assets/css/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/assets/css/select2.min.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/datepicker.min.css') }}"/>
 @endsection
 @section('custom-js-before')
@@ -11,10 +11,10 @@
 @endsection
 @section('custom-js-after')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.search_from').select2();
         });
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.search_to').select2();
         });
     </script>
@@ -31,7 +31,7 @@
                             <div class="col-xl-5 col-lg-5 col-sm-6 col-xs-12">
                                 <label for="search_from">Пункт отправления</label>
                                 <div class="select-outer">
-                                    <select class="search_from" name="search_from">
+                                    <select id="search_from" class="search_from" name="search_from">
                                         <option value="U">Урай</option>
                                         <option value="HM">Ханты-Мансийск</option>
                                         <option value="UA">Устье-Аха</option>
@@ -45,7 +45,7 @@
                             <div class="col-xl-5 col-lg-5 col-sm-6 col-xs-12">
                                 <label for="search_to">Пункт назначения</label>
                                 <div class="select-outer">
-                                    <select class="search_to" name="search_to">
+                                    <select id="search_to" class="search_to" name="search_to">
                                         <option value="HM">Ханты-Мансийск</option>
                                         <option value="U">Урай</option>
                                         <option value="UA">Устье-Аха</option>
@@ -154,27 +154,337 @@
         </div>
     </section>
 
-    <section id="popular-section">
+    <section id="ticket-section">
         <div class="container">
             <h2 class="section-heading">Расписание</h2>
             <div class="row">
-                *TODO
+                <div class="col-12 ticket">
+                    <span class="route">
+                        <a href="#">
+                            <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай - Ханты-Мансийск
+                        </a>
+                        <p class="text-muted">ежедневно</p>
+                        <p>  <a data-bs-toggle="collapse" href="#route-1" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
+                    </span>
+                    <div class="times">
+                    <span class="from">
+                            <p class="time">0:05</p>
+                            <p class="place text-muted">Урай, сбор по адресам</p>
+                    </span>
+                        <span class="duration">
+                            <p class="text-muted">5 ч 25 мин</p>
+                    </span>
+                        <span class="to">
+                        <p class="time">~5:30</p>
+                        <p class="place text-muted">Ханты-Мансийск, автовокзал</p>
+                    </span>
+                    </div>
+                    <div class="choose">
+                        <span class="price">
+                            <p>от 1400 р.</p>
+                        </span>
+                        <span class="buy">
+                            <button>Выбрать дату</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="collapse" id="route-1">
+                    <div class="card card-body">
+                        <table>
+                            <tr>
+                                <th>Станция</th>
+                                <th>Приб.</th>
+                                <th>Стоянка</th>
+                                <th>Отпр.</th>
+                            </tr>
+                            <tr>
+                                <td>Урай, по адресам</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>0:05</td>
+                            </tr>
+                            <tr>
+                                <td>Окружная клиническая больница</td>
+                                <td>5:04</td>
+                                <td>1 мин</td>
+                                <td>5:05</td>
+                            </tr>
+                            <tr>
+                                <td>Cтудгордок</td>
+                                <td>5:09</td>
+                                <td>1 мин</td>
+                                <td>5:10</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, аэропорт</td>
+                                <td>5:14</td>
+                                <td>1 мин</td>
+                                <td>5:15</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, авто-речной вокзал</td>
+                                <td>5:29</td>
+                                <td>1 мин</td>
+                                <td>5:30</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, Трансагентство</td>
+                                <td>5:45</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-12 ticket">
+                    <span class="route">
+                        <a href="#">
+                            <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай - Ханты-Мансийск
+                        </a>
+                        <p class="text-muted">ежедневно</p>
+                        <p>  <a data-bs-toggle="collapse" href="#route-2" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
+                    </span>
+                    <div class="times">
+                    <span class="from">
+                            <p class="time">6:00</p>
+                            <p class="place text-muted">Урай, сбор по адресам</p>
+                    </span>
+                        <span class="duration">
+                            <p class="text-muted">5 ч 30 мин</p>
+                    </span>
+                        <span class="to">
+                        <p class="time">~11:30</p>
+                        <p class="place text-muted">Ханты-Мансийск, автовокзал</p>
+                    </span>
+                    </div>
+                    <div class="choose">
+                        <span class="price">
+                            <p>от 1400 р.</p>
+                        </span>
+                        <span class="buy">
+                            <button>Выбрать дату</button>
+                        </span>
+                    </div>
+                </div><div class="collapse" id="route-2">
+                    <div class="card card-body">
+                        <table>
+                            <tr>
+                                <th>Станция</th>
+                                <th>Приб.</th>
+                                <th>Стоянка</th>
+                                <th>Отпр.</th>
+                            </tr>
+                            <tr>
+                                <td>Урай, по адресам</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>0:05</td>
+                            </tr>
+                            <tr>
+                                <td>Окружная клиническая больница</td>
+                                <td>5:04</td>
+                                <td>1 мин</td>
+                                <td>5:05</td>
+                            </tr>
+                            <tr>
+                                <td>Cтудгордок</td>
+                                <td>5:09</td>
+                                <td>1 мин</td>
+                                <td>5:10</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, аэропорт</td>
+                                <td>5:14</td>
+                                <td>1 мин</td>
+                                <td>5:15</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, авто-речной вокзал</td>
+                                <td>5:29</td>
+                                <td>1 мин</td>
+                                <td>5:30</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, Трансагентство</td>
+                                <td>5:45</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-12 ticket">
+                    <span class="route">
+                        <a href="#">
+                            <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай - Советский - Нягань
+                        </a>
+                        <p class="text-muted">ежедневно</p>
+                        <p>  <a data-bs-toggle="collapse" href="#route-3" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
+                    </span>
+                    <div class="times">
+                    <span class="from">
+                            <p class="time">5:00</p>
+                            <p class="place text-muted">Урай, сбор по адресам</p>
+                    </span>
+                        <span class="duration">
+                            <p class="text-muted">3 ч 10 мин</p>
+                    </span>
+                        <span class="to">
+                        <p class="time">~8:10</p>
+                        <p class="place text-muted">Советский, ж/д вокзал</p>
+                    </span>
+                    </div>
+                    <div class="choose">
+                        <span class="price">
+                            <p>от 1000 р.</p>
+                        </span>
+                        <span class="buy">
+                            <button>Выбрать дату</button>
+                        </span>
+                    </div>
+                </div><div class="collapse" id="route-3">
+                    <div class="card card-body">
+                        <table>
+                            <tr>
+                                <th>Станция</th>
+                                <th>Приб.</th>
+                                <th>Стоянка</th>
+                                <th>Отпр.</th>
+                            </tr>
+                            <tr>
+                                <td>Урай, по адресам</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>0:05</td>
+                            </tr>
+                            <tr>
+                                <td>Окружная клиническая больница</td>
+                                <td>5:04</td>
+                                <td>1 мин</td>
+                                <td>5:05</td>
+                            </tr>
+                            <tr>
+                                <td>Cтудгордок</td>
+                                <td>5:09</td>
+                                <td>1 мин</td>
+                                <td>5:10</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, аэропорт</td>
+                                <td>5:14</td>
+                                <td>1 мин</td>
+                                <td>5:15</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, авто-речной вокзал</td>
+                                <td>5:29</td>
+                                <td>1 мин</td>
+                                <td>5:30</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, Трансагентство</td>
+                                <td>5:45</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-12 ticket">
+                    <span class="route">
+                        <a href="#">
+                            <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай — Советский — Югорск
+                        </a>
+                        <p class="text-muted">ежедневно</p>
+                        <p>  <a data-bs-toggle="collapse" href="#route-4" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
+                    </span>
+                    <div class="times">
+                    <span class="from">
+                            <p class="time">13:50</p>
+                            <p class="place text-muted">Урай, сбор по адресам</p>
+                    </span>
+                        <span class="duration">
+                            <p class="text-muted">3 ч 30 мин</p>
+                    </span>
+                        <span class="to">
+                        <p class="time">~17:20</p>
+                        <p class="place text-muted">Советский, ж/д вокзал</p>
+                    </span>
+                    </div>
+                    <div class="choose">
+                        <span class="price">
+                            <p>от 1000 р.</p>
+                        </span>
+                        <span class="buy">
+                            <button>Выбрать дату</button>
+                        </span>
+                    </div>
+                </div><div class="collapse" id="route-4">
+                    <div class="card card-body">
+                        <table>
+                            <tr>
+                                <th>Станция</th>
+                                <th>Приб.</th>
+                                <th>Стоянка</th>
+                                <th>Отпр.</th>
+                            </tr>
+                            <tr>
+                                <td>Урай, по адресам</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>0:05</td>
+                            </tr>
+                            <tr>
+                                <td>Окружная клиническая больница</td>
+                                <td>5:04</td>
+                                <td>1 мин</td>
+                                <td>5:05</td>
+                            </tr>
+                            <tr>
+                                <td>Cтудгордок</td>
+                                <td>5:09</td>
+                                <td>1 мин</td>
+                                <td>5:10</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, аэропорт</td>
+                                <td>5:14</td>
+                                <td>1 мин</td>
+                                <td>5:15</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, авто-речной вокзал</td>
+                                <td>5:29</td>
+                                <td>1 мин</td>
+                                <td>5:30</td>
+                            </tr>
+                            <tr>
+                                <td>Ханты-Мансийск, Трансагентство</td>
+                                <td>5:45</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <section>
+
+
+    <section id="footer-section">
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                <p class="col-md-4 mb-0 text-muted">© 2014-2021  ИП Аднакулов Г.В.</p>
+                <p class="col-md-4 mb-0 text-muted">© 2014-2021 ИП Аднакулов Г.В.</p>
                 <a href="/"
                    class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none navbar-brand">
                     TK999
                 </a>
-
                 <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Пассажирские перевозки</a></li>
+                    <li class="nav-item"><a href="https://vk.com/zorgo" class="nav-link px-2  text-muted">Разработка: ZORGO</a></li>
                 </ul>
-                <p class="col-md-4 mb-0 text-muted"> ОГРН 304860630800061 Лицензия АСС-86-154006 от 25.11.2014г.</p>
+                <p class="col-md-12 mb-0 text-muted"> Пассажирские перевозки.</p>
+                <p class="col-md-12 mb-0 text-muted"> ОГРН 304860630800061 Лицензия АСС-86-154006 от 25.11.2014г.</p>
             </footer>
         </div>
     </section>

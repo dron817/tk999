@@ -1,4 +1,7 @@
 /* GLOBAL -- START */
+body {
+    background-color: #e3eeff !important;
+}
 @font-face {
     font-family: 'Roboto';
     src: url('../fonts/Roboto/RobotoCondensed-Regular.ttf');
@@ -59,6 +62,9 @@ input:focus {
 .navbar{
     text-transform: uppercase;
 }
+.navbar-light{
+    background-color: #e3eeff !important;
+}
 /* NAVBAR -- END */
 
 /* SEARCH -- START */
@@ -74,6 +80,7 @@ input:focus {
     background-size: cover;
     font-family: Roboto, serif;
     color: white;
+    margin-top: 50px;
 }
 #search-box{
     padding: 50px 0;
@@ -115,6 +122,10 @@ input:focus {
     margin-top: 30px;
     background-color: #388E3C;
     padding: 5px 10px;
+    transition: .5s;
+}
+.search-go:hover{
+    background-color: #2f7532;
 }
 .lg-hide .search-go{
     width: 100%;
@@ -122,6 +133,12 @@ input:focus {
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow{
     top: 5px!important;
+}
+.select2-container--default .select2-selection--single:hover{
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
+}
+#search_date:hover{
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
 }
 /* SEARCH END */
 
@@ -185,3 +202,171 @@ input:focus {
     background-image: url("../img/TA.jpg");
 }
 /* POPULAR SECTION -- END */
+
+/* TICKS SECTION -- START */
+#ticket-section .ticket{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    padding: 20px !important;
+    margin-bottom: 10px;
+}
+#ticket-section .ticket:hover{
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
+}
+#ticket-section a{
+    text-decoration: none;
+}
+#ticket-section .collapse {
+    margin-bottom: 10px;
+}
+
+.ticket button{
+    color: white;
+    border-radius: 5px;
+    background-color: #388E3C;
+    padding: 7px;
+    transition: .5s;
+    font-size: 18px;
+}
+.ticket button:hover{
+    background-color: #2f7532;
+}
+#ticket-section th{
+    text-align: center;
+}
+#ticket-section td{
+    text-align: center;
+    border: 1px solid #b6b6b6;
+}
+.ticket .buy p{
+    text-align: right;
+}
+.ticket .price p{
+    font-weight: bold;
+}
+.ticket .time{
+        font-size: 24px;
+}
+.ticket .from .time{
+    font-weight: bold;
+}
+.ticket .icon{
+    padding-right: 10px;
+}
+.ticket .route{
+    min-width: 250px;
+}
+.ticket p{
+    margin-bottom: 0;
+}
+.ticket .price{
+    font-size: 20px;
+}
+.ticket .place{
+    font-size: 0.8em;
+}
+.ticket .times{
+    display: flex;
+    width: 530px;
+}
+.ticket .times .duration{
+    font-size: 14px;
+    white-space: nowrap;
+}
+.ticket .times span{
+    padding: 0 20px;
+}
+.ticket .price p{
+    text-align: right;
+}
+
+@media (max-width: 1200px) {
+    .ticket .times span{
+        padding: 0 5px;
+    }
+}
+@media (max-width: 991px) {
+    .ticket {
+        flex-direction: column;
+        padding: 0 5px;
+    }
+    #ticket-section .row{
+        margin: 0;
+    }
+    .ticket .buy p{
+        text-align: left;
+    }
+    .ticket .buy button{
+        margin-left: -2px;
+    }
+    .ticket .times{
+        padding: 20px 0;
+        justify-content: space-between;
+        width: auto;
+    }
+    .ticket .times .to{
+        text-align: right;
+    }
+    .ticket .times .duration{
+        text-align: center;
+        font-size: 12px;
+        margin-top: -7px;
+        min-width: 75px;
+    }
+    .ticket .times .duration::before, .ticket .times .duration::after {
+         content: "";
+         display: inline-block;
+         vertical-align: middle;
+         width: 200%;
+         height: 2px;
+         background-color: #d7d7d7;;
+         position: relative;
+     }
+    .ticket .times .duration::before {
+        margin-left: -100%;
+        left: -70px;
+        top: 15px;
+    }
+    .ticket .times .duration::after {
+        margin-right: -100%;
+        right: -70px;
+        top: -20px;
+    }
+    .ticket .buy p{
+        display: none;
+    }
+    .ticket .choose {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media (max-width: 768px) {
+    .ticket .times .duration::before, .ticket .times .duration::after {
+        width: 100%;
+    }
+    .ticket .times .duration::before {
+        left: -70px;
+        top: 15px;
+    }
+    .ticket .times .duration::after {
+        right: -70px;
+        top: -20px;
+    }
+}
+@media (max-width: 577px) {
+    .ticket .times .duration::before, .ticket .times .duration::after {
+        width: 50%;
+    }
+    .ticket .times .duration::before {
+        left: -30px;
+        top: 15px;
+    }
+    .ticket .times .duration::after {
+        right: -30px;
+        top: -20px;
+    }
+}
+/* TICKS SECTION -- END */

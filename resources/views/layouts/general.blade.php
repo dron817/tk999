@@ -12,6 +12,7 @@
     <!-- CSS Styles  -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/main.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/preloader.css') }}"/>
 @yield('custom-css')
 
@@ -21,7 +22,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light" aria-label="Eighth navbar example">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" aria-label="Eighth navbar example">
     <div class="container">
         <a class="navbar-brand" href="#">ТК999</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Расписание</a>
+                    <a class="nav-link" aria-current="page" href="index.php#ticket-section">Расписание</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Пассажирам</a>
@@ -63,12 +64,16 @@
     </svg>
 </div>
 
-<!-- JS Includes after  -->
+<!-- Preloader  -->
 <script>
+    window.setTimeout(function() {
+        document.querySelector('.preloader').classList.add("preloader-remove");
+    }, 10000);
     window.onload = function() {
         document.querySelector('.preloader').classList.add("preloader-remove");
     };
 </script>
+<!-- JS Includes after  -->
 <script src="{{ asset('assets/js/jquery.json.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 @yield('custom-js-after')
