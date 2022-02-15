@@ -14,5 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.main');
+});
+Route::group(['prefix'=> 'dev'], function (){
+    Route::get('clear', function () {
+        Artisan::call('cache:clear');
+        Artisan::call('config:cache');
+        Artisan::call('view:clear');
+        Artisan::call('route:clear');
+        return "Кэш очищен.";
+    });
+    Route::get('migrate', function () {
+        Artisan::call('migrate'); //возможно, это не безопасно, надо выяснить или нужно удалить при продакшене
+        return "Миграции выполнены";
+    });
+    Route::get('rollback', function () {
+        Artisan::call('migrate:rollback');  //возможно, это не безопасно, надо выяснить или нужно удалить при продакшене
+        return "Миграции откачены";
+    });
 });
