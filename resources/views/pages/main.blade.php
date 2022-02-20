@@ -1,6 +1,6 @@
 @extends('layouts.general')
 
-@section('title', 'Главная')
+@section('title', 'Пассажирские перевозки')
 @section('custom-css')
     <link href="{{ asset('/assets/css/select2.min.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/datepicker.min.css') }}"/>
@@ -61,11 +61,11 @@
                                 <input type="text" id="search_date" value="" placeholder="Дата" autocomplete="off">
                             </div>
                             <div class="col-xl-2 col-lg-2 col-sm-6 col-xs-12 lg-hide">
-                                <button class="search-go">Найти</button>
+                                <button class="search-go" onclick="location.href='/tickets';">Найти</button>
                             </div>
                         </div>
                         <div class="col-md-3 col-xs-12 sm-hide">
-                            <button class="search-go">Найти</button>
+                            <button class="search-go" onclick="location.href='/tickets';">Найти</button>
                         </div>
                         <script>
 
@@ -95,6 +95,13 @@
             <h2 class="section-heading">Популярные направления</h2>
             <div class="row">
                 <div class="col-12 col-sm-6 col-lg-3">
+                    <a id="UA" href="#">
+                        <span class="from">Урай -</span>
+                        <span class="to">Устье-Аха</span>
+                        <span class="price">от 500 р.</span>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
                     <a id="HM" href="#">
                         <span class="from">Урай -</span>
                         <span class="to">Ханты-Мансийск</span>
@@ -106,13 +113,6 @@
                         <span class="from">Урай -</span>
                         <span class="to">Югорск</span>
                         <span class="price">от 1000 р.</span>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="UA" href="#">
-                        <span class="from">Урай -</span>
-                        <span class="to">Устье-Аха</span>
-                        <span class="price">от 500 р.</span>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
@@ -154,11 +154,11 @@
         </div>
     </section>
 
-    <section id="ticket-section">
+    <section id="schedule-section">
         <div class="container">
             <h2 class="section-heading">Расписание</h2>
             <div class="row">
-                <div class="col-12 ticket">
+                <div class="col-12 schedule">
                     <span class="route">
                         <a href="#">
                             <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай - Ханты-Мансийск
@@ -184,7 +184,7 @@
                             <p>от 1400 р.</p>
                         </span>
                         <span class="buy">
-                            <button>Выбрать дату</button>
+                            <button onclick="location.href='/tickets';">Выбрать дату</button>
                         </span>
                     </div>
                 </div>
@@ -236,7 +236,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-12 ticket">
+                <div class="col-12 schedule">
                     <span class="route">
                         <a href="#">
                             <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай - Ханты-Мансийск
@@ -262,7 +262,7 @@
                             <p>от 1400 р.</p>
                         </span>
                         <span class="buy">
-                            <button>Выбрать дату</button>
+                            <button onclick="location.href='/tickets';">Выбрать дату</button>
                         </span>
                     </div>
                 </div><div class="collapse" id="route-2">
@@ -313,7 +313,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-12 ticket">
+                <div class="col-12 schedule">
                     <span class="route">
                         <a href="#">
                             <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай - Советский - Нягань
@@ -339,7 +339,7 @@
                             <p>от 1000 р.</p>
                         </span>
                         <span class="buy">
-                            <button>Выбрать дату</button>
+                            <button onclick="location.href='/tickets';">Выбрать дату</button>
                         </span>
                     </div>
                 </div><div class="collapse" id="route-3">
@@ -390,7 +390,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-12 ticket">
+                <div class="col-12 schedule">
                     <span class="route">
                         <a href="#">
                             <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай — Советский — Югорск
@@ -416,7 +416,7 @@
                             <p>от 1000 р.</p>
                         </span>
                         <span class="buy">
-                            <button>Выбрать дату</button>
+                            <button onclick="location.href='/tickets';">Выбрать дату</button>
                         </span>
                     </div>
                 </div><div class="collapse" id="route-4">
@@ -468,24 +468,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-
-    <section id="footer-section">
-        <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                <p class="col-md-4 mb-0 text-muted">© 2014-2021 ИП Аднакулов Г.В.</p>
-                <a href="/"
-                   class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none navbar-brand">
-                    TK999
-                </a>
-                <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a href="https://vk.com/zorgo" class="nav-link px-2  text-muted">Разработка: ZORGO</a></li>
-                </ul>
-                <p class="col-md-12 mb-0 text-muted"> Пассажирские перевозки.</p>
-                <p class="col-md-12 mb-0 text-muted"> ОГРН 304860630800061 Лицензия АСС-86-154006 от 25.11.2014г.</p>
-            </footer>
         </div>
     </section>
 @endsection

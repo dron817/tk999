@@ -20,13 +20,13 @@ input, button, select, textarea{
 }
 input:focus {
     outline: none;
-}
+}/*
 .row{
     padding-right: 0 !important;
 }
 .row>*{
     padding-right: 0 !important;
-}
+}*/
 .section-heading{
     font-family: Roboto, serif;
 }
@@ -90,7 +90,6 @@ input:focus {
     background-color: rgba(1, 87, 155, 0.7);
 }
 .select-outer{
-    width: 100%;
     margin-top: 30px;
 }
 .select-outer select{
@@ -101,6 +100,9 @@ input:focus {
 .select2-container .select2-selection--single{
     height: 34px !important;
     padding: 3px;
+}
+.search-form .row{
+    margin: 0;
 }
 .search-form input{
     width: 100%;
@@ -157,14 +159,10 @@ input:focus {
 #popular-section .to{
     font-weight: bold;
 }
-#popular-section .row{
-    width: 100%;
-}
 #popular-section .col-12{
     padding-bottom: 15px;
 }
 #popular-section a{
-    width: 100%;
     height: 175px;
     display: flex;
     flex-direction: column;
@@ -203,8 +201,8 @@ input:focus {
 }
 /* POPULAR SECTION -- END */
 
-/* TICKS SECTION -- START */
-#ticket-section .ticket{
+/* SCHEDULE SECTION -- START */
+#schedule-section .schedule{
     background-color: white;
     display: flex;
     justify-content: space-between;
@@ -212,6 +210,182 @@ input:focus {
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
     padding: 20px !important;
     margin-bottom: 10px;
+    transition: .5s;
+}
+#schedule-section .schedule:hover{
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
+}
+#schedule-section a{
+    text-decoration: none;
+}
+#schedule-section .collapse {
+    margin-bottom: 10px;
+}
+
+.schedule button{
+    color: white;
+    border-radius: 5px;
+    background-color: #388E3C;
+    padding: 7px;
+    transition: .5s;
+    font-size: 18px;
+}
+.schedule button:hover{
+    background-color: #2f7532;
+}
+#schedule-section th{
+    text-align: center;
+}
+#schedule-section td{
+    text-align: center;
+    border: 1px solid #b6b6b6;
+}
+.schedule .buy p{
+    text-align: right;
+}
+.schedule .price p{
+    font-weight: bold;
+}
+.schedule .time{
+        font-size: 24px;
+}
+.schedule .from .time{
+    font-weight: bold;
+}
+.schedule .icon{
+    padding-right: 10px;
+}
+.schedule .route{
+    min-width: 250px;
+}
+.schedule p{
+    margin-bottom: 0;
+}
+.schedule .price{
+    font-size: 20px;
+}
+.schedule .place{
+    font-size: 0.8em;
+}
+.schedule .times{
+    display: flex;
+    width: 530px;
+}
+.schedule .times .duration{
+    font-size: 14px;
+    white-space: nowrap;
+}
+.schedule .times span{
+    padding: 0 20px;
+}
+.schedule .price p{
+    text-align: right;
+}
+
+@media (max-width: 1200px) {
+    .schedule .times span{
+        padding: 0 5px;
+    }
+}
+@media (max-width: 991px) {
+    .schedule {
+        flex-direction: column;
+        padding: 0 5px;
+    }
+    #schedule-section .row{
+        margin: 0;
+    }
+    .schedule .buy p{
+        text-align: left;
+    }
+    .schedule .buy button{
+        margin-left: -2px;
+    }
+    .schedule .times{
+        padding: 20px 0;
+        justify-content: space-between;
+        width: auto;
+    }
+    .schedule .times .to{
+        text-align: right;
+    }
+    .schedule .times .duration{
+        text-align: center;
+        font-size: 12px;
+        margin-top: -7px;
+        min-width: 75px;
+    }
+    .schedule .times .duration::before, .schedule .times .duration::after {
+         content: "";
+         display: inline-block;
+         vertical-align: middle;
+         width: 200%;
+         height: 2px;
+         background-color: #d7d7d7;;
+         position: relative;
+     }
+    .schedule .times .duration::before {
+        margin-left: -100%;
+        left: -70px;
+        top: 15px;
+    }
+    .schedule .times .duration::after {
+        margin-right: -100%;
+        right: -70px;
+        top: -20px;
+    }
+    .schedule .buy p{
+        display: none;
+    }
+    .schedule .choose {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media (max-width: 768px) {
+    .schedule .times .duration::before, .schedule .times .duration::after {
+        width: 100%;
+    }
+    .schedule .times .duration::before {
+        left: -70px;
+        top: 15px;
+    }
+    .schedule .times .duration::after {
+        right: -70px;
+        top: -20px;
+    }
+}
+@media (max-width: 577px) {
+    .schedule .times .duration::before, .schedule .times .duration::after {
+        width: 50%;
+    }
+    .schedule .times .duration::before {
+        left: -30px;
+        top: 15px;
+    }
+    .schedule .times .duration::after {
+        right: -30px;
+        top: -20px;
+    }
+}
+/* SCHEDULE SECTION -- END */
+
+/* TICKETS SECTION -- START */
+#ticket-section{
+    padding-top: 20px;
+}
+#ticket-section .ticket{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    transition: .5s;
+    padding: 20px !important;
+    margin-bottom: 10px;
+}
+#ticket-section .section-heading p{
+    display: inline;
 }
 #ticket-section .ticket:hover{
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
@@ -248,10 +422,18 @@ input:focus {
     font-weight: bold;
 }
 .ticket .time{
-        font-size: 24px;
+    font-size: 24px;
 }
 .ticket .from .time{
     font-weight: bold;
+}
+.ticket .time sub{
+    font-weight: normal;
+    bottom: 3px;
+    font-size: 12px;
+    z-index: 10;
+    display: block;
+    padding: 10px 0;
 }
 .ticket .icon{
     padding-right: 10px;
@@ -264,6 +446,12 @@ input:focus {
 }
 .ticket .price{
     font-size: 20px;
+}
+.ticket .price sub{
+    font-weight: normal;
+    bottom: 3px;
+    font-size: 12px;
+    right: 10px;
 }
 .ticket .place{
     font-size: 0.8em;
@@ -317,14 +505,14 @@ input:focus {
         min-width: 75px;
     }
     .ticket .times .duration::before, .ticket .times .duration::after {
-         content: "";
-         display: inline-block;
-         vertical-align: middle;
-         width: 200%;
-         height: 2px;
-         background-color: #d7d7d7;;
-         position: relative;
-     }
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 200%;
+        height: 2px;
+        background-color: #d7d7d7;;
+        position: relative;
+    }
     .ticket .times .duration::before {
         margin-left: -100%;
         left: -70px;
@@ -348,25 +536,281 @@ input:focus {
         width: 100%;
     }
     .ticket .times .duration::before {
-        left: -70px;
+        left: -40px;
         top: 15px;
     }
     .ticket .times .duration::after {
-        right: -70px;
+        right: -40px;
         top: -20px;
+    }
+    #ticket-section .section-heading p{
+        display: block;
     }
 }
 @media (max-width: 577px) {
     .ticket .times .duration::before, .ticket .times .duration::after {
-        width: 50%;
+        width: 20%;
     }
     .ticket .times .duration::before {
-        left: -30px;
+        left: -15px;
         top: 15px;
     }
     .ticket .times .duration::after {
-        right: -30px;
+        right: -15px;
         top: -20px;
     }
 }
-/* TICKS SECTION -- END */
+/* TICKETS SECTION -- END */
+
+/* CALENDAR SECTION -- START */
+.calendar{
+    padding: 20px 0px;
+    color: #28467C;
+    font-size: 24px;
+}
+.calendar .text-end a , .calendar .text-start a{
+    border: 1px solid #28467C;
+    color: #28467C;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: .5s;
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+}
+.calendar .text-end a:hover , .calendar .text-start a:hover{
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
+}
+#change_date{
+    height: 0;
+    width: 20px;
+    opacity: 0;
+    display: block;
+    margin: 0 auto;
+}
+.calendar .short{
+    display: none;
+}
+.calendar .long{
+    cursor: pointer;
+}
+.calendar .col-4{
+    padding-left: 0;
+}
+@media (max-width: 991px) {
+    .calendar{
+        font-size: 18px;
+    }
+    .calendar .long{
+        display: none;
+    }
+    .calendar .short{
+        font-size: 18px;
+        display: block;
+    }
+    .calendar .text-end a , .calendar .text-start a{
+        font-size: 12px;
+    }
+}
+/* CALENDAR SECTION -- END */
+
+/* PLACES SECTION -- START */
+#places-section{
+    padding-top: 60px;
+}
+#places-section .section-heading p {
+    display: inline;
+}
+@media (max-width: 768px) {
+    #places-section .section-heading p {
+        display: block;
+    }
+}
+#place-piker-outer {
+    display: flex;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    border-radius: 5px;
+    background-color: white;
+    position: relative;
+    justify-content: center;
+}
+#place-piker{
+    display: block;
+    width: 811px;
+    height: 277px;
+    padding: 52px 0 0 156px;
+    background-image: url(../img/shema.png);
+    background-repeat: no-repeat;
+    background-position: -1px 0;
+    background-size: contain;
+}
+#place-piker input{
+    display: none;
+}
+#place-piker label{
+    height: 42px;
+    width: 42px;
+    user-select: none;
+    background-color: white;
+    padding-top: 0.625em;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 48px;
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+}
+#place-piker tr:first-child{
+    margin-right: 50px;
+}
+#place-piker label:hover{
+    background-color: #C8E6C9;
+    cursor: pointer;
+}
+#place-piker input:checked+label{
+    background-color: #8BC34A;
+}
+#place-piker input:disabled+label{
+    background-color: #EF5350;
+}
+
+@media (max-width: 991px) {
+    #place-piker{
+        transform: rotate(90deg) translateX(250px);
+        margin-bottom: 500px;
+    }
+    #place-piker label{
+        transform: rotate(-90deg);
+    }
+}
+
+/* PLACES SECTION -- END */
+
+
+/* PEOPLES SECTION -- START */
+#peoples{
+    display: flex;
+    flex-direction: column;
+}
+#peoples div{
+}
+#peoples input{
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 12px;
+}
+#adult-outer, #kids-outer{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+}
+#kids-arrows{
+    display: flex;
+    font-size: 24px;
+    flex-direction: column;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    float: none;
+    position: absolute;
+    justify-content: space-between;
+    height: 100%;
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+}
+#kids-arrows div{
+    user-select: none;
+    padding: 0 7px;
+}
+#kids-arrows div:hover{
+    background-color: #E3F2FD;
+}
+/* PAYMENTS SECTION -- START */
+
+#payments {
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    background-color: white;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    position: relative;
+    height: 70px;
+    overflow: hidden;
+    transition: height .1s;
+    margin-bottom: 30px;
+}
+#payments .payment {
+    user-select: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+}
+#payments #hider{
+    user-select: none;
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    line-height: 1;
+    padding-left: 6px;
+}
+#payments #hider:hover{
+    background-color: #E3F2FD;
+}
+#payments label {
+    cursor: pointer;
+    height: 50px;
+    margin: 10px;
+    padding-top: 0.625em;
+}
+#payments input{
+    display: none;
+}
+#payments img {
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+}
+#payments .payment:hover {
+    background-color: #E3F2FD;
+}
+
+/* PAYMENTS SECTION -- END */
+
+/* PERSON DATA SECTION -- START */
+.person-data-outer.row {
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.person-data-outer input[type="text"] {
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    padding: 7px;
+}
+.person-data-outer input[type="text"]:hover {
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 25%), 0 0 2px rgb(13 35 67 / 35%);
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.data-group {
+    flex-direction: column;
+    display: flex;
+}
+/* PERSON DATA SECTION -- END */

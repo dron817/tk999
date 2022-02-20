@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.main');
 });
+Route::get('/tickets', function () {
+    return view('pages.tickets');
+});
+Route::get('/places', function () {
+    return view('pages.places');
+});
 Route::group(['prefix'=> 'dev'], function (){
     Route::get('clear', function () {
         Artisan::call('cache:clear');
