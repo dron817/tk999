@@ -21,89 +21,21 @@
     <script src="{{ asset('/assets/js/select2.min.js') }}"></script>
 @endsection
 @section('content')
-    <section id="search-section">
-        <div class="container">
-            <div id="search-box">
-                <div class="search-inner">
-                    <span class="title">Купить билет <span class="xs-hide"> на автобус</span></span>
-                    <div class="search-form row">
-                        <div class="col-lg-9 col-xs-12 row">
-                            <div class="col-xl-5 col-lg-5 col-sm-6 col-xs-12">
-                                <label for="search_from">Пункт отправления</label>
-                                <div class="select-outer">
-                                    <select id="search_from" class="search_from" name="search_from">
-                                        <option value="U">Урай</option>
-                                        <option value="HM">Ханты-Мансийск</option>
-                                        <option value="UA">Устье-Аха</option>
-                                        <option value="N">Нягань</option>
-                                        <option value="UG">Югорск</option>
-                                        <option value="T">Талинка</option>
-                                        <option value="S">Советский</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-5 col-lg-5 col-sm-6 col-xs-12">
-                                <label for="search_to">Пункт назначения</label>
-                                <div class="select-outer">
-                                    <select id="search_to" class="search_to" name="search_to">
-                                        <option value="HM">Ханты-Мансийск</option>
-                                        <option value="U">Урай</option>
-                                        <option value="UA">Устье-Аха</option>
-                                        <option value="N">Нягань</option>
-                                        <option value="UG">Югорск</option>
-                                        <option value="T">Талинка</option>
-                                        <option value="S">Советский</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-sm-6 col-xs-12">
-                                <label for="search_date">Дата выезда</label>
-                                <input type="text" id="search_date" value="" placeholder="Дата" autocomplete="off">
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-sm-6 col-xs-12 lg-hide">
-                                <button class="search-go" onclick="javascript:location.href='http://yoursite.com';">
-                                    Найти
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-12 sm-hide">
-                            <button class="search-go" onclick="javascript:location.href='/tickets';">Найти</button>
-                        </div>
-                        <script>
-                            $(function () {
-                                $('#search_date').datepicker({
-                                    minDate: new Date(),
-                                    language: 'ru',
-                                    isMobile: true,
-                                    autoClose: true,
-                                    clearButton: true,
-                                    onSelect(formattedDate, date, inst) {
-                                        inst.hide();
-                                    },
-                                    position: 'bottom center'
-                                });
-
-                            });
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('tpl.search')
 
     <section id="ticket-section">
         <div class="container">
-            <h2 class="section-heading"><p>Расписание автобусов</p> <p>Урай - Ханты-Мансийск</p></h2>
+            <h2 class="section-heading"><p>Расписание автобусов</p> <p>{{ $from }} - {{ $to }}</p></h2>
             <div class="calendar">
                 <div class="row">
-                    <div class="col-4 text-start"><a href="#">< 15 февраля</a></div>
+                    <div class="col-4 text-start"><a class="{{ $before_disabled }}" href="/tickets?from={{ $from }}&to={{ $to }}&date={{ $before_date }}">< {{ $before_date_text }}</a></div>
                     <!-- <div id="change_date" class="col-4 text-center">16 февраля 2021 среда</div>-->
                     <label for="change_date" class="col-4 text-center">
-                        <span class="long">16 февраля 2021 среда</span>
-                        <span class="short">16 февраля</span>
+                        <span class="long">{{ $from_date_long }}</span>
+                        <span class="short">{{ $from_date }}</span>
                         <input type="text" id="change_date" value="" placeholder="Дата" autocomplete="off">
                     </label>
-                    <div class="col-4 text-end"><a href="#">17 февраля ></a></div>
+                    <div class="col-4 text-end"><a href="/tickets?from={{ $from }}&to={{ $to }}&date={{ $after_date }}"> {{ $after_date_text }} ></a></div>
                 </div>
             </div>
             <script>
@@ -114,172 +46,124 @@
                         isMobile: true,
                         autoClose: true,
                         clearButton: true,
+                        dateFormat: 'dd.mm.yyyy',
                         onSelect(formattedDate, date, inst) {
                             inst.hide();
+                            location.href='/tickets?from={{ $from }}&to={{ $to }}&date='+formattedDate;
                         },
                         position: 'bottom center'
                     });
                 });
             </script>
             <div class="row">
-                <div class="col-12 ticket">
+                @php
+                    //убираем уехавшие рейсы
+                    $tickets_actual = []; //массив для них
+                    $now = date('U'); //получаем текущее время в секундах
+                    if ($from_date_clear == date('d.m.Y')){ //только если выбран сегодняшний день
+                        foreach ($tickets as $ticket){
+                            $from_time_seconds = strtotime($ticket->from_time); //получаем время отправления в секундах (из-за формата работает только сегодняшним днём)
+                            if ($now < $from_time_seconds){ //если секунд в билете больше, чем уже прошло
+                                $tickets_actual[] = $ticket; //то добавляем его в обновленный массив
+                            }
+                        }
+                    }
+                    else $tickets_actual = $tickets; //елси дата не сегодняшняя, то просто выводим все билеты
+                @endphp
+
+                @forelse($tickets_actual as $ticket)
+                    <div class="col-12 ticket">
                     <span class="route">
                         <a href="#">
-                            <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай - Ханты-Мансийск
+                            <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>
+                            {{ $ticket->from }} - {{ $ticket->to }}
                         </a>
                         <p class="text-muted">ежедневно</p>
                         <p>  <a data-bs-toggle="collapse" href="#route-1" role="button" aria-expanded="false"
                                 aria-controls="collapseExample">Маршрут</a></p>
                     </span>
-                    <div class="times">
+                        <div class="times">
                     <span class="from">
-                            <p class="time">0:05 <sub>18 фев</sub></p>
-                            <p class="place text-muted">Урай, сбор по адресам</p>
+                            <p class="time">{{ $ticket->from_time }} <sub>{{ $from_date }}</sub></p>
+                            <p class="place text-muted">{{ $ticket->from_desc }}</p>
                     </span>
-                        <span class="duration">
-                            <p class="text-muted">5 ч 25 мин</p>
+                            <span class="duration">
+                            <p class="text-muted">{{ $ticket->duration }}</p>
                     </span>
-                        <span class="to">
-                        <p class="time">~5:30 <sub>18 фев</sub></p>
-                        <p class="place text-muted">Ханты-Мансийск, автовокзал</p>
+                            <span class="to">
+                        <p class="time">~{{ $ticket->to_time }}
+                            <sub>
+                                @php
+                                    if($ticket->change_date==1) echo $to_date; else echo $from_date;
+                                @endphp
+                            </sub></p>
+                        <p class="place text-muted">{{ $ticket->to_desc }}</p>
                     </span>
-                    </div>
-                    <div class="choose">
+                        </div>
+                        <div class="choose">
                         <span class="price">
-                            <p><sub>12 мест</sub>1400 р.</p>
+                            <p><sub><strike>20 мест</strike></sub>{{ $ticket->price }} р.</p>
                         </span>
-                        <span class="buy">
-                            <button onclick="location.href='/places';">Выбрать место</button>
+                            <span class="buy">
+                            <button onclick="location.href='/places?from={{ $from }}&to={{ $to }}&date={{ $to_date }}&num={{ $ticket->num }}';">Выбрать место</button>
                         </span>
+                        </div>
                     </div>
-                </div>
-                <div class="collapse" id="route-1">
-                    <div class="card card-body">
-                        <table>
-                            <tr>
-                                <th>Станция</th>
-                                <th>Приб.</th>
-                                <th>Стоянка</th>
-                                <th>Отпр.</th>
-                            </tr>
-                            <tr>
-                                <td>Урай, по адресам</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>0:05</td>
-                            </tr>
-                            <tr>
-                                <td>Окружная клиническая больница</td>
-                                <td>5:04</td>
-                                <td>1 мин</td>
-                                <td>5:05</td>
-                            </tr>
-                            <tr>
-                                <td>Cтудгордок</td>
-                                <td>5:09</td>
-                                <td>1 мин</td>
-                                <td>5:10</td>
-                            </tr>
-                            <tr>
-                                <td>Ханты-Мансийск, аэропорт</td>
-                                <td>5:14</td>
-                                <td>1 мин</td>
-                                <td>5:15</td>
-                            </tr>
-                            <tr>
-                                <td>Ханты-Мансийск, авто-речной вокзал</td>
-                                <td>5:29</td>
-                                <td>1 мин</td>
-                                <td>5:30</td>
-                            </tr>
-                            <tr>
-                                <td>Ханты-Мансийск, Трансагентство</td>
-                                <td>5:45</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
-                        </table>
+                    <div class="collapse" id="route-1">
+                        <div class="card card-body">
+                            <table>
+                                <tr>
+                                    <th>Станция</th>
+                                    <th>Приб.</th>
+                                    <th>Стоянка</th>
+                                    <th>Отпр.</th>
+                                </tr>
+                                <tr>
+                                    <td>Урай, по адресам</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>0:05</td>
+                                </tr>
+                                <tr>
+                                    <td>Окружная клиническая больница</td>
+                                    <td>5:04</td>
+                                    <td>1 мин</td>
+                                    <td>5:05</td>
+                                </tr>
+                                <tr>
+                                    <td>Cтудгордок</td>
+                                    <td>5:09</td>
+                                    <td>1 мин</td>
+                                    <td>5:10</td>
+                                </tr>
+                                <tr>
+                                    <td>Ханты-Мансийск, аэропорт</td>
+                                    <td>5:14</td>
+                                    <td>1 мин</td>
+                                    <td>5:15</td>
+                                </tr>
+                                <tr>
+                                    <td>Ханты-Мансийск, авто-речной вокзал</td>
+                                    <td>5:29</td>
+                                    <td>1 мин</td>
+                                    <td>5:30</td>
+                                </tr>
+                                <tr>
+                                    <td>Ханты-Мансийск, Трансагентство</td>
+                                    <td>5:45</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 ticket">
-                    <span class="route">
-                        <a href="#">
-                            <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>Урай - Ханты-Мансийск
-                        </a>
-                        <p class="text-muted">ежедневно</p>
-                        <p>  <a data-bs-toggle="collapse" href="#route-2" role="button" aria-expanded="false"
-                                aria-controls="collapseExample">Маршрут</a></p>
-                    </span>
-                    <div class="times">
-                    <span class="from">
-                            <p class="time">6:00 <sub>18 фев</sub></p>
-                            <p class="place text-muted">Урай, сбор по адресам</p>
-                    </span>
-                        <span class="duration">
-                            <p class="text-muted">5 ч 30 мин</p>
-                    </span>
-                        <span class="to">
-                        <p class="time">~11:30 <sub>18 фев</sub></p>
-                        <p class="place text-muted">Ханты-Мансийск, автовокзал</p>
-                    </span>
+                @empty
+                    <div class="row">
+                        <div class="col-12 message">
+                            <p>На выбранную дату не найдено рейсов, либо рейсы уехали</p>
+                        </div>
                     </div>
-                    <div class="choose">
-                        <span class="price">
-                            <p><sub>12 мест</sub>1400 р.</p>
-                        </span>
-                        <span class="buy">
-                            <button  onclick="location.href='/places';">Выбрать место</button>
-                        </span>
-                    </div>
-                </div>
-                <div class="collapse" id="route-2">
-                    <div class="card card-body">
-                        <table>
-                            <tr>
-                                <th>Станция</th>
-                                <th>Приб.</th>
-                                <th>Стоянка</th>
-                                <th>Отпр.</th>
-                            </tr>
-                            <tr>
-                                <td>Урай, по адресам</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>0:05</td>
-                            </tr>
-                            <tr>
-                                <td>Окружная клиническая больница</td>
-                                <td>5:04</td>
-                                <td>1 мин</td>
-                                <td>5:05</td>
-                            </tr>
-                            <tr>
-                                <td>Cтудгордок</td>
-                                <td>5:09</td>
-                                <td>1 мин</td>
-                                <td>5:10</td>
-                            </tr>
-                            <tr>
-                                <td>Ханты-Мансийск, аэропорт</td>
-                                <td>5:14</td>
-                                <td>1 мин</td>
-                                <td>5:15</td>
-                            </tr>
-                            <tr>
-                                <td>Ханты-Мансийск, авто-речной вокзал</td>
-                                <td>5:29</td>
-                                <td>1 мин</td>
-                                <td>5:30</td>
-                            </tr>
-                            <tr>
-                                <td>Ханты-Мансийск, Трансагентство</td>
-                                <td>5:45</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>

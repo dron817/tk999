@@ -1,7 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TripsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.main');
-});
+
+Route::get('/', 'App\Http\Controllers\TripsController@getAll');
+/*
 Route::get('/tickets', function () {
     return view('pages.tickets');
-});
+});*/
+Route::get('/tickets', 'App\Http\Controllers\TripsController@getTrip');
+
 Route::get('/places', function () {
     return view('pages.places');
 });
@@ -33,6 +36,10 @@ Route::group(['prefix'=> 'dev'], function (){
     Route::get('migrate', function () {
         Artisan::call('migrate'); //возможно, это не безопасно, надо выяснить или нужно удалить при продакшене
         return "Миграции выполнены";
+    });
+    Route::get('seed', function () {
+        Artisan::call('db:seed'); //возможно, это не безопасно, надо выяснить или нужно удалить при продакшене
+        return "Посев выполнен";
     });
     Route::get('rollback', function () {
         Artisan::call('migrate:rollback');  //возможно, это не безопасно, надо выяснить или нужно удалить при продакшене
