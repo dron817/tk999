@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ticket;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        /* Маршруты */
         \App\Models\Trip::factory(1)->create(['num' => '1', 'from' => 'Урай', 'to' => 'Устье-Аха', 'from_time' => '00:05', 'to_time' => '05:30', 'duration' => '2ч 30м', 'price' => '500']);
         \App\Models\Trip::factory(1)->create(['num' => '2','from' => 'Урай', 'to' => 'Устье-Аха', 'from_time' => '14:30', 'to_time' => '17:00', 'duration' => '2ч 30м', 'price' => '500']);
         \App\Models\Trip::factory(1)->create(['num' => '3','from' => 'Устье-Аха', 'to' => 'Урай', 'from_time' => '11:50', 'to_time' => '13:30', 'duration' => '1ч 40м', 'price' => '500']);
@@ -34,5 +35,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Trip::factory(1)->create(['num' => '12','from' => 'Нягань', 'to' => 'Урай', 'from_time' => '14:00', 'to_time' => '19:00', 'duration' => '5ч 00м', 'price' => '1300']);
         \App\Models\Trip::factory(1)->create(['num' => '12','from' => 'Нягань', 'to' => 'Советский', 'from_time' => '14:00', 'to_time' => '16:00', 'duration' => '2ч 00м', 'price' => '600']);
         \App\Models\Trip::factory(1)->create(['num' => '12','from' => 'Советский', 'to' => 'Урай', 'from_time' => '16:00', 'to_time' => '19:00', 'duration' => '3ч 00м', 'price' => '1000']);
+
+        /* Фейковые билеты */
+        Ticket::Factory(200)->create();
     }
 }

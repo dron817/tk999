@@ -11,66 +11,66 @@
 @section('content')
     <section id="places-section">
         <div class="container">
-            <h2 class="section-heading"><p>Выбор мест</p>
-                <p>Урай - Ханты-Мансийск</p>
-                <p>18 февраля</p></h2>
+            <h2 class="section-heading"><p>Выбор мест |</p>
+                <p>{{ $from }} - {{ $to }} |</p>
+                <p>{{ $date }}</p></h2>
             <div id="place-piker-outer">
                 <div id="place-piker">
                     <table>
                         <tr>
-                            <td><input type="checkbox" onclick="pickPlace(20)" id="20" value="20"><label
+                            <td><input type="checkbox" onclick="pickPlace(20)" @if ($ticket_buy[20]==1) disabled @endif id="20" value="20"><label
                                     for="20">20</label></td>
                             <td></td>
-                            <td><input type="checkbox" onclick="pickPlace(3)" id="3" value="3"><label for="3">3</label>
+                            <td><input type="checkbox" onclick="pickPlace(3)" @if ($ticket_buy[3]==1) disabled @endif id="3" value="3"><label for="3">3</label>
                             </td>
-                            <td><input type="checkbox" onclick="pickPlace(6)" id="6" value="6"><label for="6">6</label>
+                            <td><input type="checkbox" onclick="pickPlace(6)" @if ($ticket_buy[6]==1) disabled @endif id="6" value="6"><label for="6">6</label>
                             </td>
-                            <td><input type="checkbox" onclick="pickPlace(9)" id="9" value="9"><label for="9">9</label>
+                            <td><input type="checkbox" onclick="pickPlace(9)" @if ($ticket_buy[9]==1) disabled @endif id="9" value="9"><label for="9">9</label>
                             </td>
-                            <td><input type="checkbox" onclick="pickPlace(12)" id="12" value="12"><label
+                            <td><input type="checkbox" onclick="pickPlace(12)" @if ($ticket_buy[12]==1) disabled @endif id="12" value="12"><label
                                     for="12">12</label></td>
-                            <td><input type="checkbox" onclick="pickPlace(15)" id="15" value="15"><label
+                            <td><input type="checkbox" onclick="pickPlace(15)" @if ($ticket_buy[15]==1) disabled @endif id="15" value="15"><label
                                     for="15">15</label></td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" onclick="pickPlace(19)" id="19" value="19"><label
+                            <td><input type="checkbox" onclick="pickPlace(19)" @if ($ticket_buy[19]==1) disabled @endif id="19" value="19"><label
                                     for="19">19</label></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><input type="checkbox" onclick="pickPlace(16)" id="16" value="16"><label
+                            <td><input type="checkbox" onclick="pickPlace(16)" @if ($ticket_buy[16]==1) disabled @endif id="16" value="16"><label
                                     for="16">16</label></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td><input type="checkbox" onclick="pickPlace(1)" id="1" value="1"><label for="1">1</label>
+                            <td><input type="checkbox" onclick="pickPlace(1)" @if ($ticket_buy[1]==1) disabled @endif id="1" value="1"><label for="1">1</label>
                             </td>
-                            <td><input type="checkbox" onclick="pickPlace(4)" id="4" value="4"><label for="4">4</label>
+                            <td><input type="checkbox" onclick="pickPlace(4)" @if ($ticket_buy[4]==1) disabled @endif id="4" value="4"><label for="4">4</label>
                             </td>
-                            <td><input type="checkbox" onclick="pickPlace(7)" id="7" value="7"><label for="7">7</label>
+                            <td><input type="checkbox" onclick="pickPlace(7)" @if ($ticket_buy[7]==1) disabled @endif id="7" value="7"><label for="7">7</label>
                             </td>
-                            <td><input type="checkbox" onclick="pickPlace(10)" id="10" value="10"><label
+                            <td><input type="checkbox" onclick="pickPlace(10)" @if ($ticket_buy[10]==1) disabled @endif id="10" value="10"><label
                                     for="10">10</label></td>
-                            <td><input type="checkbox" onclick="pickPlace(13)" id="13" value="13"><label
+                            <td><input type="checkbox" onclick="pickPlace(13)" @if ($ticket_buy[13]==1) disabled @endif id="13" value="13"><label
                                     for="13">13</label></td>
-                            <td><input type="checkbox" onclick="pickPlace(17)" id="17" value="17"><label
+                            <td><input type="checkbox" onclick="pickPlace(17)" @if ($ticket_buy[17]==1) disabled @endif id="17" value="17"><label
                                     for="17">17</label></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="0" value="0" disabled><label for="0">В</label></td>
-                            <td><input type="checkbox" onclick="pickPlace(2)" id="2" value="2"><label for="2">2</label>
+                            <td><input type="checkbox" onclick="pickPlace(2)" @if ($ticket_buy[2]==1) disabled @endif id="2" value="2"><label for="2">2</label>
                             </td>
-                            <td><input type="checkbox" onclick="pickPlace(5)" id="5" value="5"><label for="5">5</label>
+                            <td><input type="checkbox" onclick="pickPlace(5)" @if ($ticket_buy[5]==1) disabled @endif id="5" value="5"><label for="5">5</label>
                             </td>
-                            <td><input type="checkbox" onclick="pickPlace(8)" id="8" value="8"><label for="8">8</label>
+                            <td><input type="checkbox" onclick="pickPlace(8)" @if ($ticket_buy[8]==1) disabled @endif id="8" value="8"><label for="8">8</label>
                             </td>
-                            <td><input type="checkbox" onclick="pickPlace(11)" id="11" value="11"><label
+                            <td><input type="checkbox" onclick="pickPlace(11)" @if ($ticket_buy[11]==1) disabled @endif id="11" value="11"><label
                                     for="11">11</label></td>
-                            <td><input type="checkbox" onclick="pickPlace(14)" id="14" value="14"><label
+                            <td><input type="checkbox" onclick="pickPlace(14)" @if ($ticket_buy[14]==1) disabled @endif id="14" value="14"><label
                                     for="14">14</label></td>
-                            <td><input type="checkbox" onclick="pickPlace(18)" id="18" value="18"><label
+                            <td><input type="checkbox" onclick="pickPlace(18)" @if ($ticket_buy[18]==1) disabled @endif id="18" value="18"><label
                                     for="18">18</label></td>
                         </tr>
                     </table>
@@ -99,13 +99,13 @@
                     <div id="payments">
                         <div onclick="clickHider()" id="hider">&#8744;</div>
                         <form>
-                            <div onclick="choseCard()" id="card-outer" class="payment">
-                                <img src="{{ asset('assets/img/payments/card.png') }}" alt=""> <label for="card">Картой
-                                    онлайн</label> <input checked name="payment" id="card" type="radio">
-                            </div>
                             <div onclick="choseCash()" id="cash-outer" class="payment">
                                 <img src="{{ asset('assets/img/payments/cash.png') }}" alt=""> <label for="cash">Наличными
-                                    водителю</label> <input name="payment" id="cash" type="radio">
+                                    водителю</label> <input checked name="payment" id="cash" type="radio">
+                            </div>
+                            <div onclick="choseCard()" id="card-outer" class="payment">
+                                <img src="{{ asset('assets/img/payments/card.png') }}" alt=""> <label for="card">Картой
+                                    онлайн</label> <input  name="payment" id="card" type="radio">
                             </div>
                         </form>
                     </div>
@@ -178,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_3">Адрес
                                 сбора</label><input type="text" id="address_3"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_4" style="display: none;"><b class="col-12">Пассажир №4 -
@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_4">Адрес
                                 сбора</label><input type="text" id="address_4"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_5" style="display: none;"><b class="col-12">Пассажир №5 -
@@ -214,7 +214,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_5">Адрес
                                 сбора</label><input type="text" id="address_5"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_6" style="display: none;"><b class="col-12">Пассажир №6 -
@@ -232,7 +232,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_6">Адрес
                                 сбора</label><input type="text" id="address_6"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_7" style="display: none;"><b class="col-12">Пассажир №7 -
@@ -250,7 +250,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_7">Адрес
                                 сбора</label><input type="text" id="address_7"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_8" style="display: none;"><b class="col-12">Пассажир №8 -
@@ -268,7 +268,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_8">Адрес
                                 сбора</label><input type="text" id="address_8"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_9" style="display: none;"><b class="col-12">Пассажир №9 -
@@ -286,7 +286,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_9">Адрес
                                 сбора</label><input type="text" id="address_9"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_10" style="display: none;"><b class="col-12">Пассажир №10
@@ -304,7 +304,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_10">Адрес
                                 сбора</label><input type="text" id="address_10"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_11" style="display: none;"><b class="col-12">Пассажир №11
@@ -322,7 +322,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_11">Адрес
                                 сбора</label><input type="text" id="address_11"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_12" style="display: none;"><b class="col-12">Пассажир №12
@@ -340,7 +340,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_12">Адрес
                                 сбора</label><input type="text" id="address_12"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_13" style="display: none;"><b class="col-12">Пассажир №13
@@ -358,7 +358,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_13">Адрес
                                 сбора</label><input type="text" id="address_13"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_14" style="display: none;"><b class="col-12">Пассажир №14
@@ -376,7 +376,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_14">Адрес
                                 сбора</label><input type="text" id="address_14"></div>
                     </div>
                     <div class="person-data-outer row" id="pd_15" style="display: none;"><b class="col-12">Пассажир №15
@@ -394,7 +394,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
+                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_15">Адрес
                                 сбора</label><input type="text" id="address_15"></div>
                     </div>
                 </div>

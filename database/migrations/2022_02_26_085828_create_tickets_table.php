@@ -16,10 +16,13 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('trip_id')->constrained();
+            $table->string('date');
+            $table->integer('place');
             $table->string('fio');
             $table->string('doc');
             $table->string('phone');
-            $table->string('tariff');
+            $table->integer('tariff');
+            $table->string('address');
             $table->timestamps();
         });
     }

@@ -16,15 +16,12 @@ use App\Http\Controllers\TripsController;
 
 
 Route::get('/', 'App\Http\Controllers\TripsController@getAll');
-/*
-Route::get('/tickets', function () {
-    return view('pages.tickets');
-});*/
+
 Route::get('/tickets', 'App\Http\Controllers\TripsController@getTrip');
 
-Route::get('/places', function () {
-    return view('pages.places');
-});
+Route::get('/places', 'App\Http\Controllers\PlacesController@getPlaces');
+
+
 Route::group(['prefix'=> 'dev'], function (){
     Route::get('clear', function () {
         Artisan::call('cache:clear');

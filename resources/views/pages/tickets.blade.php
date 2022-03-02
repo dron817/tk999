@@ -105,7 +105,7 @@
                             <p><sub><strike>20 мест</strike></sub>{{ $ticket->price }} р.</p>
                         </span>
                             <span class="buy">
-                            <button onclick="location.href='/places?from={{ $from }}&to={{ $to }}&date={{ $to_date }}&num={{ $ticket->num }}';">Выбрать место</button>
+                            <button onclick="location.href='/places?from={{ $from }}&to={{ $to }}&date={{ $from_date_clear }}&trip_id={{ $ticket->id }}';">Выбрать место</button>
                         </span>
                         </div>
                     </div>
