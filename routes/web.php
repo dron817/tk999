@@ -21,6 +21,8 @@ Route::get('/tickets', 'App\Http\Controllers\TripsController@getTrip');
 
 Route::get('/places', 'App\Http\Controllers\PlacesController@getPlaces');
 
+Route::post('/order', 'App\Http\Controllers\OrderController@letOrder');
+
 
 Route::group(['prefix'=> 'dev'], function (){
     Route::get('clear', function () {

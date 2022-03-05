@@ -10,6 +10,11 @@ class Ticket extends Model
 {
     use HasFactory;
 
+    public function setTicket($ticket): int
+    {
+        return DB::table($this->table)->insertGetId($ticket);
+    }
+
     public function getTicketsByTtip($trip_id, $date)
     {
         return $user = DB::table('tickets')->where('trip_id', '=', $trip_id)->where('date', '=', $date)->get();

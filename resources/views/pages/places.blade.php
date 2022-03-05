@@ -401,7 +401,10 @@
                 <div class="col-12">
                     <div class="sum-outer">
                         <p>Общая стоимость: <span id="price">3 800 р.</span></p>
-                        <button>Забронировать</button>
+                        @csrf
+                        <input id="trip_id" type="hidden" value="{{ $trip_id }}">
+                        <input id="date" type="hidden" value="{{ $clear_date }}">
+                        <button id="send">Забронировать</button>
                     </div>
                 </div>
             </div>
