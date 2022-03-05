@@ -22,7 +22,7 @@ class PlacesController extends Controller
         $num = $trip_data->num;
         $trips = $trip->getTripsByNum($num)->toArray(); //получаем все маршруты с таким же NUM
         foreach ($trips as $trip){
-            $tickets = $ticket->getTicketsByTtip($trip->id, $clear_date)->toArray(); //получаем билеты каждого из маршрутов на эту дату
+            $tickets = $ticket->getTicketsByTrip($trip->id, $clear_date)->toArray(); //получаем билеты каждого из маршрутов на эту дату
             foreach ($tickets as $ticket_once){
                 $ticket_buy[$ticket_once->place]=1;  //занимаем места каждым найденным билетом
             };

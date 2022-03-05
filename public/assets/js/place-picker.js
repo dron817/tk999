@@ -1,21 +1,19 @@
 let places = [];
 
 function SendForm() {
+
     //places = [...new Set(places)];
     let adult = Number($('#adult').val());
     let kids = Number($('#kids').val());
     let count = adult + kids;
 
     if (count < 1) {
-        alert('Выберите как минимум одно место');
         return false;
     }
-    if ($('#address_1').val()===''){
-        alert('Укажите адрес сбора');
+    if ($('#address_1').val() === '') {
         return false;
     }
-    if ($('#phone_1').val()===''){
-        alert('Укажите телефон как минимум для первого пассажира');
+    if ($('#phone_1').val() === '') {
         return false;
     }
 
@@ -58,26 +56,11 @@ function SendForm() {
             "_token": $('input[name="_token"]').val()
         }
     }).done(function (msg) {
-        done.html(msg['a']);
+        function viewResult(){
+            location.href='/order_show?order_id='+msg['redirect'];
+        }
+        setTimeout(viewResult, 0);
     })
-
-    // let xhr = new XMLHttpRequest();
-    // xhr.open('POST', '/order', true)
-    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    // xhr.setRequestHeader('X-CSRF-TOKEN', $('input[name="_token"]').val());
-    // xhr.send(data);
-    //
-    // let done = $('#price');
-    // xhr.onreadystatechange = function() // Ждём ответа от сервера
-    // {
-    //     if (xhr.readyState === 4) // возвращает текущее состояние объекта(0-4)
-    //     {
-    //         if(xhr.status === 200) // код 200 (если страница не найдена вернет 404)
-    //         {
-    //             done.html(xhr.responseText); // Выводим ответ сервера
-    //         }
-    //     }
-    // }
 }
 
 $("#send").click(function () {

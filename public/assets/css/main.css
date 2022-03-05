@@ -934,3 +934,15 @@ a.disabled {
     font-size: 18px;
 }
 /* SUM SECTION -- END */
+
+/* ORDER SECTION -- START */
+#order-section{
+    padding-top: 60px;
+}
+.order{
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 10%), 0 0 2px rgb(13 35 67 / 10%);
+    background-color: white;
+    padding: 35px 0 20px 0;
+    border-radius: 10px;
+}
+/* ORDER SECTION -- END */

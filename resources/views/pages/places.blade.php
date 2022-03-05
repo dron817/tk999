@@ -2,11 +2,34 @@
 
 @section('title', 'Выбор мест')
 @section('custom-css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/progress-button/progress-button.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/progress-button/component.css') }}"/>
 @endsection
 @section('custom-js-before')
+    <script src="{{ asset('/assets/js/progress-button/modernizr.custom.js') }}"></script>
 @endsection
 @section('custom-js-after')
+    <script src="{{ asset('/assets/js/progress-button/classie.js') }}"></script>
+    <script src="{{ asset('/assets/js/progress-button/progressButton.js') }}"></script>
     <script src="{{ asset('/assets/js/place-picker.js') }}"></script>
+    <script>
+        [].slice.call( document.querySelectorAll( 'button.progress-button' ) ).forEach( function( bttn ) {
+            new ProgressButton( bttn, {
+                callback : function( instance ) {
+                    let progress = 0,
+                        interval = setInterval( function() {
+                            progress = Math.min( progress + Math.random() * 0.1, 1 );
+                            instance._setProgress( progress );
+
+                            if( progress === 1 ) {
+                                instance._stop(1);
+                                clearInterval( interval );
+                            }
+                        }, 200 );
+                }
+            } );
+        } );
+    </script>
 @endsection
 @section('content')
     <section id="places-section">
@@ -404,7 +427,7 @@
                         @csrf
                         <input id="trip_id" type="hidden" value="{{ $trip_id }}">
                         <input id="date" type="hidden" value="{{ $clear_date }}">
-                        <button id="send">Забронировать</button>
+                        <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Забронировать</button>
                     </div>
                 </div>
             </div>

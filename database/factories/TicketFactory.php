@@ -16,6 +16,7 @@ class TicketFactory extends Factory
     {
         return [
             'trip_id' => $this->faker->numberBetween(1, 20),
+            'order_id' => $this->faker->numberBetween(1, 200),
             'date' => str_pad(rand(1,10), 2, "0", STR_PAD_LEFT).'.03.'.'2022',
             'place' => rand(1,20),
             'fio' => $this->faker->name,

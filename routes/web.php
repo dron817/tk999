@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TripsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,11 +16,15 @@ use App\Http\Controllers\TripsController;
 
 Route::get('/', 'App\Http\Controllers\TripsController@getAll');
 
-Route::get('/tickets', 'App\Http\Controllers\TripsController@getTrip');
+Route::get('/tickets_list', 'App\Http\Controllers\TripsController@getTrip')->name('tickets');
 
 Route::get('/places', 'App\Http\Controllers\PlacesController@getPlaces');
 
 Route::post('/order', 'App\Http\Controllers\OrderController@letOrder');
+
+Route::get('/print', 'App\Http\Controllers\OrderController@print');
+
+Route::get('/order_show', 'App\Http\Controllers\OrderController@getOrder');
 
 
 Route::group(['prefix'=> 'dev'], function (){

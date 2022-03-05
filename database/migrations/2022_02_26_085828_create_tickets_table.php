@@ -16,6 +16,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('trip_id')->constrained();
+            $table->integer('order_id');
             $table->string('date');
             $table->integer('place');
             $table->string('fio');
