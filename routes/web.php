@@ -50,3 +50,7 @@ Route::group(['prefix'=> 'dev'], function (){
         return "Миграции откачены";
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
