@@ -28,56 +28,56 @@
             <h2 class="section-heading">Популярные направления</h2>
             <div class="row">
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="UA" href="#">
+                    <a id="UA" href="{{ route('tickets') }}?from=Урай&to=Устье-Аха">
                         <span class="from">Урай -</span>
                         <span class="to">Устье-Аха</span>
                         <span class="price">от 500 р.</span>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="HM" href="#">
+                    <a id="HM" href="{{ route('tickets') }}?from=Урай&to=Ханты-Мансийск">
                         <span class="from">Урай -</span>
                         <span class="to">Ханты-Мансийск</span>
                         <span class="price">от 1400 р.</span>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="UG" href="#">
+                    <a id="UG" href="{{ route('tickets') }}?from=Урай&to=Югорск">
                         <span class="from">Урай -</span>
                         <span class="to">Югорск</span>
                         <span class="price">от 1000 р.</span>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="SV" href="#">
+                    <a id="SV" href="{{ route('tickets') }}?from=Урай&to=Советский">
                         <span class="from">Урай -</span>
                         <span class="to">Советский</span>
                         <span class="price">от 1000 р.</span>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="NY" href="#">
+                    <a id="NY" href="{{ route('tickets') }}?from=Урай&to=Нягань">
                         <span class="from">Урай -</span>
                         <span class="to">Нягань</span>
                         <span class="price">от 1000 р.</span>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="TA" href="#">
-                        <span class="from">Урай -</span>
-                        <span class="to">Талинка</span>
-                        <span class="price">от 1000 р.</span>
+                    <a id="UA" href="{{ route('tickets') }}?from=Устье-Аха&to=Урай">
+                        <span class="from">Устье-Аха -</span>
+                        <span class="to">Урай</span>
+                        <span class="price">от 500 р.</span>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="HM" href="#">
+                    <a id="HM" href="{{ route('tickets') }}?from=Ханты-Мансийск&to=Урай">
                         <span class="from">Ханты-Мансийск -</span>
                         <span class="to">Урай</span>
                         <span class="price">от 1400 р.</span>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="UG" href="#">
+                    <a id="UG" href="{{ route('tickets') }}?from=Югорск&to=Урай">
                         <span class="from">Югорск -</span>
                         <span class="to">Урай</span>
                         <span class="price">от 1000 р.</span>
@@ -99,7 +99,7 @@
                             {{ $ticket->from }} - {{ $ticket->to }}
                         </a>
                         <p class="text-muted">ежедневно</p>
-                        <p>  <a data-bs-toggle="collapse" href="#route-1" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
+                        <p>  <a data-bs-toggle="collapse" href="#route-{{ $ticket->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
                     </span>
                     <div class="times">
                     <span class="from">
@@ -119,11 +119,11 @@
                             <p>от {{ $ticket->price }} р.</p>
                         </span>
                         <span class="buy">
-                            <button onclick="location.href='/tickets?from={{ $ticket->from }}&to={{ $ticket->to }}';">Выбрать дату</button>
+                            <button onclick="location.href='{{ route('tickets') }}?from={{ $ticket->from }}&to={{ $ticket->to }}';">Выбрать дату</button>
                         </span>
                     </div>
                 </div>
-                <div class="collapse" id="route-1">
+                <div class="collapse" id="route-{{ $ticket->id }}">
                     <div class="card card-body">
                         <table>
                             <tr>

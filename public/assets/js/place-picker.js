@@ -1,8 +1,6 @@
 let places = [];
 
 function SendForm() {
-
-    //places = [...new Set(places)];
     let adult = Number($('#adult').val());
     let kids = Number($('#kids').val());
     let count = adult + kids;
@@ -59,7 +57,7 @@ function SendForm() {
         function viewResult(){
             location.href='/order_show?order_id='+msg['redirect'];
         }
-        setTimeout(viewResult, 0);
+        setTimeout(viewResult, 5000);
     })
 }
 
@@ -86,7 +84,6 @@ function pickPlace(id) {
         else
             adult--;
     }
-    console.log(places);
 
     for (let i = 2; i <= 20; i++) {
         $('#pd_' + i).hide();
@@ -103,6 +100,10 @@ function pickPlace(id) {
     KidsForms(adult, kids);
     $("#adult").val(adult);
     $("#kids").val(kids);
+
+    let cost = $('#count').val();
+    let inner = cost*adult + cost*kids*0.5 + ' р.';
+    $("#price").html(inner);
 }
 
 // Слушаем нажатия на места
@@ -128,6 +129,10 @@ function kidsPlus() {
     KidsForms(adult, kids);
     $("#adult").val(adult);
     $("#kids").val(kids);
+
+    let cost = $('#count').val();
+    let inner = cost*adult + cost*kids*0.5 + ' р.';
+    $("#price").html(inner);
 }
 
 // Детские билеты -
@@ -141,6 +146,10 @@ function kidsMinus() {
     KidsForms(adult, kids);
     $("#adult").val(adult);
     $("#kids").val(kids);
+
+    let cost = $('#count').val();
+    let inner = cost*adult + cost*kids*0.5 + ' р.';
+    $("#price").html(inner);
 }
 
 // Формы билетов в детские

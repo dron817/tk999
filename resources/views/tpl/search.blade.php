@@ -51,7 +51,7 @@
                                 let from = $('#search_from').val();
                                 let to = $('#search_to').val();
                                 let date = $('#search_date').val();
-                                location.href='/tickets?from='+from+'&to='+to+'&date='+date;
+                                location.href='{{ route('tickets') }}?from='+from+'&to='+to+'&date='+date;
                             }
                             let btn_l = $('#search_submit_l');
                             let btn_b = $('#search_submit_b');

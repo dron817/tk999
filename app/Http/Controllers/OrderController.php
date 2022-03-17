@@ -14,32 +14,27 @@ class OrderController extends Controller
     {
         $ticket_id = $_GET['ticket_id'];
         $ticket = new Ticket();
+        $trip = new Trip();
         $data = $ticket->getTicketByID($ticket_id);
-        $products = [
-            ['title' => 'Product 1', 'price' => 10.99, 'quantity' => 1, 'totals' => 10.99],
-            ['title' => 'Product 2', 'price' => 14.99, 'quantity' => 2, 'totals' => 29.98],
-            ['title' => 'Product 3', 'price' => 500.00, 'quantity' => 1, 'totals' => 500.00],
-            ['title' => 'Product 4', 'price' => 6.99, 'quantity' => 3, 'totals' => 20.97],
-        ];
+        $trip_info = $trip->getTripById($data->trip_id);
 
-        $total = collect($products)->sum('totals');
-
-        $pdf = PDF::loadView('pdf.ticket', compact('products', 'data', 'total'));
+        $pdf = PDF::loadView('pdf.ticket', compact('data', 'trip_info'));
         return $pdf->stream($data->id.'_ticket_'.$data->date.'_'.$data->fio.'.pdf');
-//        return view('pages/print', ['tickets' => $data]);
     }
 
     function getOrder(Request $request){
         $order_id = $_GET['order_id'];
         $ticket = new Ticket();
         $tickets = $ticket->getTicketsByOrderID($order_id);
+        $trip = new Trip();
+        $trip_info = $trip->getTripById($tickets{0}->trip_id);
 
         $i=0;
         foreach ($tickets as $ticket){
             $tickets_arr[] = json_decode(json_encode($ticket), true);
             $i++;
         }
-        return view('pages/order', ['tickets' => $tickets]);
+        return view('pages/order', ['tickets' => $tickets, 'trip' => $trip_info]);
     }
 
     function letOrder(Request $request): array
@@ -77,10 +72,25 @@ class OrderController extends Controller
             $tickets_id[$i]=$ticket->getQueueableId();
         }
 
+        require_once ("sms/sms-prosto_ru.php");
+        $key = "Kyi622747f725e569f00ef96ad5ea0eb7faed920e0aac0c3";
+//        $phone = $_POST['data'][0]['phone'];
+        $phone = "79964443105";
+        $result = smsapi_push_msg_nologin_key($key, $phone, "Hello world =)!", array("sender_name"=>"user"));
+
         $answer = array(
             'redirect' => $order_id
         );
         return ($answer);
+    }
+
+    function sendSMS(){
+        require_once ("sms/sms-prosto_ru.php");
+        $key = "Kyi622747f725e569f00ef96ad5ea0eb7faed920e0aac0c3";
+//        $phone = $_POST['data'][0]['phone'];
+        $phone = "79964443105";
+        $result = smsapi_push_msg_nologin_key($key, $phone, "Hello world =)!", array("sender_name"=>"TK-order"));
+        var_dump($result);
     }
 
 }

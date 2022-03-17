@@ -933,6 +933,11 @@ a.disabled {
     transition: .5s;
     font-size: 18px;
 }
+@media (max-width: 991px) {
+    .sum-outer {
+        flex-direction: column;
+    }
+}
 /* SUM SECTION -- END */
 
 /* ORDER SECTION -- START */
@@ -946,3 +951,49 @@ a.disabled {
     border-radius: 10px;
 }
 /* ORDER SECTION -- END */
+
+/* ORDER-TICKET SECTION -- START */
+.order-ticket {
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 10%), 0 0 2px rgb(13 35 67 / 10%);
+    background-color: white;
+    padding: 20px 0;
+    border-radius: 10px;
+    margin-top: 20px !important;
+    display: flex;
+    justify-content: space-between;
+}
+.order-ticket a{
+    color: white;
+    border-radius: 5px;
+    background-color: #388E3C;
+    padding: 10px 15px;
+    transition: .5s;
+    font-size: 18px;
+    text-decoration: none;
+}
+.order-ticket a:hover{
+    background-color: #2f7532;
+    color: white;
+}
+
+.order-ticket .price p{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: right;
+}
+.order-ticket  .route{
+
+}
+#order-section .container{
+    padding: 0 1.75em !important;
+}
+@media (max-width: 991px) {
+    .order-ticket {
+        flex-direction: column;
+    }
+    .order-ticket .price p{
+        text-align: left;
+    }
+
+}
+/* ORDER-TICKET SECTION -- END */

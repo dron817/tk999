@@ -30,7 +30,7 @@ class PlacesController extends Controller
 
         $date = $this->RusDate(date('d F', strtotime($clear_date)));
         return view('pages/places', ['from' => $from, 'to' => $to, 'date' => $date, 'ticket_buy' => $ticket_buy,
-            'clear_date' => $clear_date, 'trip_id' => $trip->id]);
+            'clear_date' => $clear_date, 'trip_id' => $trip->id, 'trip_count' => $trip->price]);
     }
 
 }

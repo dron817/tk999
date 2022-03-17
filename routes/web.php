@@ -14,17 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', 'App\Http\Controllers\TripsController@getAll');
+Route::get('/', 'App\Http\Controllers\TripsController@getAll')->name('index');
 
 Route::get('/tickets_list', 'App\Http\Controllers\TripsController@getTrip')->name('tickets');
 
-Route::get('/places', 'App\Http\Controllers\PlacesController@getPlaces');
+Route::get('/places', 'App\Http\Controllers\PlacesController@getPlaces')->name('places');
 
-Route::post('/order', 'App\Http\Controllers\OrderController@letOrder');
+Route::post('/order', 'App\Http\Controllers\OrderController@letOrder')->name('letOrder');
 
-Route::get('/print', 'App\Http\Controllers\OrderController@print');
+Route::get('/print', 'App\Http\Controllers\OrderController@print')->name('print');
 
-Route::get('/order_show', 'App\Http\Controllers\OrderController@getOrder');
+Route::get('/order_show', 'App\Http\Controllers\OrderController@getOrder')->name('getOrder');
+
+Route::get('/sendSMS', 'App\Http\Controllers\OrderController@sendSMS')->name('sendSMS');
 
 
 Route::group(['prefix'=> 'dev'], function (){

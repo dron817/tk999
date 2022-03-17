@@ -22,12 +22,14 @@
 	padding: 0 60px;
 	outline: none;
 	border: none;
-	background: #1d9650;
+	background: #388E3C;
 	color: #fff;
-	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-size: 1em;
-	line-height: 4;
+	line-height: 2.5;
+}
+.progress-button:hover {
+    background: #2f7532;
 }
 
 .progress-button[disabled],
@@ -122,6 +124,7 @@
 .progress-button[data-perspective] .content,
 .progress-button[data-perspective] .progress {
 	outline: 1px solid rgba(0,0,0,0); /* Smoothen jagged edges in FF */
+    border-radius: 5px;
 }
 
 /* Individual styles */

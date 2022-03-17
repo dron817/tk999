@@ -21,21 +21,20 @@
     <script src="{{ asset('/assets/js/select2.min.js') }}"></script>
 @endsection
 @section('content')
-    @include('tpl.search')
 
     <section id="ticket-section">
         <div class="container">
             <h2 class="section-heading"><p>Расписание автобусов</p> <p>{{ $from }} - {{ $to }}</p></h2>
             <div class="calendar">
                 <div class="row">
-                    <div class="col-4 text-start"><a class="{{ $before_disabled }}" href="/tickets?from={{ $from }}&to={{ $to }}&date={{ $before_date }}">< {{ $before_date_text }}</a></div>
+                    <div class="col-4 text-start"><a class="{{ $before_disabled }}" href="{{ route('tickets') }}?from={{ $from }}&to={{ $to }}&date={{ $before_date }}">< {{ $before_date_text }}</a></div>
                     <!-- <div id="change_date" class="col-4 text-center">16 февраля 2021 среда</div>-->
                     <label for="change_date" class="col-4 text-center">
                         <span class="long">{{ $from_date_long }}</span>
                         <span class="short">{{ $from_date }}</span>
                         <input type="text" id="change_date" value="" placeholder="Дата" autocomplete="off">
                     </label>
-                    <div class="col-4 text-end"><a href="/tickets?from={{ $from }}&to={{ $to }}&date={{ $after_date }}"> {{ $after_date_text }} ></a></div>
+                    <div class="col-4 text-end"><a href="{{ route('tickets') }}?from={{ $from }}&to={{ $to }}&date={{ $after_date }}"> {{ $after_date_text }} ></a></div>
                 </div>
             </div>
             <script>
@@ -49,7 +48,7 @@
                         dateFormat: 'dd.mm.yyyy',
                         onSelect(formattedDate, date, inst) {
                             inst.hide();
-                            location.href='/tickets?from={{ $from }}&to={{ $to }}&date='+formattedDate;
+                            location.href='{{ route('tickets') }}?from={{ $from }}&to={{ $to }}&date='+formattedDate;
                         },
                         position: 'bottom center'
                     });
@@ -79,7 +78,7 @@
                             {{ $ticket->from }} - {{ $ticket->to }}
                         </a>
                         <p class="text-muted">ежедневно</p>
-                        <p>  <a data-bs-toggle="collapse" href="#route-1" role="button" aria-expanded="false"
+                        <p>  <a data-bs-toggle="collapse" href="#route-{{ $ticket->id }}" role="button" aria-expanded="false"
                                 aria-controls="collapseExample">Маршрут</a></p>
                     </span>
                         <div class="times">
@@ -102,14 +101,14 @@
                         </div>
                         <div class="choose">
                         <span class="price">
-                            <p><sub><strike>20 мест</strike></sub>{{ $ticket->price }} р.</p>
+                            <p><sub>{{ $ticket->places }} мест</sub>{{ $ticket->price }} р.</p>
                         </span>
                             <span class="buy">
-                            <button onclick="location.href='/places?from={{ $from }}&to={{ $to }}&date={{ $from_date_clear }}&trip_id={{ $ticket->id }}';">Выбрать место</button>
+                            <button onclick="location.href='/places?from={{ $from }}&to={{ $to }}&date={{ $from_date_clear }}&trip_id={{ $ticket->id }}';">Выбрать</button>
                         </span>
                         </div>
                     </div>
-                    <div class="collapse" id="route-1">
+                    <div class="collapse" id="route-{{ $ticket->id }}">
                         <div class="card card-body">
                             <table>
                                 <tr>

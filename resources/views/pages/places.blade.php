@@ -2,7 +2,6 @@
 
 @section('title', 'Выбор мест')
 @section('custom-css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/progress-button/progress-button.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/progress-button/component.css') }}"/>
 @endsection
 @section('custom-js-before')
@@ -423,8 +422,9 @@
                 </div>
                 <div class="col-12">
                     <div class="sum-outer">
-                        <p>Общая стоимость: <span id="price">3 800 р.</span></p>
+                        <p>Общая стоимость: <span id="price">{{ $trip_count }} р.</span></p>
                         @csrf
+                        <input id="count" type="hidden" value="{{ $trip_count }}">
                         <input id="trip_id" type="hidden" value="{{ $trip_id }}">
                         <input id="date" type="hidden" value="{{ $clear_date }}">
                         <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Забронировать</button>

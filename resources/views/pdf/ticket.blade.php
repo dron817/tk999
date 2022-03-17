@@ -4,74 +4,54 @@
     <title>Invoice Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .outer{
+            position: relative;
+            z-index:1;
+            overflow:hidden;
+            border: 1px solid black;
+        }
+        .outer:before{
+            z-index:-1;
+            position:absolute;
+            left:150px;
+            top:0px;
+            width: 60%;
+            content: url('https://www.ukrboard.com.ua/imgs/board/69/2489269-1.jpg');
+            opacity:0.3;
+        }
+        .top-line{
+            border-top: 1px solid black;
+        }
+        .bottom-line{
+            border-bottom: 3px solid black;
+        }
+    </style>
 </head>
 <body>
-<div style="width: 100%; max-width: 960px; margin: auto">
+<div class="outer" style="width: 100%; max-width: 960px; margin: auto; ">
     <table width="100%">
-        <tr style="border-bottom: 1px solid #000000">
-            <td><h2>Invoice</h2></td>
-            <td style="text-align: right"><h3>Заказ # {{ $data->order_id }}</h3></td>
+        <tr class="bottom-line">
+            <td><h2>Билет на автобус</h2></td>
+            <td style="text-align: right"><strong>Заказ №{{ $data->order_id }}</strong></td>
         </tr>
         <tr>
             <td style="padding-bottom: 16px;">
-                <strong>Billed To:</strong><br>
-                John Smith<br>
-                1234 Victory Avenue<br>
-                Apt. 5D<br>
-                Sunfield, ST 54321
+                <strong>Пассажир:</strong><br>
+                {{ $data->fio }}<br><br>
+                <strong>Место:</strong> {{ $data->place }}<br><br>
+                <b>Тариф:</b> @if($data->tariff==0) Полный @else Детский @endif<br><br>
+                <b>Цена:</b> {{ $trip_info->price }} рублей, 00 копеек
             </td>
             <td style="text-align: right; padding-bottom: 16px;">
-                <strong>Shipped To:</strong><br>
-                John Smith<br>
-                1234 Victory Avenue<br>
-                Apt. 5D<br>
-                Sunfield, ST 54321
+                <strong>Маршрут:</strong><br>
+                {{ $trip_info->from }} - {{ $trip_info->to }}<br><br>
+                <b>Отправление:</b> <br> {{ $trip_info->from_time }} {{ $data->date }}<br><br>
+                <b>Прибытие:</b> <br> {{ $trip_info->to_time }} {{ $data->date }}<br><br>
             </td>
         </tr>
-        <tr>
-            <td>
-                <strong>Payment Method:</strong><br>
-                Visa ending **** 4242<br>
-                jsmith@email.com
-            </td>
-            <td style="text-align: right">
-                <strong>Order Date:</strong><br>
-                March 7, 2014<br><br>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <h3>Order summary</h3>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <table width="100%" cellpadding="0" cellspacing="0" border="1">
-                    <thead>
-                    <tr style="background-color: #eee">
-                        <th style="text-align: left; padding: 5px 10px;">Item</th>
-                        <th style="text-align: center; padding: 5px 10px;">Price</strong></th>
-                        <th style="text-align: center; padding: 5px 10px;">Quantity</th>
-                        <th style="text-align: right; padding: 5px 10px;">Totals</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($products as $product)
-                        <tr>
-                            <td style="text-align: left; padding: 5px 10px;">{{ $product['title'] }}</td>
-                            <td style="text-align: center; padding: 5px 10px;">{{ $product['price'] }}</td>
-                            <td style="text-align: center; padding: 5px 10px;">{{ $product['quantity'] }}</td>
-                            <td style="text-align: right; padding: 5px 10px;">{{ $product['totals'] }}</td>
-                        </tr>
-                    @endforeach
-                    <tr>
-                        <td colspan="2"></td>
-                        <td style="text-align: center; padding: 5px 10px;"><strong>Totals</strong></td>
-                        <td style="text-align: right; padding: 5px 10px;">{{ $total }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </td>
+        <tr style="border-top: 2px solid black;">
+            <td>ИП Аднакулов Г.В.<br>ОГРН 304860630800061 Лицензия АСС-86-154006 от 25.11.2014г.</td>
         </tr>
     </table>
 </div>

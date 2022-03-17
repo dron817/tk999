@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         /* Маршруты */
-        \App\Models\Trip::factory(1)->create(['num' => '1', 'from' => 'Урай', 'to' => 'Устье-Аха', 'from_time' => '00:05', 'to_time' => '05:30', 'duration' => '2ч 30м', 'price' => '500']);
+        \App\Models\Trip::factory(1)->create(['num' => '1', 'from' => 'Урай', 'to' => 'Устье-Аха', 'from_time' => '05:00', 'to_time' => '07:30', 'duration' => '2ч 30м',  'from_desc' => 'сбор по остановкам', 'price' => '500']);
         \App\Models\Trip::factory(1)->create(['num' => '2','from' => 'Урай', 'to' => 'Устье-Аха', 'from_time' => '14:30', 'to_time' => '17:00', 'duration' => '2ч 30м', 'price' => '500']);
         \App\Models\Trip::factory(1)->create(['num' => '3','from' => 'Устье-Аха', 'to' => 'Урай', 'from_time' => '11:50', 'to_time' => '13:30', 'duration' => '1ч 40м', 'price' => '500']);
         \App\Models\Trip::factory(1)->create(['num' => '4','from' => 'Устье-Аха', 'to' => 'Урай', 'from_time' => '23:00', 'to_time' => '01:30', 'duration' => '2ч 30м', 'change_date' => '1', 'price' => '500']);
