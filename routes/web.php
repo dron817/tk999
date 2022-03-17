@@ -29,6 +29,13 @@ Route::get('/order_show', 'App\Http\Controllers\OrderController@getOrder')->name
 Route::get('/sendSMS', 'App\Http\Controllers\OrderController@sendSMS')->name('sendSMS');
 
 
+
+Route::group(['middleware' => ['role:admin']], function(){
+    Route::get('/admin', function(){
+        echo 'ok';
+    })->name('admin');
+});
+
 Route::group(['prefix'=> 'dev'], function (){
     Route::get('clear', function () {
         Artisan::call('cache:clear');
