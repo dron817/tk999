@@ -39,15 +39,18 @@
             <td style="padding-bottom: 16px;">
                 <strong>Пассажир:</strong><br>
                 {{ $data->fio }}<br><br>
+                <strong>Документ:</strong><br>
+                @if($data->doc==0) Не указан @else {{ $data->doc }} @endif
+                <br><br>
                 <strong>Место:</strong> {{ $data->place }}<br><br>
-                <b>Тариф:</b> @if($data->tariff==0) Полный @else Детский @endif<br><br>
-                <b>Цена:</b> {{ $trip_info->price }} рублей, 00 копеек
+                <b>Тариф:</b> @if($data->tariff==0) Полный @else Детский @endif
             </td>
             <td style="text-align: right; padding-bottom: 16px;">
                 <strong>Маршрут:</strong><br>
                 {{ $trip_info->from }} - {{ $trip_info->to }}<br><br>
                 <b>Отправление:</b> <br> {{ $trip_info->from_time }} {{ $data->date }}<br><br>
                 <b>Прибытие:</b> <br> {{ $trip_info->to_time }} {{ $data->date }}<br><br>
+                <b>Цена:</b> {{ $trip_info->price }} рублей
             </td>
         </tr>
         <tr style="border-top: 2px solid black;">

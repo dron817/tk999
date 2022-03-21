@@ -23,7 +23,7 @@ class Ticket extends Model
 
     public function getTicketsByTrip($trip_id, $date): Collection
     {
-        return $user = DB::table('tickets')->where('trip_id', '=', $trip_id)->where('date', '=', $date)->get();
+        return $user = DB::table('tickets')->where('trip_id', '=', $trip_id)->where('date', '=', $date)->orderBy('place', 'asc')->get();
     }
 
     public function getTicketsByOrderID($order_id): array

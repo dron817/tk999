@@ -997,3 +997,11 @@ a.disabled {
 
 }
 /* ORDER-TICKET SECTION -- END */
+
+
+/* FOOTER SECTION -- START */
+#footer-section a{
+    text-decoration: none;
+    color: #6c757d!important;
+}
+/* FOOTER SECTION -- END */

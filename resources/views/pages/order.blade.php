@@ -2,8 +2,11 @@
 
 @section('title', 'Купить билет')
 @section('custom-css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/datepicker.min.css') }}"/>
 @endsection
 @section('custom-js-before')
+    <script src="{{ asset('assets/js/datepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/js/i18n/datepicker.en.js') }}"></script>
 @endsection
 @section('custom-js-after')
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +31,18 @@ Route::get('/sendSMS', 'App\Http\Controllers\OrderController@sendSMS')->name('se
 
 
 
-Route::group(['middleware' => ['role:admin']], function(){
-    Route::get('/admin', function(){
-        echo 'ok';
-    })->name('admin');
+
+Auth::routes();
+
+
+Route::middleware(['role:admin'])->prefix('home')->group( function(){
+    Route::get('/', 'App\Http\Controllers\AdminController@getPanel')->name('admin.home');
+    Route::get('/add', 'App\Http\Controllers\AdminController@getAdder')->name('admin.add');
 });
+
+
+
+
 
 Route::group(['prefix'=> 'dev'], function (){
     Route::get('clear', function () {
@@ -45,19 +53,17 @@ Route::group(['prefix'=> 'dev'], function (){
         return "Кэш очищен.";
     });
     Route::get('migrate', function () {
-        Artisan::call('migrate'); //возможно, это не безопасно, надо выяснить или нужно удалить при продакшене
+        Artisan::call('migrate'); //возможно, это не безопасно, надо выяснить или удалить при продакшене
         return "Миграции выполнены";
     });
     Route::get('seed', function () {
-        Artisan::call('db:seed'); //возможно, это не безопасно, надо выяснить или нужно удалить при продакшене
+        Artisan::call('db:seed'); //возможно, это не безопасно, надо выяснить или удалить при продакшене
         return "Посев выполнен";
     });
     Route::get('rollback', function () {
-        Artisan::call('migrate:rollback');  //возможно, это не безопасно, надо выяснить или нужно удалить при продакшене
+        Artisan::call('migrate:rollback');  //возможно, это не безопасно, надо выяснить или удалить при продакшене
         return "Миграции откачены";
     });
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
