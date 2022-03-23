@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Добавление билета')
 
 @section('content_header')
     <h1>Панель диспетчера</h1>
@@ -43,7 +43,10 @@
                                         {{--                                        </div>--}}
                                     </div>
                                     <div class="col-sm-2">
-                                        <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            </div>
                                             <input type="text" class="form-control" id="date" value="{{ $date }}" placeholder="Дата" autocomplete="off">
                                             <script>
                                                 $(function () {
@@ -64,7 +67,10 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-bus"></i></span>
+                                            </div>
                                             <select id="trip_id" class="form-control" name="trip_id">
                                                 @foreach( $trips as $trip )
                                                     <option value="{{ $trip->id }}">{{ $trip->from }} - {{ $trip->to }} ({{ $trip->from_time }})</option>
@@ -81,31 +87,49 @@
                                             </div>
                                             <form>
                                                 <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label for="fio">Фамилия Имя Отчество</label>
+                                                    <label for="fio">Фамилия Имя Отчество</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                        </div>
                                                         <input type="text" class="form-control" id="fio">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="tariff">Тариф</label>
+                                                    <label for="tariff">Тариф</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                                        </div>
                                                         <select name="tariff" id="tariff" class="form-control">
                                                             <option value="0">Взрослый</option>
                                                             <option value="1">Детский</option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="place">Место</label>
+                                                    <label for="place">Место</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-chair"></i></span>
+                                                        </div>
                                                         <input type="text" class="form-control" id="place">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="phone">Телефон</label>
+                                                    <label for="phone">Телефон</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                        </div>
                                                         <input type="text" class="form-control" id="phone">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="doc">Номер документа</label>
+                                                    <label for="doc">Номер документа</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                                        </div>
                                                         <input type="text" class="form-control" id="doc">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="address">Адрес сбора</label>
+                                                    <label for="address">Адрес сбора</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-map-marker"></i></span>
+                                                        </div>
                                                         <input type="text" class="form-control" id="address">
                                                     </div>
                                                 </div>

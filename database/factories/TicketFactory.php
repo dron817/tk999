@@ -14,16 +14,32 @@ class TicketFactory extends Factory
      */
     public function definition()
     {
+        $n = rand(0,3);
+        switch ($n){
+            case 1:
+                $author = 'admin';
+                break;
+            case 2:
+                $author = 'M1';
+                break;
+            case 3:
+                $author = 'M2';
+                break;
+            default:
+                $author = 'web';
+                break;
+        }
         return [
             'trip_id' => $this->faker->numberBetween(1, 20),
             'order_id' => $this->faker->numberBetween(1, 200),
-            'date' => str_pad(rand(1,10), 2, "0", STR_PAD_LEFT).'.03.'.'2022',
+            'date' => str_pad(rand(22,30), 2, "0", STR_PAD_LEFT).'.03.'.'2022',
             'place' => rand(1,20),
             'fio' => $this->faker->name,
             'doc' => Str::random(10),
             'phone' => '8'.rand(9000000000, 9999999999),
             'tariff' => rand(0,1),
             'address' => 'address: '.$this->faker->name,
+            'author' => $author,
         ];
     }
 }

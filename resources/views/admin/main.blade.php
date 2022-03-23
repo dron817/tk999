@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Панель диспетчера')
 
 @section('content_header')
     <h1>Панель диспетчера</h1>
@@ -37,14 +37,27 @@
                                                 add_ticket();
                                             });
                                         </script>
-{{--                                        <div class="dt-buttons btn-group flex-wrap">--}}
-{{--                                            <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0"--}}
-{{--                                                    aria-controls="example1" type="button">--}}
-{{--                                                <span>Версия для печати</span></button>--}}
-{{--                                        </div>--}}
+                                        <div class="dt-buttons btn-group flex-wrap">
+                                            <button id="print" class="btn btn-secondary buttons-copy buttons-html5" tabindex="0"
+                                                    aria-controls="example1" type="button">
+                                                <span>Версия для печати</span></button>
+                                        </div>
+                                        <script>
+                                            function getPrint() {
+                                                let date = $('#search_date').val();
+                                                let trip_num = $('#trip_num').val();
+                                                location.href='{{ route('admin.print') }}?trip_num='+trip_num+'&date='+date;
+                                            }
+                                            $('#print').click(function() {
+                                                getPrint();
+                                            });
+                                        </script>
                                     </div>
                                     <div class="col-sm-2">
-                                        <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            </div>
                                             <input type="text" class="form-control" id="search_date" value="{{ $date }}" placeholder="Дата" autocomplete="off">
                                             <script>
                                                 $(function () {
@@ -65,7 +78,10 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-bus"></i></span>
+                                            </div>
                                             <select id="trip_num" class="form-control" name="trip_num">
                                                 <option value="1" @if( $trip_num==1) selected @endif>1. Урай - Устье-Аха (5:00)</option>
                                                 <option value="2" @if( $trip_num==2) selected @endif>2. Урай - Устье-Аха (14:30)</option>

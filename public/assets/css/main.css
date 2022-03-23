@@ -606,6 +606,12 @@ a.disabled {
 .calendar .text-end a:hover , .calendar .text-start a:hover{
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
 }
+.calendar-img{
+    height: 25px;
+    top: -3px;
+    position: relative;
+    left: -5px;
+}
 #change_date{
     height: 0;
     width: 20px;
@@ -835,6 +841,7 @@ a.disabled {
 }
 .person-data-outer input[type="text"]:disabled, .person-data-outer input[type="text"]:disabled:hover{
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 10%), 0 0 2px rgb(13 35 67 / 10%);
+    background-color: #d6d6d6;
 }
 .person-data-outer input[type="text"]:hover {
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 25%), 0 0 2px rgb(13 35 67 / 35%);
@@ -850,6 +857,14 @@ a.disabled {
 .data-group {
     flex-direction: column;
     display: flex;
+}
+b.col-12{
+    margin-bottom:20px;
+}
+@media (max-width: 991px) {
+    .data-group {
+        margin-bottom:20px;
+    }
 }
 
 /* CUSTOM CHECKBOX */
@@ -936,6 +951,11 @@ a.disabled {
 @media (max-width: 991px) {
     .sum-outer {
         flex-direction: column;
+    }
+    .sum-outer #price{
+        display: block;
+        text-align: center;
+        margin-right: 0;
     }
 }
 /* SUM SECTION -- END */

@@ -121,13 +121,13 @@
                     <div id="payments">
                         <div onclick="clickHider()" id="hider">&#8744;</div>
                         <form>
-                            <div onclick="choseCash()" id="cash-outer" class="payment">
-                                <img src="{{ asset('assets/img/payments/cash.png') }}" alt=""> <label for="cash">Наличными
-                                    водителю</label> <input checked name="payment" id="cash" type="radio">
-                            </div>
                             <div onclick="choseCard()" id="card-outer" class="payment">
                                 <img src="{{ asset('assets/img/payments/card.png') }}" alt=""> <label for="card">Картой
                                     онлайн</label> <input  name="payment" id="card" type="radio">
+                            </div>
+                            <div onclick="choseCash()" id="cash-outer" class="payment">
+                                <img src="{{ asset('assets/img/payments/cash.png') }}" alt=""> <label for="cash">Наличными
+                                    водителю</label> <input checked name="payment" id="cash" type="radio">
                             </div>
                         </form>
                     </div>
@@ -427,7 +427,7 @@
                         <input id="count" type="hidden" value="{{ $trip_count }}">
                         <input id="trip_id" type="hidden" value="{{ $trip_id }}">
                         <input id="date" type="hidden" value="{{ $clear_date }}">
-                        <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Забронировать</button>
+                        <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Оплатить</button>
                     </div>
                 </div>
             </div>

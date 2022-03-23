@@ -59,6 +59,7 @@
             <ul class="nav col-md-4 justify-content-end">
                 <li class="nav-item"><a href="https://vk.com/zorgo" class="nav-link px-2  text-muted">Разработка: ZORGO</a></li>
             </ul>
+            <p class="col-md-12 mb-0 text-muted"><a href="tel:79088962999">Диспетчер: <b>8 (908) 89-62-999</b></a></p>
             <p class="col-md-12 mb-0 text-muted"> Пассажирские перевозки.</p>
             <p class="col-md-12 mb-0 text-muted"> ОГРН 304860630800061 Лицензия АСС-86-154006 от 25.11.2014г.</p>
         </footer>

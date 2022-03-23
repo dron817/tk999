@@ -37,22 +37,10 @@ class OrderController extends Controller
         return view('pages/order', ['tickets' => $tickets, 'trip' => $trip_info]);
     }
 
-    function letOrder(Request $request): array
+    function letOrder(Request $request, $author='web'): array
     {
         $ticket = new Ticket();
         $order_id = $ticket->getMaxOrder()+1;
-
-//        $ticket = new Ticket();
-//        $ticket->fio = 'AG';
-//        $ticket->place = '7';
-//        $ticket->doc = 'doc';
-//        $ticket->phone = '0';
-//        $ticket->tariff = '0';
-//        $ticket->address = '-';
-//        $ticket->date = '22.11.2022';
-//        $ticket->trip_id = '6';
-//        $ticket->order_id = $order_id;
-//        $ticket->save();
 
         $count = $_POST['data']['count'];
         for($i=1; $i<=$count; $i++){
@@ -67,7 +55,8 @@ class OrderController extends Controller
             $ticket->address = $_POST['data'][$i]['address'];
             $ticket->date = $_POST['data']['date'];
             $ticket->trip_id = $_POST['data']['trip_id'];
-            $ticket->order_id    = $order_id;
+            $ticket->order_id = $order_id;
+            $ticket->author = $author;
             $ticket->save();
             $tickets_id[$i]=$ticket->getQueueableId();
         }

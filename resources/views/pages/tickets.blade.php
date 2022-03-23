@@ -30,7 +30,7 @@
                     <div class="col-4 text-start"><a class="{{ $before_disabled }}" href="{{ route('tickets') }}?from={{ $from }}&to={{ $to }}&date={{ $before_date }}">< {{ $before_date_text }}</a></div>
                     <!-- <div id="change_date" class="col-4 text-center">16 февраля 2021 среда</div>-->
                     <label for="change_date" class="col-4 text-center">
-                        <span class="long">{{ $from_date_long }}</span>
+                        <span class="long"><img class="calendar-img" src="{{ asset('/assets/img/calendar.png') }}" alt="">{{ $from_date_long }}</span>
                         <span class="short">{{ $from_date }}</span>
                         <input type="text" id="change_date" value="" placeholder="Дата" autocomplete="off">
                     </label>
@@ -104,7 +104,7 @@
                             <p><sub>{{ $ticket->places }} мест</sub>{{ $ticket->price }} р.</p>
                         </span>
                             <span class="buy">
-                            <button onclick="location.href='/places?from={{ $from }}&to={{ $to }}&date={{ $from_date_clear }}&trip_id={{ $ticket->id }}';">Выбрать</button>
+                            <button onclick="location.href='/places?from={{ $from }}&to={{ $to }}&date={{ $from_date_clear }}&trip_id={{ $ticket->id }}';">Выбрать рейс</button>
                         </span>
                         </div>
                     </div>

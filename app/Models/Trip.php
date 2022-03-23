@@ -20,6 +20,10 @@ class Trip extends Model
     {
         return $user = DB::table('trips')->where('num', '=', $num)->get();
     }
+    public function getFirstTripByNum($num)
+    {
+        return $user = DB::table('trips')->where('num', '=', $num)->first();
+    }
     public function getAllTrips(): Collection
     {
         return $user = DB::table('trips')->get();

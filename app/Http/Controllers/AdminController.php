@@ -32,5 +32,24 @@ class AdminController extends Controller
         $trips = $trip_obj->getAllTrips();
         return view('admin.add', ['trips' => $trips, 'date' => $date]);
     }
+    function getPrint()
+    {
+        $ticket_obj = new Ticket();
+        $trip_obj = new Trip();
+
+        $date = $_GET['date'] ?? date("d.m.Y");
+        $trip_num = $_GET['trip_num'] ?? '1';
+        $trip = $trip_obj->getFirstTripByNum($_GET['trip_num']);
+        $trip_name = $trip->num.'. '.$trip->from.' - '.$trip->to;
+        if (isset($_GET['trip_id'])) $trip_num = $trip->num;
+        $tickets_all = new Collection();
+        $trips = $trip_obj->getTripsByNum($trip_num);
+        foreach ($trips as $trip) {
+            $tickets = $ticket_obj->getTicketsByTrip($trip->id, $date);
+            foreach ($tickets as $ticket)
+                $tickets_all->push($ticket);
+        }
+        return view('admin.print', ['tickets' => $tickets_all, 'date' => $date, 'trip' => $trip_name]);
+    }
 
 }
