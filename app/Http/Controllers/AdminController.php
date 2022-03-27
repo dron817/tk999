@@ -12,6 +12,7 @@ class AdminController extends Controller
     {
         $ticket_obj = new Ticket();
         $trip_obj = new Trip();
+        $free_places = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
         $date = $_GET['date'] ?? date("d.m.Y");
         $trip_num = $_GET['trip_num'] ?? '1';
@@ -20,17 +21,34 @@ class AdminController extends Controller
         $trips = $trip_obj->getTripsByNum($trip_num);
         foreach ($trips as $trip) {
             $tickets = $ticket_obj->getTicketsByTrip($trip->id, $date);
-            foreach ($tickets as $ticket)
+            foreach ($tickets as $ticket){
                 $tickets_all->push($ticket);
+                unset($free_places[$ticket->place-1]);
+            }
         }
-        return view('admin.main', ['tickets' => $tickets_all, 'date' => $date, 'trip_num' => $trip_num]);
+        return view('admin.main', ['tickets' => $tickets_all, 'date' => $date, 'trip_num' => $trip_num, 'free_places' => count($free_places)]);
     }
     function getAdder()
     {
-        $date = $_GET['date'] ?? date("d.m.Y");
         $trip_obj = new Trip();
+        $ticket_obj = new Ticket();
+
+        $date = $_GET['date'] ?? date("d.m.Y");
+        if (isset($_GET['trip_id']))
+            $trip = $trip_obj->getTripById($_GET['trip_id']);
+        else
+            $trip = $trip_obj->getFirstTripByNum($_GET['trip_num']);
+
+        $trip_id=$trip->id;
+
+        $tickets = $ticket_obj->getTicketsByTrip($trip->id, $date);
+        $free_places = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+        foreach ($tickets as $ticket){
+            unset($free_places[$ticket->place-1]);
+        }
+
         $trips = $trip_obj->getAllTrips();
-        return view('admin.add', ['trips' => $trips, 'date' => $date]);
+        return view('admin.add', ['trips' => $trips, 'date' => $date, 'free_places' => $free_places, 'trip_id' => $trip_id]);
     }
     function getPrint()
     {
@@ -40,7 +58,7 @@ class AdminController extends Controller
         $date = $_GET['date'] ?? date("d.m.Y");
         $trip_num = $_GET['trip_num'] ?? '1';
         $trip = $trip_obj->getFirstTripByNum($_GET['trip_num']);
-        $trip_name = $trip->num.'. '.$trip->from.' - '.$trip->to;
+        $trip_name = $trip->num.'. '.$trip->from.' - '.$trip->to.' ('.$trip->from_time.')';
         if (isset($_GET['trip_id'])) $trip_num = $trip->num;
         $tickets_all = new Collection();
         $trips = $trip_obj->getTripsByNum($trip_num);

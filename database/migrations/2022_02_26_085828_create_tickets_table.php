@@ -24,7 +24,7 @@ class CreateTicketsTable extends Migration
             $table->string('phone');
             $table->integer('tariff');
             $table->string('address');
-            $table->string('author');
+            $table->string('author')->default('web');
             $table->timestamps();
         });
     }

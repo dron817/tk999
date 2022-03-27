@@ -58,6 +58,9 @@
                                                         clearButton: true,
                                                         onSelect(formattedDate, date, inst) {
                                                             inst.hide();
+                                                            let date_pick = $('#date').val();
+                                                            let trip_id = $('#trip_id').val();
+                                                            location.href='{{ route('admin.add') }}?trip_id='+trip_id+'&date='+date_pick;
                                                         },
                                                         position: 'bottom center'
                                                     });
@@ -73,9 +76,16 @@
                                             </div>
                                             <select id="trip_id" class="form-control" name="trip_id">
                                                 @foreach( $trips as $trip )
-                                                    <option value="{{ $trip->id }}">{{ $trip->from }} - {{ $trip->to }} ({{ $trip->from_time }})</option>
+                                                    <option value="{{ $trip->id }}" @if ($trip->id == $trip_id) selected @endif>{{ $trip->from }} - {{ $trip->to }} ({{ $trip->from_time }})</option>
                                                 @endforeach
                                             </select>
+                                            <script>
+                                                $('#trip_id').on('change', function (e) {
+                                                    let date = $('#date').val();
+                                                    let trip_id = $('#trip_id').val();
+                                                    location.href='{{ route('admin.add') }}?trip_id='+trip_id+'&date='+date;
+                                                });
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +119,11 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-chair"></i></span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="place">
+                                                        <select name="place" id="place" class="form-control">
+                                                            @foreach ($free_places as $free_place)
+                                                                <option value="{{ $free_place }}">{{ $free_place }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                     <label for="phone">Телефон</label>
                                                     <div class="input-group mb-3">
@@ -153,6 +167,7 @@
                                                         data['trip_id'] = $('#trip_id').val();
                                                         data['date'] = $('#date').val();
                                                         data['count'] = 1;
+                                                        data['author'] = "{{ Auth::user()->name }}";
 
                                                         $.ajax({
                                                             dataType: "json",

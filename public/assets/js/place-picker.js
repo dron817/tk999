@@ -43,6 +43,7 @@ function SendForm() {
     data['trip_id'] = $('#trip_id').val();
     data['date'] = $('#date').val();
     data['count'] = count;
+    data['author'] = 'web';
 
     let done = $('#price');
     $.ajax({

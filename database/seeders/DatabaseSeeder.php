@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Ticket;
 use App\Models\Trip;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -39,9 +40,11 @@ class DatabaseSeeder extends Seeder
         Trip::factory(1)->create(['num' => '12','from' => 'Советский', 'to' => 'Урай', 'from_time' => '16:00', 'to_time' => '19:00', 'duration' => '3ч 00м', 'price' => '1000']);
 
         User::factory(1)->create(['name' => 'TK999', 'email' => 'admin@tk999.ru', 'password' => '$2y$10$Q6LMrwwXfKtSZt7g.a4QSOZ/3jBPARVCW9a40T1l57kwZlur6.ECi']);
-        User::factory(1)->create(['name' => 'agentM1', 'email' => 'm1@tk999.ru', 'password' => '$2y$10$Q6LMrwwXfKtSZt7g.a4QSOZ/3jBPARVCW9a40T1l57kwZlur6.ECi']);
         User::factory(1)->create(['name' => 'agentM2', 'email' => 'm2@tk999.ru', 'password' => '$2y$10$Q6LMrwwXfKtSZt7g.a4QSOZ/3jBPARVCW9a40T1l57kwZlur6.ECi']);
+        User::factory(1)->create(['name' => 'agentM3', 'email' => 'm3@tk999.ru', 'password' => '$2y$10$Q6LMrwwXfKtSZt7g.a4QSOZ/3jBPARVCW9a40T1l57kwZlur6.ECi']);
 
+        Role::setStartRoles();
+        Role::giveStartPermission();
 
         /* Фейковые билеты */
 //        Ticket::Factory(200)->create();

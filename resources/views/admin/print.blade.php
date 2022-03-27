@@ -67,14 +67,16 @@
                                             </thead>
                                             <tbody>
                                             @forelse ($tickets as $ticket)
-                                                <tr class="odd even">
-                                                    <td class="dtr-control sorting_1"
-                                                        tabindex="0">{{ $ticket->place }}</td>
-                                                    <td>{{ $ticket->fio }}</td>
-                                                    <td style="">@if($ticket->tariff == 0) Взрослый @else Детский @endif</td>
-                                                    <td style="">@if($ticket->doc == 0) Не указан @else {{ $ticket->doc }} @endif</td>
-                                                    <td style="">{{ $ticket->address }}</td>
-                                                </tr>
+                                                @if( Auth::user()->name == 'TK999' || Auth::user()->name == $ticket->author)
+                                                    <tr class="odd even">
+                                                        <td class="dtr-control sorting_1"
+                                                            tabindex="0">{{ $ticket->place }}</td>
+                                                        <td>{{ $ticket->fio }}</td>
+                                                        <td style="">@if($ticket->tariff == 0) Взрослый @else Детский @endif</td>
+                                                        <td style="">@if($ticket->doc == 0) Не указан @else {{ $ticket->doc }} @endif</td>
+                                                        <td style="">{{ $ticket->address }}</td>
+                                                    </tr>
+                                                @endif
                                             @empty
                                                 <tr class="odd even"><td colspan="5"><b>Отсутствуют билеты на указанный рейс</b></td></tr>
                                             @endforelse

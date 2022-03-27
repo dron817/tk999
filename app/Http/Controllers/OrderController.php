@@ -37,7 +37,7 @@ class OrderController extends Controller
         return view('pages/order', ['tickets' => $tickets, 'trip' => $trip_info]);
     }
 
-    function letOrder(Request $request, $author='web'): array
+    function letOrder(Request $request): array
     {
         $ticket = new Ticket();
         $order_id = $ticket->getMaxOrder()+1;
@@ -56,7 +56,7 @@ class OrderController extends Controller
             $ticket->date = $_POST['data']['date'];
             $ticket->trip_id = $_POST['data']['trip_id'];
             $ticket->order_id = $order_id;
-            $ticket->author = $author;
+            $ticket->author = $_POST['data']['author'];;
             $ticket->save();
             $tickets_id[$i]=$ticket->getQueueableId();
         }

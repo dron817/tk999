@@ -35,7 +35,7 @@ Route::get('/sendSMS', 'App\Http\Controllers\OrderController@sendSMS')->name('se
 Auth::routes();
 
 
-Route::middleware(['role:admin'])->prefix('home')->group( function(){
+Route::middleware(['auth'])->prefix('home')->group( function(){
     Route::get('/', 'App\Http\Controllers\AdminController@getPanel')->name('admin.home');
     Route::get('/add', 'App\Http\Controllers\AdminController@getAdder')->name('admin.add');
     Route::get('/print', 'App\Http\Controllers\AdminController@getPrint')->name('admin.print');

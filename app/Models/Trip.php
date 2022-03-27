@@ -16,6 +16,11 @@ class Trip extends Model
         return $user = DB::table('trips')->where('from', '=', $from)->where('to', '=', $to)->get();
     }
 
+    public function whereTime($from, $to, $time): Collection
+    {
+        return $user = DB::table('trips')->where('from', '=', $from)->where('to', '=', $to)->where('from_time', '=', $time)->get();
+    }
+
     public function getTripsByNum($num): Collection
     {
         return $user = DB::table('trips')->where('num', '=', $num)->get();

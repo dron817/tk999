@@ -148,12 +148,18 @@
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                     colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending" style="">
+                                                    Заказчик
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending" style="">
                                                     Билет
                                                 </th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @forelse ($tickets as $ticket)
+                                                @if( Auth::user()->name == 'TK999' || Auth::user()->name == $ticket->author)
                                                 <tr class="odd even">
                                                     <td class="dtr-control sorting_1"
                                                         tabindex="0">{{ $ticket->place }}</td>
@@ -161,13 +167,27 @@
                                                     <td style="">@if($ticket->tariff == 0) Взрослый @else Детский @endif</td>
                                                     <td style="">@if($ticket->doc == 0) Не указан @else {{ $ticket->doc }} @endif</td>
                                                     <td style="">{{ $ticket->address }}</td>
+                                                    <td style="">{{ $ticket->author }}</td>
                                                     <td style=""><a href="/print?ticket_id={{ $ticket->id }}">Скачать</a></td>
                                                 </tr>
+                                                @else
+                                                    <tr class="odd even">
+                                                    <td class="dtr-control sorting_1"
+                                                        tabindex="0">{{ $ticket->place }}</td>
+                                                    <td>Забронировано</td>
+                                                    <td style=""> - </td>
+                                                    <td style=""> - </td>
+                                                    <td style=""> - </td>
+                                                    <td style="">{{ $ticket->author }}</td>
+                                                    <td style=""> - </td>
+                                                </tr>
+                                                @endif
                                             @empty
                                                 <tr class="odd even"><td colspan="6"><b>Отсутствуют билеты на указанный рейс</b></td></tr>
                                             @endforelse
                                             </tbody>
                                         </table>
+                                        Свободных мест: <b>{{ $free_places }}</b>
                                     </div>
                                 </div>
                             </div>
