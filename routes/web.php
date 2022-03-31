@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//TODO В билете указывать половину стоимости для детского тарифа
+
 
 Route::get('/', 'App\Http\Controllers\TripsController@getAll')->name('index');
 

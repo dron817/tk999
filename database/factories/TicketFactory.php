@@ -20,10 +20,10 @@ class TicketFactory extends Factory
                 $author = 'admin';
                 break;
             case 2:
-                $author = 'M1';
+                $author = 'agentM2';
                 break;
             case 3:
-                $author = 'M2';
+                $author = 'agentM3';
                 break;
             default:
                 $author = 'web';
@@ -32,7 +32,7 @@ class TicketFactory extends Factory
         return [
             'trip_id' => $this->faker->numberBetween(1, 20),
             'order_id' => $this->faker->numberBetween(1, 200),
-            'date' => str_pad(rand(22,30), 2, "0", STR_PAD_LEFT).'.03.'.'2022',
+            'date' => str_pad(rand(28,31), 2, "0", STR_PAD_LEFT).'.03.'.'2022',
             'place' => rand(1,20),
             'fio' => $this->faker->name,
             'doc' => Str::random(10),

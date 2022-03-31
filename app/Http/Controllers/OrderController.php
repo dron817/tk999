@@ -7,6 +7,9 @@ use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Support\Facades\Route as Route;
+use Illuminate\Support\Facades\URL;
+use STREAM;
 
 class OrderController extends Controller
 {
@@ -61,25 +64,34 @@ class OrderController extends Controller
             $tickets_id[$i]=$ticket->getQueueableId();
         }
 
-        require_once ("sms/sms-prosto_ru.php");
-        $key = "Kyi622747f725e569f00ef96ad5ea0eb7faed920e0aac0c3";
-//        $phone = $_POST['data'][0]['phone'];
-        $phone = "79964443105";
-        $result = smsapi_push_msg_nologin_key($key, $phone, "Hello world =)!", array("sender_name"=>"user"));
-
+        $this->sendSMS($order_id, $_POST['data'][1]['phone']);
         $answer = array(
             'redirect' => $order_id
         );
         return ($answer);
     }
 
-    function sendSMS(){
-        require_once ("sms/sms-prosto_ru.php");
-        $key = "Kyi622747f725e569f00ef96ad5ea0eb7faed920e0aac0c3";
-//        $phone = $_POST['data'][0]['phone'];
-        $phone = "79964443105";
-        $result = smsapi_push_msg_nologin_key($key, $phone, "Hello world =)!", array("sender_name"=>"TK-order"));
-        var_dump($result);
+    function sendSMS($order_id = 1, $phone = '79964443105'){
+        $server = 'http://gateway.api.sc/rest/';
+        header ("Content-Type: text/html; charset=utf-8");
+        include_once('sms/StreamClass.php');
+        $stream = new STREAM();
+
+        // данные пользователя
+        $login = '79964443105';							//логин
+        $password = 'xtkbBqUZXg';							//пароль
+
+        $sourceAddress = 'TK-999';						//имя отправителя сообщения (отличное от testsms, имя отправителя Вы
+        //можете запросить в личном кабинете)
+        $destinationAddress = $phone;				//номер получателя единичного сообщения (в формате 79111234567 для РФ)
+        $data = 'Заказ №'.$order_id.' | Ваши билеты доступны по ссылке: '.URL::route('getOrder', ['order_id' => $order_id]);									//Текст сообщения
+        //для экранирования спец. символов в POST-запросах
+        $validity = 1440;									//время жизни сообщения, в минутах (необязательный параметр)
+
+        $session = $stream -> GetSessionId_Get($server,$login,$password);
+
+        // отправка единичного sms-сообщения
+        $send_sms = $stream -> SendSms($server,$session,$sourceAddress,$destinationAddress,$data,$validity);
     }
 
 }

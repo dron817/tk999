@@ -170,6 +170,18 @@ a.disabled {
 }
 /* SEARCH END */
 
+/* BUS IMAGE SECTION -- START */
+#bus-image-section{
+    background-image: url("../img/search-bg.jpg");
+    background-position-y: 50%;
+    background-position-x: 100%;
+    background-size: cover;
+    font-family: Roboto, serif;
+    color: white;
+    margin-top: 50px;
+    height:100px;
+}
+/* BUS IMAGE SECTION -- START */
 
 /* POPULAR SECTION -- START */
 #popular-section{
@@ -206,6 +218,7 @@ a.disabled {
 }
 #popular-section a:hover {
     filter: grayscale(0%) brightness(100%);
+    transform: scale(1.02);
 }
 #UG{
     background-image: url("../img/UG.jpg");
@@ -679,6 +692,18 @@ a.disabled {
 }
 #place-piker input{
     display: none;
+}
+.tong label{
+    height: 33px !important;
+    width: 33px !important;
+    padding-top: 0.2em !important;
+    margin-right: 10px !important;
+}
+.tong td{
+    height: 33px !important;
+    width: 33px !important;
+    padding-top: 0.2em !important;
+    margin-right: 10px !important;
 }
 #place-piker label{
     height: 42px;

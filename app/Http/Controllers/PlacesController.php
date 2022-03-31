@@ -13,7 +13,7 @@ class PlacesController extends Controller
         $from = $request->from;
         $to = $request->to;
         $clear_date = $request->date;
-        for ($i=1; $i<=20; $i++) $ticket_buy[$i]=0; // если неизвестно обратное, считаем все места свободными
+        for ($i=1; $i<=53; $i++) $ticket_buy[$i]=0; // если неизвестно обратное, считаем все места свободными
 
         $ticket = new Ticket;
         $trip = new Trip;
@@ -28,9 +28,10 @@ class PlacesController extends Controller
             };
         }
 
+        $tong = $trip_data->tong;
         $date = $this->RusDate(date('d F', strtotime($clear_date)));
         return view('pages/places', ['from' => $from, 'to' => $to, 'date' => $date, 'ticket_buy' => $ticket_buy,
-            'clear_date' => $clear_date, 'trip_id' => $trip->id, 'trip_count' => $trip->price]);
+            'clear_date' => $clear_date, 'trip_id' => $trip->id, 'trip_count' => $trip->price, 'tong' => $tong]);
     }
 
 }

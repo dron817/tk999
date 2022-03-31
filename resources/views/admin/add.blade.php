@@ -8,6 +8,7 @@
 
 @section('content')
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.maskedinput.min.js') }}"></script>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -132,6 +133,9 @@
                                                         </div>
                                                         <input type="text" class="form-control" id="phone">
                                                     </div>
+                                                    <script>
+                                                        $('#phone').mask('79999999999');
+                                                    </script>0
                                                     <label for="doc">Номер документа</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">

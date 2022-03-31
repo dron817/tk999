@@ -20,7 +20,7 @@ class TripsController extends Controller
     {
         date_default_timezone_set('Asia/Yekaterinburg');
 
-        if (empty($request->date)) $request->date = date("Y-m-d"); //если в запросе нет даты, берём сегодня
+        if (empty($request->date)) $request->date = date("d.m.Y"); //если в запросе нет даты, берём сегодня
         $from_date_clear = $request->date;
         $from_date = $request->date;
 
