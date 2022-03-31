@@ -47,7 +47,7 @@ Route::middleware(['auth'])->prefix('home')->group( function(){
 
 
 
-Route::group(['prefix'=> 'dev'], function (){
+Route::middleware(['auth'])->prefix('dev')->group( function(){
     Route::get('clear', function () {
         Artisan::call('cache:clear');
         Artisan::call('config:cache');
