@@ -66,6 +66,60 @@ $("#send").click(function () {
     SendForm();
 });
 
+function booking() {
+    let adult = Number($('#adult').val());
+    let kids = Number($('#kids').val());
+    let count = adult + kids;
+
+    if (count < 1) {
+        return false;
+    }
+
+    let data = {}
+
+    for (let i = 1; i <= count; i++) {
+        data[i] = {};
+        data[i]['fio'] = '-';
+        data[i]['place'] = places[i - 1];
+        if (i <= adult) {
+            data[i]['tariff'] = "0";
+            data[i]['phone'] = "0";
+        } else {
+            data[i]['tariff'] = "1";
+            data[i]['phone'] = "0";
+        }
+        data[i]['doc'] = 0;
+        data[i]['address'] = "-";
+    }
+        data['payment'] = 'booking'
+
+    data['trip_id'] = $('#trip_id').val();
+    data['date'] = $('#date').val();
+    data['count'] = count;
+    data['author'] = $('#author').val();
+    data['sendSMS'] = "0";
+
+    $.ajax({
+        dataType: "json",
+        type: "POST",
+        url: "/order",
+        data: {
+            data: data,
+            "_token": $('input[name="_token"]').val()
+        }
+    }).done(function (msg) {
+        location.href=$('#admin_link').val();
+    })
+}
+
+$("#send").click(function () {
+    SendForm();
+});
+
+$("#booking").click(function () {
+    booking();
+});
+
 
 // обработка нажатий на места в автобусе
 function pickPlace(id) {
