@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //TODO В билете указывать половину стоимости для детского тарифа
+//TODO Удаление билетов у диспетчеров
 
 
 Route::get('/', 'App\Http\Controllers\TripsController@getAll')->name('index');
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->prefix('home')->group( function(){
     Route::get('/', 'App\Http\Controllers\AdminController@getPanel')->name('admin.home');
     Route::get('/add', 'App\Http\Controllers\AdminController@getAdder')->name('admin.add');
     Route::get('/print', 'App\Http\Controllers\AdminController@getPrint')->name('admin.print');
+    Route::get('/delete', 'App\Http\Controllers\AdminController@delOrder')->name('admin.delete');
 });
 
 

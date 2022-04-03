@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\Trip;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class AdminController extends Controller
@@ -36,6 +37,17 @@ class AdminController extends Controller
         }
         return view('admin.main', ['tickets' => $tickets_all, 'date' => $date, 'trip_num' => $trip_num, 'free_places' => count($free_places)]);
     }
+
+
+    function delOrder()
+    {
+        $ticket_obj = new Ticket();
+        $ticket = $ticket_obj->find($_GET['ticket_id']);
+        $ticket->delete();
+
+        return $this->getPanel();
+    }
+
     function getAdder()
     {
         $trip_obj = new Trip();

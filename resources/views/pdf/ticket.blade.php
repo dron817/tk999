@@ -17,7 +17,7 @@
             left:150px;
             top:0px;
             width: 60%;
-            content: url('https://www.ukrboard.com.ua/imgs/board/69/2489269-1.jpg');
+            content: url('../img/ticket-bus.jpg');
             opacity:0.3;
         }
         .top-line{

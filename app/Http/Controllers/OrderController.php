@@ -7,7 +7,6 @@ use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
-use Illuminate\Support\Facades\Route as Route;
 use Illuminate\Support\Facades\URL;
 use STREAM;
 
@@ -59,12 +58,14 @@ class OrderController extends Controller
             $ticket->date = $_POST['data']['date'];
             $ticket->trip_id = $_POST['data']['trip_id'];
             $ticket->order_id = $order_id;
-            $ticket->author = $_POST['data']['author'];;
+            $ticket->author = $_POST['data']['author'];
             $ticket->save();
             $tickets_id[$i]=$ticket->getQueueableId();
         }
 
-        $this->sendSMS($order_id, $_POST['data'][1]['phone']);
+        if ($_POST['data']['sendSMS'] == 1)
+            $this->sendSMS($order_id, $_POST['data'][1]['phone']);
+
         $answer = array(
             'redirect' => $order_id
         );

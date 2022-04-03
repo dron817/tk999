@@ -96,7 +96,6 @@
                                             <div class="card-header">
                                                 <h3 class="card-title">Данные пассажира</h3>
                                             </div>
-                                            <form>
                                                 <div class="card-body">
                                                     <label for="fio">Фамилия Имя Отчество</label>
                                                     <div class="input-group mb-3">
@@ -135,7 +134,13 @@
                                                     </div>
                                                     <script>
                                                         $('#phone').mask('79999999999');
-                                                    </script>0
+                                                    </script>
+                                                    <div class="form-group">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input class="custom-control-input" type="checkbox" id="sendSMS" value="1">
+                                                            <label for="sendSMS " class="custom-control-label">Отправить СМС с билетами</label>
+                                                        </div>
+                                                    </div>
                                                     <label for="doc">Номер документа</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
@@ -153,7 +158,7 @@
                                                 </div>
                                                 @csrf
                                                 <div class="card-footer">
-                                                    <button id="send" type="submit" class="btn btn-success">Бронировать</button>
+                                                    <button id="send" class="btn btn-success">Бронировать</button>
                                                 </div>
                                                 <script>
                                                     function SendForm() {
@@ -167,6 +172,8 @@
                                                         data[1]['doc'] = $('#doc').val();
                                                         data[1]['address'] = $('#address').val();
                                                         data['payment'] = 'cash'
+
+                                                        data['sendSMS'] = 'cash'
 
                                                         data['trip_id'] = $('#trip_id').val();
                                                         data['date'] = $('#date').val();
@@ -192,7 +199,6 @@
                                                         SendForm();
                                                     });
                                                 </script>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>

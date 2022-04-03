@@ -62,7 +62,6 @@
                                             <script>
                                                 $(function () {
                                                     $('#search_date').datepicker({
-                                                        minDate: new Date(),
                                                         language: 'ru',
                                                         isMobile: true,
                                                         autoClose: true,
@@ -155,6 +154,11 @@
                                                     aria-label="CSS grade: activate to sort column ascending" style="">
                                                     Билет
                                                 </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending" style="">
+                                                    Удалить
+                                                </th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -169,6 +173,7 @@
                                                     <td style="">{{ $ticket->address }}</td>
                                                     <td style="">{{ $ticket->author }}</td>
                                                     <td style=""><a href="/print?ticket_id={{ $ticket->id }}">Скачать</a></td>
+                                                    <td style=""><a href="{{ route('admin.delete') }}?ticket_id={{ $ticket->id }}&trip_num={{ request()->get('trip_num') }}&trip_id={{ request()->get('trip_id') }}&date={{ request()->get('date') }}">Удалить</a></td>
                                                 </tr>
                                                 @else
                                                     <tr class="odd even">
@@ -180,10 +185,11 @@
                                                     <td style=""> - </td>
                                                     <td style="">{{ $ticket->author }}</td>
                                                     <td style=""> - </td>
+                                                    <td style=""> - </td>
                                                 </tr>
                                                 @endif
                                             @empty
-                                                <tr class="odd even"><td colspan="6"><b>Отсутствуют билеты на указанный рейс</b></td></tr>
+                                                <tr class="odd even"><td colspan="8"><b>Отсутствуют билеты на указанный рейс</b></td></tr>
                                             @endforelse
                                             </tbody>
                                         </table>

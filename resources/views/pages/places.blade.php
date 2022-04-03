@@ -124,6 +124,7 @@
                             </tr>
 
                         </table>
+
                     </div>
                 @else
                     <div id="place-piker">
@@ -188,6 +189,17 @@
                     </div>
                 @endif
             </div>
+
+            @auth
+                <div class="row justify-content-md-center">
+                    <div class="col-12 col-lg-3">
+                        <input type="hidden" id="author" value="{{ Auth::user()->name }}">
+                        <input type="hidden" id="admin_link" value="{{ route('admin.home') }}?trip_id={{ app('request')->input('trip_id') }}&date={{ app('request')->input('date') }}">
+                        <button class="btn btn-success" id="booking">Бронировать без оплаты</button>
+                    </div>
+                </div>
+            @endauth
+
             <div class="row">
                 <div id="aside" class="col-12 col-lg-3">
                     <h2 class="section-heading"><p>Тарифы</p></h2>
@@ -521,7 +533,8 @@
                         <input id="count" type="hidden" value="{{ $trip_count }}">
                         <input id="trip_id" type="hidden" value="{{ $trip_id }}">
                         <input id="date" type="hidden" value="{{ $clear_date }}">
-                        <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Оплатить</button>
+                        <p>Бронирование временно доступно только через диспетчера: <p><a href="tel:79088962999">8 (908) 89-62-999</p></a></p>
+                        <!-- <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Оплатить</button> -->
                     </div>
                 </div>
             </div>
