@@ -173,7 +173,31 @@
                                                     <td style="">{{ $ticket->address }}</td>
                                                     <td style="">{{ $ticket->author }}</td>
                                                     <td style=""><a href="/print?ticket_id={{ $ticket->id }}">Скачать</a></td>
-                                                    <td style=""><a href="{{ route('admin.delete') }}?ticket_id={{ $ticket->id }}&trip_num={{ request()->get('trip_num') }}&trip_id={{ request()->get('trip_id') }}&date={{ request()->get('date') }}">Удалить</a></td>
+                                                    <td style="">
+                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger{{ $ticket->id }}">
+                                                            Удалить
+                                                        </button>
+                                                        <div class="modal fade" id="modal-danger{{ $ticket->id }}" style="display: none;" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content bg-danger">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Удаление билета</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">×</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Вы уверены, что хотите удалить билет?</p>
+                                                                        <p>Это действие невозможно отменить</p>
+                                                                    </div>
+                                                                    <div class="modal-footer justify-content-between">
+                                                                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Отменить</button>
+                                                                        <a href="{{ route('admin.delete') }}?ticket_id={{ $ticket->id }}&trip_num={{ request()->get('trip_num') }}&trip_id={{ request()->get('trip_id') }}&date={{ request()->get('date') }}"><button type="button" class="btn btn-outline-light">Удалить</button></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 @else
                                                     <tr class="odd even">

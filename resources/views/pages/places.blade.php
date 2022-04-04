@@ -192,10 +192,12 @@
 
             @auth
                 <div class="row justify-content-md-center">
-                    <div class="col-12 col-lg-3">
-                        <input type="hidden" id="author" value="{{ Auth::user()->name }}">
-                        <input type="hidden" id="admin_link" value="{{ route('admin.home') }}?trip_id={{ app('request')->input('trip_id') }}&date={{ app('request')->input('date') }}">
-                        <button class="btn btn-success" id="booking">Бронировать без оплаты</button>
+                    <div class="col-12 col-lg-12">
+                        <div id="adult-outer">
+                            <input type="hidden" id="author" value="{{ Auth::user()->name }}">
+                            <input type="hidden" id="admin_link" value="{{ route('admin.home') }}?trip_id={{ app('request')->input('trip_id') }}&date={{ app('request')->input('date') }}">
+                            <button class="btn btn-success" id="booking">Бронировать без оплаты</button>
+                        </div>
                     </div>
                 </div>
             @endauth

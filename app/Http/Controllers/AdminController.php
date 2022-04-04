@@ -17,7 +17,8 @@ class AdminController extends Controller
 
         $date = $_GET['date'] ?? date("d.m.Y");
         $trip_num = $_GET['trip_num'] ?? '1';
-        if (isset($_GET['trip_id'])) $trip_num = $trip_obj->getTripById($_GET['trip_id'])->num;
+
+        if ((isset($_GET['trip_id']) and !(empty($_GET['trip_id'])))) $trip_num = $trip_obj->getTripById($_GET['trip_id'])->num;
 
 
         $trip = $trip_obj->getFirstTripByNum($trip_num);
@@ -43,7 +44,7 @@ class AdminController extends Controller
     {
         $ticket_obj = new Ticket();
         $ticket = $ticket_obj->find($_GET['ticket_id']);
-        $ticket->delete();
+        if (isset($ticket)) $ticket->delete();
 
         return $this->getPanel();
     }

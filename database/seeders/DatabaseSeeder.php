@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
         User::factory(1)->create(['name' => 'TK999', 'email' => 'admin@tk999.ru', 'password' => '$2y$10$Q6LMrwwXfKtSZt7g.a4QSOZ/3jBPARVCW9a40T1l57kwZlur6.ECi']);
         User::factory(1)->create(['name' => 'agentM2', 'email' => 'm2@tk999.ru', 'password' => '$2y$10$Q6LMrwwXfKtSZt7g.a4QSOZ/3jBPARVCW9a40T1l57kwZlur6.ECi']);
         User::factory(1)->create(['name' => 'agentM3', 'email' => 'm3@tk999.ru', 'password' => '$2y$10$Q6LMrwwXfKtSZt7g.a4QSOZ/3jBPARVCW9a40T1l57kwZlur6.ECi']);
+        User::factory(1)->create(['name' => 'agentHM', 'email' => 'HM@tk999.ru', 'password' => '$2y$10$Q6LMrwwXfKtSZt7g.a4QSOZ/3jBPARVCW9a40T1l57kwZlur6.ECi']);
 
         Role::setStartRoles();
         Role::giveStartPermission();
