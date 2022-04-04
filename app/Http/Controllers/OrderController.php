@@ -21,6 +21,7 @@ class OrderController extends Controller
         $trip_info = $trip->getTripById($data->trip_id);
 
         $pdf = PDF::loadView('pdf.ticket', compact('data', 'trip_info'));
+        $pdf->setPaper('A5', 'landscape');
         return $pdf->stream($data->id.'_ticket_'.$data->date.'_'.$data->fio.'.pdf');
     }
 

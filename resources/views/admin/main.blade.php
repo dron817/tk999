@@ -23,7 +23,8 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-4">
                                         <div class="dt-buttons btn-group flex-wrap">
-                                            <button id="add_ticket" class="btn btn-primary buttons-copy buttons-html5" tabindex="0"
+                                            <button id="add_ticket" class="btn btn-primary buttons-copy buttons-html5"
+                                                    tabindex="0"
                                                     aria-controls="example1" type="button">
                                                 <span>Добавить билет</span></button>
                                         </div>
@@ -31,14 +32,16 @@
                                             function add_ticket() {
                                                 let date = $('#search_date').val();
                                                 let trip_num = $('#trip_num').val();
-                                                location.href='{{ route('admin.add') }}?trip_num='+trip_num+'&date='+date;
+                                                location.href = '{{ route('admin.add') }}?trip_num=' + trip_num + '&date=' + date;
                                             }
-                                            $('#add_ticket').click(function() {
+
+                                            $('#add_ticket').click(function () {
                                                 add_ticket();
                                             });
                                         </script>
                                         <div class="dt-buttons btn-group flex-wrap">
-                                            <button id="print" class="btn btn-secondary buttons-copy buttons-html5" tabindex="0"
+                                            <button id="print" class="btn btn-secondary buttons-copy buttons-html5"
+                                                    tabindex="0"
                                                     aria-controls="example1" type="button">
                                                 <span>Версия для печати</span></button>
                                         </div>
@@ -46,9 +49,10 @@
                                             function getPrint() {
                                                 let date = $('#search_date').val();
                                                 let trip_num = $('#trip_num').val();
-                                                location.href='{{ route('admin.print') }}?trip_num='+trip_num+'&date='+date;
+                                                location.href = '{{ route('admin.print') }}?trip_num=' + trip_num + '&date=' + date;
                                             }
-                                            $('#print').click(function() {
+
+                                            $('#print').click(function () {
                                                 getPrint();
                                             });
                                         </script>
@@ -58,7 +62,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" id="search_date" value="{{ $date }}" placeholder="Дата" autocomplete="off">
+                                            <input type="text" class="form-control" id="search_date" value="{{ $date }}"
+                                                   placeholder="Дата" autocomplete="off">
                                             <script>
                                                 $(function () {
                                                     $('#search_date').datepicker({
@@ -82,32 +87,59 @@
                                                 <span class="input-group-text"><i class="fas fa-bus"></i></span>
                                             </div>
                                             <select id="trip_num" class="form-control" name="trip_num">
-                                                <option value="1" @if( $trip_num==1) selected @endif>1. Урай - Устье-Аха (5:00)</option>
-                                                <option value="2" @if( $trip_num==2) selected @endif>2. Урай - Устье-Аха (14:30)</option>
-                                                <option value="3" @if( $trip_num==3) selected @endif>3. Устье-Аха - Урай (11:50)</option>
-                                                <option value="4" @if( $trip_num==4) selected @endif>4. Устье-Аха - Урай (23:00)</option>
-                                                <option value="5" @if( $trip_num==5) selected @endif>5. Урай - Ханты-Мансийск (00:05)</option>
-                                                <option value="6" @if( $trip_num==6) selected @endif>6. Ханты-Мансийск - Урай (12:00)</option>
-                                                <option value="7" @if( $trip_num==7) selected @endif>7. Урай - Ханты-Мансийск (06:00)</option>
-                                                <option value="8" @if( $trip_num==8) selected @endif>8. Ханты-Мансийск - Урай (16:00)</option>
-                                                <option value="9" @if( $trip_num==9) selected @endif>9. Югорск - Урай (08:00)</option>
-                                                <option value="10" @if( $trip_num==10) selected @endif>10. Урай - Югорск (17:05)</option>
-                                                <option value="11" @if( $trip_num==11) selected @endif>11. Урай - Нягань (05:00)</option>
-                                                <option value="12" @if( $trip_num==12) selected @endif>12. Нягань - Урай (14:00)</option>
+                                                <option value="1" @if( $trip_num==1) selected @endif>1. Урай - Устье-Аха
+                                                    (5:00)
+                                                </option>
+                                                <option value="2" @if( $trip_num==2) selected @endif>2. Урай - Устье-Аха
+                                                    (14:30)
+                                                </option>
+                                                <option value="3" @if( $trip_num==3) selected @endif>3. Устье-Аха - Урай
+                                                    (11:50)
+                                                </option>
+                                                <option value="4" @if( $trip_num==4) selected @endif>4. Устье-Аха - Урай
+                                                    (23:00)
+                                                </option>
+                                                <option value="5" @if( $trip_num==5) selected @endif>5. Урай -
+                                                    Ханты-Мансийск (00:05)
+                                                </option>
+                                                <option value="6" @if( $trip_num==6) selected @endif>6. Ханты-Мансийск -
+                                                    Урай (12:00)
+                                                </option>
+                                                <option value="7" @if( $trip_num==7) selected @endif>7. Урай -
+                                                    Ханты-Мансийск (06:00)
+                                                </option>
+                                                <option value="8" @if( $trip_num==8) selected @endif>8. Ханты-Мансийск -
+                                                    Урай (16:00)
+                                                </option>
+                                                <option value="9" @if( $trip_num==9) selected @endif>9. Югорск - Урай
+                                                    (08:00)
+                                                </option>
+                                                <option value="10" @if( $trip_num==10) selected @endif>10. Урай - Югорск
+                                                    (17:05)
+                                                </option>
+                                                <option value="11" @if( $trip_num==11) selected @endif>11. Урай - Нягань
+                                                    (05:00)
+                                                </option>
+                                                <option value="12" @if( $trip_num==12) selected @endif>12. Нягань - Урай
+                                                    (14:00)
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
-                                            <button id="show_trip" type="button" class="btn btn-block btn-success">Показать</button>
+                                            <button id="show_trip" type="button" class="btn btn-block btn-success">
+                                                Показать
+                                            </button>
                                         </div>
                                         <script>
                                             function show_trip() {
                                                 let date = $('#search_date').val();
                                                 let trip_num = $('#trip_num').val();
-                                                location.href='{{ route('admin.home') }}?trip_num='+trip_num+'&date='+date;
+                                                location.href = '{{ route('admin.home') }}?trip_num=' + trip_num + '&date=' + date;
                                             }
-                                            $('#show_trip').click(function() {
+
+                                            $('#show_trip').click(function () {
                                                 show_trip();
                                             });
                                         </script>
@@ -164,56 +196,79 @@
                                             <tbody>
                                             @forelse ($tickets as $ticket)
                                                 @if( Auth::user()->name == 'TK999' || Auth::user()->name == $ticket->author)
-                                                <tr class="odd even">
-                                                    <td class="dtr-control sorting_1"
-                                                        tabindex="0">{{ $ticket->place }}</td>
-                                                    <td>{{ $ticket->fio }}</td>
-                                                    <td style="">@if($ticket->tariff == 0) Взрослый @else Детский @endif</td>
-                                                    <td style="">@if($ticket->doc == 0) Не указан @else {{ $ticket->doc }} @endif</td>
-                                                    <td style="">{{ $ticket->address }}</td>
-                                                    <td style="">{{ $ticket->author }}</td>
-                                                    <td style=""><a href="/print?ticket_id={{ $ticket->id }}">Скачать</a></td>
-                                                    <td style="">
-                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger{{ $ticket->id }}">
-                                                            Удалить
-                                                        </button>
-                                                        <div class="modal fade" id="modal-danger{{ $ticket->id }}" style="display: none;" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content bg-danger">
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title">Удаление билета</h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">×</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <p>Вы уверены, что хотите удалить билет?</p>
-                                                                        <p>Это действие невозможно отменить</p>
-                                                                    </div>
-                                                                    <div class="modal-footer justify-content-between">
-                                                                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Отменить</button>
-                                                                        <a href="{{ route('admin.delete') }}?ticket_id={{ $ticket->id }}&trip_num={{ request()->get('trip_num') }}&trip_id={{ request()->get('trip_id') }}&date={{ request()->get('date') }}"><button type="button" class="btn btn-outline-light">Удалить</button></a>
+                                                    <tr class="odd even">
+                                                        <td class="dtr-control sorting_1"
+                                                            tabindex="0">{{ $ticket->place }}</td>
+                                                        <td>{{ $ticket->fio }}</td>
+                                                        <td style="">@if($ticket->tariff == 0) Взрослый @else
+                                                                Детский @endif</td>
+                                                        <td style="">@if($ticket->doc == 0) Не
+                                                            указан @else {{ $ticket->doc }} @endif</td>
+                                                        <td style="">{{ $ticket->address }}</td>
+                                                        <td style="">{{ $ticket->author }}</td>
+                                                        <td style=""><a href="/print?ticket_id={{ $ticket->id }}">
+                                                                <button type="button" class="btn btn-primary">
+                                                                    Скачать
+                                                                </button>
+                                                            </a>
+                                                        </td>
+                                                        <td style="">
+                                                            <button type="button" class="btn btn-danger"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modal-danger{{ $ticket->id }}">
+                                                                Удалить
+                                                            </button>
+                                                            <div class="modal fade" id="modal-danger{{ $ticket->id }}"
+                                                                 style="display: none;" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content bg-danger">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Удаление билета</h4>
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal"
+                                                                                    aria-label="Close">
+                                                                                <span aria-hidden="true">×</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <p>Вы уверены, что хотите удалить билет?</p>
+                                                                            <p>Это действие невозможно отменить</p>
+                                                                        </div>
+                                                                        <div
+                                                                            class="modal-footer justify-content-between">
+                                                                            <button type="button"
+                                                                                    class="btn btn-outline-light"
+                                                                                    data-dismiss="modal">Отменить
+                                                                            </button>
+                                                                            <a href="{{ route('admin.delete') }}?ticket_id={{ $ticket->id }}&trip_num={{ request()->get('trip_num') }}&trip_id={{ request()->get('trip_id') }}&date={{ request()->get('date') }}">
+                                                                                <button type="button"
+                                                                                        class="btn btn-outline-light">
+                                                                                    Удалить
+                                                                                </button>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
                                                 @else
                                                     <tr class="odd even">
-                                                    <td class="dtr-control sorting_1"
-                                                        tabindex="0">{{ $ticket->place }}</td>
-                                                    <td>Забронировано</td>
-                                                    <td style=""> - </td>
-                                                    <td style=""> - </td>
-                                                    <td style=""> - </td>
-                                                    <td style="">{{ $ticket->author }}</td>
-                                                    <td style=""> - </td>
-                                                    <td style=""> - </td>
-                                                </tr>
+                                                        <td class="dtr-control sorting_1"
+                                                            tabindex="0">{{ $ticket->place }}</td>
+                                                        <td>Забронировано</td>
+                                                        <td style=""> -</td>
+                                                        <td style=""> -</td>
+                                                        <td style=""> -</td>
+                                                        <td style="">{{ $ticket->author }}</td>
+                                                        <td style=""> -</td>
+                                                        <td style=""> -</td>
+                                                    </tr>
                                                 @endif
                                             @empty
-                                                <tr class="odd even"><td colspan="8"><b>Отсутствуют билеты на указанный рейс</b></td></tr>
+                                                <tr class="odd even">
+                                                    <td colspan="8"><b>Отсутствуют билеты на указанный рейс</b></td>
+                                                </tr>
                                             @endforelse
                                             </tbody>
                                         </table>

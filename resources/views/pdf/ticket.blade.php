@@ -15,9 +15,9 @@
             z-index:-1;
             position:absolute;
             left:150px;
-            top:0px;
+            top:0;
             width: 60%;
-            content: url('../img/ticket-bus.jpg');
+            content: url('../assets/img/ticket-bus.jpg');
             opacity:0.3;
         }
         .top-line{

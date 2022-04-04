@@ -20,6 +20,7 @@ class AdminController extends Controller
 
         if ((isset($_GET['trip_id']) and !(empty($_GET['trip_id'])))) $trip_num = $trip_obj->getTripById($_GET['trip_id'])->num;
 
+        if (empty($trip_num)) $trip_num = 1;
 
         $trip = $trip_obj->getFirstTripByNum($trip_num);
         if ($trip->tong==1)
