@@ -49,16 +49,16 @@ function SendForm() {
     $.ajax({
         dataType: "json",
         type: "POST",
-        url: "/order",
+        url: "/pay",
         data: {
             data: data,
             "_token": $('input[name="_token"]').val()
         }
     }).done(function (msg) {
         function viewResult(){
-            location.href='/order_show?order_id='+msg['redirect'];
+            location.href=msg['redirect'];
         }
-        setTimeout(viewResult, 5000);
+        setTimeout(viewResult, 1);
     })
 }
 

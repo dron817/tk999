@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Trip;
 use App\Models\Ticket;
+use App\Http\Controllers\Payment\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\URL;
 use STREAM;
 
@@ -27,8 +29,10 @@ class OrderController extends Controller
 
     function getOrder(Request $request){
         $order_id = $_GET['order_id'];
+
         $ticket = new Ticket();
         $tickets = $ticket->getTicketsByOrderID($order_id);
+
         $trip = new Trip();
         $trip_info = $trip->getTripById($tickets{0}->trip_id);
 
@@ -40,10 +44,13 @@ class OrderController extends Controller
         return view('pages/order', ['tickets' => $tickets, 'trip' => $trip_info]);
     }
 
-    function letOrder(Request $request): array
+    function letOrder(Request $request)
     {
         $ticket = new Ticket();
         $order_id = $ticket->getMaxOrder()+1;
+
+        $PaymentController_obj = new PaymentController;
+        $payment_url = $PaymentController_obj->payCreate($order_id, 500);
 
         $count = $_POST['data']['count'];
         for($i=1; $i<=$count; $i++){
@@ -59,16 +66,20 @@ class OrderController extends Controller
             $ticket->date = $_POST['data']['date'];
             $ticket->trip_id = $_POST['data']['trip_id'];
             $ticket->order_id = $order_id;
+            $ticket->pay_id = 'df34dff';
+//            $ticket->pay_id = $payment->getId();
             $ticket->author = $_POST['data']['author'];
             $ticket->save();
             $tickets_id[$i]=$ticket->getQueueableId();
         }
 
-        if ($_POST['data']['sendSMS'] == 1)
-            $this->sendSMS($order_id, $_POST['data'][1]['phone']);
+//        if (Cookie::has('payment_id')) Cookie::unqueue('payment_id');
+//        Cookie::queue('payment_id', $payment->getId(), 10);
 
+//        if ($_POST['data']['sendSMS'] == 1)
+//            $this->sendSMS($order_id, $_POST['data'][1]['phone']);
         $answer = array(
-            'redirect' => $order_id
+            'redirect' => $payment_url
         );
         return ($answer);
     }

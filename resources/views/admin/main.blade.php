@@ -12,9 +12,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
-
                     <div class="card">
+                        <div class="row card-header">
+                            <div class="col-3">
+                                <a href="{{ route('index') }}">
+                                    <button  class="btn btn-secondary buttons-copy buttons-html5" type="button">
+                                        <span>< На главную</span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
                         <div class="card-header">
                             <h3 class="card-title">Перечень билетов на рейс</h3>
                         </div>

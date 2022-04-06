@@ -47,11 +47,10 @@ Route::get('/order_show', 'App\Http\Controllers\OrderController@getOrder')->name
 
 Route::get('/sendSMS', 'App\Http\Controllers\OrderController@sendSMS')->name('sendSMS');
 
-
-
+Route::any('/pay', [App\Http\Controllers\Payment\PaymentController::class, 'payCreate'])->name('pay.create');
+Route::any('/pay/callback', [App\Http\Controllers\Payment\PaymentController::class, 'payCallback'])->name('pay.callback');
 
 Auth::routes();
-
 
 Route::middleware(['auth'])->prefix('home')->group( function(){
     Route::get('/', 'App\Http\Controllers\AdminController@getPanel')->name('admin.home');
@@ -59,9 +58,6 @@ Route::middleware(['auth'])->prefix('home')->group( function(){
     Route::get('/print', 'App\Http\Controllers\AdminController@getPrint')->name('admin.print');
     Route::get('/delete', 'App\Http\Controllers\AdminController@delOrder')->name('admin.delete');
 });
-
-
-
 
 
 Route::middleware(['auth'])->prefix('dev')->group( function(){
