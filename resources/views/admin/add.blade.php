@@ -24,9 +24,9 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-4">
                                         <div class="dt-buttons btn-group flex-wrap">
-                                            <button id="back" class="btn btn-secondary buttons-copy buttons-html5" tabindex="0"
+                                            <button id="back" class="btn btn-primary buttons-copy buttons-html5" tabindex="0"
                                                     aria-controls="example1" type="button">
-                                                <span>Назад</span></button>
+                                                <span>< Назад в панель</span></button>
                                         </div>
                                         <script>
                                             function back() {
@@ -107,12 +107,19 @@
                                                     <label for="tariff">Тариф</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
                                                         </div>
                                                         <select name="tariff" id="tariff" class="form-control">
                                                             <option value="0">Взрослый</option>
                                                             <option value="1">Детский</option>
                                                         </select>
+                                                    </div>
+                                                    <label for="price">Цена</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="price">
                                                     </div>
                                                     <label for="place">Место</label>
                                                     <div class="input-group mb-3">
@@ -178,6 +185,7 @@
                                                         data['trip_id'] = $('#trip_id').val();
                                                         data['date'] = $('#date').val();
                                                         data['count'] = 1;
+                                                        data['price'] = $('#price').val();;
                                                         data['author'] = "{{ Auth::user()->name }}";
 
                                                         $.ajax({

@@ -45,11 +45,13 @@ function SendForm() {
     data['count'] = count;
     data['author'] = 'web';
 
-    let done = $('#price');
+
+    data['price'] = $('#count').val()*adult + $('#count').val()*kids*0.5;
+
     $.ajax({
         dataType: "json",
         type: "POST",
-        url: "/pay",
+        url: "/order",
         data: {
             data: data,
             "_token": $('input[name="_token"]').val()
@@ -98,6 +100,8 @@ function booking() {
     data['count'] = count;
     data['author'] = $('#author').val();
     data['sendSMS'] = "0";
+
+    data['price'] = $('#count').val()*adult + $('#count').val()*kids*0.5;
 
     $.ajax({
         dataType: "json",

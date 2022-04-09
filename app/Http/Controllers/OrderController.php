@@ -46,15 +46,20 @@ class OrderController extends Controller
 
     function letOrder(Request $request)
     {
-        $ticket = new Ticket();
-        $order_id = $ticket->getMaxOrder()+1;
+        $ticket_obj = new Ticket();
+        $order_id = $ticket_obj->getMaxOrder()+1;
+        Cookie::queue('order_id', $order_id, 10);
 
         $PaymentController_obj = new PaymentController;
-        $payment_url = $PaymentController_obj->payCreate($order_id, 500);
+        $payment_url = $PaymentController_obj->payCreate($order_id, $_POST['data']['price']);
 
         $count = $_POST['data']['count'];
         for($i=1; $i<=$count; $i++){
             $ticket = new Ticket();
+
+//            $busy = $ticket->isBusy($_POST['data']['trip_id'], $_POST['data']['date'], $_POST['data'][$i]['place']);
+//            if (!$busy) break;
+
             $ticket->fio = $_POST['data'][$i]['fio'];
             $ticket->place = $_POST['data'][$i]['place'];
             $ticket->doc = $_POST['data'][$i]['doc'];
@@ -66,18 +71,12 @@ class OrderController extends Controller
             $ticket->date = $_POST['data']['date'];
             $ticket->trip_id = $_POST['data']['trip_id'];
             $ticket->order_id = $order_id;
-            $ticket->pay_id = 'df34dff';
-//            $ticket->pay_id = $payment->getId();
+//            $ticket->pay_id = $payment_id;
             $ticket->author = $_POST['data']['author'];
             $ticket->save();
             $tickets_id[$i]=$ticket->getQueueableId();
         }
 
-//        if (Cookie::has('payment_id')) Cookie::unqueue('payment_id');
-//        Cookie::queue('payment_id', $payment->getId(), 10);
-
-//        if ($_POST['data']['sendSMS'] == 1)
-//            $this->sendSMS($order_id, $_POST['data'][1]['phone']);
         $answer = array(
             'redirect' => $payment_url
         );

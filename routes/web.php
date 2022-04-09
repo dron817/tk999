@@ -56,7 +56,9 @@ Route::middleware(['auth'])->prefix('home')->group( function(){
     Route::get('/', 'App\Http\Controllers\AdminController@getPanel')->name('admin.home');
     Route::get('/add', 'App\Http\Controllers\AdminController@getAdder')->name('admin.add');
     Route::get('/print', 'App\Http\Controllers\AdminController@getPrint')->name('admin.print');
+    Route::get('/edit', 'App\Http\Controllers\AdminController@getEditer')->name('admin.edit');
     Route::get('/delete', 'App\Http\Controllers\AdminController@delOrder')->name('admin.delete');
+    Route::get('/last', 'App\Http\Controllers\AdminController@lastOrders')->name('admin.last');
 });
 
 

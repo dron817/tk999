@@ -52,7 +52,7 @@ class TripsController extends Controller
         $tickets_obj = new Ticket;
         foreach ($trips as $trip){
             $num = $trip->num;
-            $trip->places = 20;
+            if ($trip->tong == 1) $trip->places = 53; else $trip->places = 20;
             $trips_by_num = $trip_obj->getTripsByNum($num);
             foreach ($trips_by_num as $trip_by_num){
                 $tickets = $tickets_obj->getTicketsByTrip($trip_by_num->id, $from_date_clear);

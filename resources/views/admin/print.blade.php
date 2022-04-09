@@ -56,6 +56,11 @@
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Engine version: activate to sort column ascending"
+                                                    style="">Телефон
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Engine version: activate to sort column ascending"
                                                     style="">Документ
                                                 </th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
@@ -73,6 +78,7 @@
                                                             tabindex="0">{{ $ticket->place }}</td>
                                                         <td>{{ $ticket->fio }}</td>
                                                         <td style="">@if($ticket->tariff == 0) Взрослый @else Детский @endif</td>
+                                                        <td style="">@if($ticket->phone == 0) Не указан @else {{ $ticket->phone }} @endif</td>
                                                         <td style="">@if($ticket->doc == 0) Не указан @else {{ $ticket->doc }} @endif</td>
                                                         <td style="">{{ $ticket->address }}</td>
                                                     </tr>

@@ -16,13 +16,16 @@ use YooKassa\Model\NotificationEventType;
 
 class PaymentController extends Controller
 {
+
+    private $clientId = '896857';
+    private $clientSecret = 'live_AYNsgIq8BKrSNr--BFOzMA5aFCTGBucebWwh5CJqUvo';
+
+
     public function payCreate($order_id = 1 , $value = 500)
     {
-        $clientId = '898452';
-        $clientSecret = 'test_COcHnkEfNYfpIkw7ggvbRLRe4qSh5Sfur16Y5oyDkEA';
 
         $client = new Client();
-        $client->setAuth($clientId, $clientSecret);
+        $client->setAuth($this->clientId, $this->clientSecret);
 
         $payment = $client->createPayment([
             'amount' => [
@@ -41,31 +44,26 @@ class PaymentController extends Controller
         ], uniqid('', true));
 
         $payment_url =  $payment->getConfirmation()->getConfirmationUrl();
-        $payment_id = substr($payment_url, -36, 36);
+        $payment_id = $payment->getId();
         Cookie::queue('payment_id', $payment_id, 10);
 
-        $answer = array(
-            'redirect' => $payment_url
-        );
-        return ($answer);
+        return $payment_url;
     }
 
 
     public function payCallback(Request $req)
     {
-        $clientId = '898452';
-        $clientSecret = 'test_COcHnkEfNYfpIkw7ggvbRLRe4qSh5Sfur16Y5oyDkEA';
-
         $client = new Client();
-        $client->setAuth($clientId, $clientSecret);
+        $client->setAuth($this->clientId, $this->clientSecret);
 
         $paymentId = Cookie::get('payment_id');
         $payment = $client->getPaymentInfo($paymentId);
 
-        print_r($paymentId);
-        print_r($payment->getStatus());
+//        print_r($paymentId);
+//        print_r($payment->getStatus());
 
-//        if ($payment->getStatus() == 'succeeded')
-//            return redirect ( route('getOrder').'?order_id=1' );
+        $order_id = Cookie::get('order_id');
+        if ($payment->getStatus() == 'succeeded')
+            return redirect ( route('getOrder').'?order_id='.$order_id );
     }
 }

@@ -33,6 +33,10 @@ class AdminController extends Controller
         foreach ($trips as $trip) {
             $tickets = $ticket_obj->getTicketsByTrip($trip->id, $date);
             foreach ($tickets as $ticket){
+                $crr_trip = $trip_obj->getTripById($ticket->trip_id);
+
+                $ticket->way = $crr_trip->from.'>'.$crr_trip->to;
+
                 $tickets_all->push($ticket);
                 unset($free_places[$ticket->place-1]);
             }
@@ -75,6 +79,21 @@ class AdminController extends Controller
         $trips = $trip_obj->getAllTrips();
         return view('admin.add', ['trips' => $trips, 'date' => $date, 'free_places' => $free_places, 'trip_id' => $trip_id]);
     }
+
+    function lastOrders(){
+        $ticket_obj = new Ticket();
+        $tickets = $ticket_obj->getLastWebTickets();
+
+        foreach ($tickets as $ticket) {
+            $trip_obj = new Trip();
+            $crr_trip = $trip_obj->getTripById($ticket->trip_id);
+            $ticket->way = $crr_trip->from.'>'.$crr_trip->to;
+        }
+
+
+        return view('admin.last', ['tickets' => $tickets]);
+    }
+
     function getPrint()
     {
         $ticket_obj = new Ticket();

@@ -36,6 +36,20 @@ class Ticket extends Model
         return $user = DB::table('tickets')->where('num', '=', $trip_num)->where('date', '=', $date)->get();
     }
 
+    public function getLastWebTickets(): Collection
+    {
+        return DB::table('tickets')->where('author', '=', 'web')->limit(20)->orderBy('id', 'desc')->get();
+    }
+
+    public function isBusy($trip_id, $date, $place): bool
+    {
+        $ticket = DB::table('tickets')->where('trip_id', '=', $trip_id)
+            ->where('date', '=', $date)
+            ->where('place', '=', $place)
+            ->get();
+        return !empty($ticket);
+    }
+
     public function getMaxOrder()
     {
         return DB::table('tickets')->max('order_id');
