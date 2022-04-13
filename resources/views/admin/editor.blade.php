@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Добавление билета')
+@section('title', 'Изменение билета')
 
 @section('content_header')
     <h1>Панель диспетчера</h1>
@@ -13,9 +13,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+
+
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Добавление билета</h3>
+                            <h3 class="card-title">Изменение билета</h3>
                         </div>
                         <div class="card-body">
                             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -29,37 +31,29 @@
                                         <script>
                                             function back() {
                                                 let date = $('#date').val();
-                                                location.href='{{ route('admin.home') }}?date='+date;
+                                                let trip_id = $('#trip_id').val();
+                                                location.href='{{ route('admin.home') }}?trip_id='+trip_id+'&date='+date;
                                             }
                                             $('#back').click(function() {
                                                 back();
                                             });
                                         </script>
-                                        {{--                                        <div class="dt-buttons btn-group flex-wrap">--}}
-                                        {{--                                            <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0"--}}
-                                        {{--                                                    aria-controls="example1" type="button">--}}
-                                        {{--                                                <span>Версия для печати</span></button>--}}
-                                        {{--                                        </div>--}}
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" id="date" value="{{ $date }}" placeholder="Дата" autocomplete="off">
+                                            <input type="text" class="form-control" id="date" value="{{ $ticket->date }}" placeholder="Дата" autocomplete="off">
                                             <script>
                                                 $(function () {
                                                     $('#date').datepicker({
-                                                        minDate: new Date(),
                                                         language: 'ru',
                                                         isMobile: true,
                                                         autoClose: true,
                                                         clearButton: true,
                                                         onSelect(formattedDate, date, inst) {
                                                             inst.hide();
-                                                            let date_pick = $('#date').val();
-                                                            let trip_id = $('#trip_id').val();
-                                                            location.href='{{ route('admin.add') }}?trip_id='+trip_id+'&date='+date_pick;
                                                         },
                                                         position: 'bottom center'
                                                     });
@@ -75,49 +69,26 @@
                                             </div>
                                             <select id="trip_id" class="form-control" name="trip_id">
                                                 @foreach( $trips as $trip )
-                                                    <option value="{{ $trip->id }}" @if ($trip->id == $trip_id) selected @endif>{{ $trip->from }} - {{ $trip->to }} ({{ $trip->from_time }})</option>
+                                                    <option value="{{ $trip->id }}" @if ($trip->id == $ticket->trip_id) selected @endif>{{ $trip->from }} - {{ $trip->to }} ({{ $trip->from_time }})</option>
                                                 @endforeach
                                             </select>
-                                            <script>
-                                                $('#trip_id').on('change', function (e) {
-                                                    let date = $('#date').val();
-                                                    let trip_id = $('#trip_id').val();
-                                                    location.href='{{ route('admin.add') }}?trip_id='+trip_id+'&date='+date;
-                                                });
-                                            </script>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="card card-secondary">
-                                            <div class="card-header">
-                                                <h3 class="card-title">Данные пассажира</h3>
-                                            </div>
+                                @if( Auth::user()->name == 'TK999' || Auth::user()->name == $ticket->author)
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="card card-secondary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Данные пассажира</h3>
+                                                </div>
                                                 <div class="card-body">
                                                     <label for="fio">Фамилия Имя Отчество</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="fio">
-                                                    </div>
-                                                    <label for="tariff">Тариф</label>
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
-                                                        </div>
-                                                        <select name="tariff" id="tariff" class="form-control">
-                                                            <option value="0">Взрослый</option>
-                                                            <option value="1">Детский</option>
-                                                        </select>
-                                                    </div>
-                                                    <label for="price">Цена</label>
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="fas fa-coins"></i></span>
-                                                        </div>
-                                                        <input type="text" class="form-control" id="price">
+                                                        <input type="text" class="form-control" id="fio" value="{{ $ticket->fio }}">
                                                     </div>
                                                     <label for="place">Место</label>
                                                     <div class="input-group mb-3">
@@ -126,7 +97,7 @@
                                                         </div>
                                                         <select name="place" id="place" class="form-control">
                                                             @foreach ($free_places as $free_place)
-                                                                <option value="{{ $free_place }}">{{ $free_place }}</option>
+                                                                <option @if ($free_place == $ticket->place) selected @endif value="{{ $free_place }}">{{ $free_place }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -135,66 +106,55 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="phone">
+                                                        <input type="text" class="form-control" id="phone" value="{{ $ticket->phone }}">
                                                     </div>
                                                     <script>
                                                         $('#phone').mask('79999999999');
                                                     </script>
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" type="checkbox" id="sendSMS" value="1">
-                                                            <label for="sendSMS " class="custom-control-label">Отправить СМС с билетами</label>
-                                                        </div>
-                                                    </div>
                                                     <label for="doc">Номер документа</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="doc">
+                                                        <input type="text" class="form-control" id="doc" value="{{ $ticket->doc }}">
                                                     </div>
                                                     <label for="address">Адрес сбора</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-map-marker"></i></span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="address">
+                                                        <input type="text" class="form-control" id="address" value="{{ $ticket->address }}">
                                                     </div>
                                                 </div>
+                                                <input type="hidden" id="ticket_id" value="{{ $ticket->id }}">
                                                 @csrf
                                                 <div class="card-footer">
-                                                    <button id="send" class="btn btn-success">Бронировать</button>
+                                                    <button id="send" class="btn btn-warning">Изменить</button>
                                                 </div>
                                                 <script>
                                                     function SendForm() {
                                                         let data = {}
 
-                                                        data[1] = {};
-                                                        data[1]['fio'] = $('#fio').val();
-                                                        data[1]['place'] = $('#place').val();
-                                                        data[1]['tariff'] = $('#tariff').val();;
-                                                        data[1]['phone'] = $('#phone').val();
-                                                        data[1]['doc'] = $('#doc').val();
-                                                        data[1]['address'] = $('#address').val();
-                                                        data['payment'] = 'cash'
+                                                        data['fio'] = $('#fio').val();
+                                                        data['place'] = $('#place').val();
+                                                        data['phone'] = $('#phone').val();
+                                                        data['doc'] = $('#doc').val();
+                                                        data['address'] = $('#address').val();
 
-                                                        data['sendSMS'] = 'cash'
-
+                                                        data['ticket_id'] = $('#ticket_id').val();
                                                         data['trip_id'] = $('#trip_id').val();
                                                         data['date'] = $('#date').val();
-                                                        data['count'] = 1;
-                                                        data['price'] = $('#price').val();;
-                                                        data['author'] = "{{ Auth::user()->name }}";
 
                                                         $.ajax({
                                                             dataType: "json",
                                                             type: "POST",
-                                                            url: "/order",
+                                                            url: "letEdit",
                                                             data: {
                                                                 data: data,
                                                                 "_token": $('input[name="_token"]').val()
                                                             }
                                                         }).done(function (msg) {
+                                                            console.log(msg['msg']);
                                                             let date = $('#date').val();
                                                             let trip_id = $('#trip_id').val();
                                                             location.href='{{ route('admin.home') }}?trip_id='+trip_id+'&date='+date;
@@ -205,22 +165,19 @@
                                                         SendForm();
                                                     });
                                                 </script>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    <b>Нет доступа к данному билету</b>
+                                @endif
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
 @stop
 
 @section('css')

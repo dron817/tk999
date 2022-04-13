@@ -112,7 +112,7 @@
                                                             указан @else {{ $ticket->phone }} @endif</td>
                                                         <td style="">{{ $ticket->address }}</td>
                                                         <td style="">{{ $ticket->author }}</td>
-                                                        <td style=""><a href="/edit?ticket_id={{ $ticket->id }}">
+                                                        <td style=""><a href="{{ route('admin.edit') }}?ticket_id={{ $ticket->id }}">
                                                                 <button type="button" class="btn btn-warning">
                                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                                 </button>

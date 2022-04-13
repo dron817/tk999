@@ -294,6 +294,8 @@
                                                         <td style="">{{ $ticket->author }}</td>
                                                         <td style=""> -</td>
                                                         <td style=""> -</td>
+                                                        <td style=""> -</td>
+                                                        <td style=""> -</td>
                                                     </tr>
                                                 @endif
                                             @empty

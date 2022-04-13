@@ -44,7 +44,7 @@ class OrderController extends Controller
         return view('pages/order', ['tickets' => $tickets, 'trip' => $trip_info]);
     }
 
-    function letOrder(Request $request)
+    function letOrder(Request $request): array
     {
         $ticket_obj = new Ticket();
         $order_id = $ticket_obj->getMaxOrder()+1;

@@ -94,6 +94,44 @@ class AdminController extends Controller
         return view('admin.last', ['tickets' => $tickets]);
     }
 
+    function getEditor(){
+        $ticket_obj = new Ticket();
+        $trip_obj = new Trip();
+        $ticket = $ticket_obj->getTicketByID($_GET['ticket_id']);
+        $trip = $trip_obj->getTripById($ticket->trip_id);
+        $all_trips = $trip_obj->getAllTrips();
+
+        $tickets = $ticket_obj->getTicketsByTrip($ticket->trip_id, $ticket->date);
+        if ($trip->tong==1)
+            $free_places = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53];
+        else
+            $free_places = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+        foreach ($tickets as $ticket_unit){
+            if ($ticket_unit->place <> $ticket->place)
+                unset($free_places[$ticket_unit->place-1]);
+        }
+
+
+        return view('admin.editor', ['ticket' => $ticket, 'free_places' => $free_places, 'trips' => $all_trips]);
+    }
+
+    function letEdit(Request $data){
+        $ticket_obj = new Ticket();
+        $ticket = $ticket_obj->find($_POST['data']['ticket_id']);
+        $ticket->fio = $_POST['data']['fio'];
+        $ticket->place = $_POST['data']['place'];
+        $ticket->phone = $_POST['data']['phone'];
+        $ticket->doc = $_POST['data']['doc'];
+        $ticket->address = $_POST['data']['address'];
+        $ticket->date = $_POST['data']['date'];
+        $ticket->trip_id = $_POST['data']['trip_id'];
+        $ticket->save();
+        $msg = array(
+            'msg' => print_r($_POST['data']['ticket_id'], 1)
+        );
+        return ($msg);
+    }
+
     function getPrint()
     {
         $ticket_obj = new Ticket();
