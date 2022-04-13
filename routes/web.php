@@ -21,12 +21,22 @@ use Illuminate\Support\Facades\Route;
 //TODO Ссылка на другие автобусы (ХАНТЫ - СУРГУТ)
 //TODO Ссылка на Авиа
 
+//TODO Урай-Нягань ПН СР ПТ (5-00)
+//TODO Урай-Советский ПН СР ПТ (5-00)
+//TODO Советский-Нягань ПН СР ПТ (8-00)
+//TODO Нягань-Урай ПН СР ПТ (14-00)
+//TODO Нягань-Советский ПН СР ПТ (14-00)
+//TODO Советский-Урай ПН СР ПТ (16-00)
+
+//TODO Советский-Урай 8-40 изменить время
+
 //TODO ХМ по адресам
 
 //TODO Урай в советский / югорск 2-41 (стоянка)
 //TODO советский в урай ЖД вокзал
 //TODO югорск в урай Ленина 29 (почта)
 
+//TODO ДВОЙНЫЕ БИЛЕТЫ!!!
 
 //TODO ХМ в Урай - без аэропорта
 
@@ -56,7 +66,8 @@ Route::middleware(['auth'])->prefix('home')->group( function(){
     Route::get('/', 'App\Http\Controllers\AdminController@getPanel')->name('admin.home');
     Route::get('/add', 'App\Http\Controllers\AdminController@getAdder')->name('admin.add');
     Route::get('/print', 'App\Http\Controllers\AdminController@getPrint')->name('admin.print');
-    Route::get('/edit', 'App\Http\Controllers\AdminController@getEditer')->name('admin.edit');
+    Route::get('/edit', 'App\Http\Controllers\AdminController@getEditor')->name('admin.edit');
+    Route::any('/letEdit', 'App\Http\Controllers\AdminController@letEdit')->name('admin.letEdit');
     Route::get('/delete', 'App\Http\Controllers\AdminController@delOrder')->name('admin.delete');
     Route::get('/last', 'App\Http\Controllers\AdminController@lastOrders')->name('admin.last');
 });
