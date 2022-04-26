@@ -864,6 +864,11 @@ a.disabled {
     border-radius: 5px;
     padding: 7px;
 }
+.person-data-outer select {
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    border-radius: 5px;
+    padding: 7px;
+}
 .person-data-outer input[type="text"]:disabled, .person-data-outer input[type="text"]:disabled:hover{
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 10%), 0 0 2px rgb(13 35 67 / 10%);
     background-color: #d6d6d6;

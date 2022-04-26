@@ -14,7 +14,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="row card-header">
-                            <div class="col-3">
+                            <div class="col-12">
                                 <a href="{{ route('index') }}">
                                     <button  class="btn btn-secondary buttons-copy buttons-html5" type="button">
                                         <span>< На главную</span>
@@ -24,6 +24,11 @@
                                     <a href="{{ route('admin.last') }}">
                                         <button  class="btn btn-warning buttons-copy buttons-html5" type="button">
                                             <span>Последние билеты</span>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('admin.tripsManagement') }}">
+                                        <button  class="btn btn-info buttons-copy buttons-html5" type="button">
+                                            <span>Управление рейсами</span>
                                         </button>
                                     </a>
                                 @endif
@@ -230,7 +235,47 @@
                                                         <td style="">@if($ticket->phone == 0) Не
                                                             указан @else {{ $ticket->phone }} @endif</td>
                                                         <td style="">{{ $ticket->address }}</td>
-                                                        <td style="">{{ $ticket->author }}</td>
+
+                                                        <td style="">
+                                                            @if($ticket->author == 'web')
+                                                                <button type="button" class="btn btn-info"
+                                                                        data-toggle="modal"
+                                                                        data-target="#modal-info{{ $ticket->id }}">
+                                                                    WEB
+                                                                </button>
+                                                                <div class="modal fade" id="modal-info{{ $ticket->id }}"
+                                                                     style="display: none;" aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content bg-info">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">Информация о билете</h4>
+                                                                                <button type="button" class="close"
+                                                                                        data-dismiss="modal"
+                                                                                        aria-label="Close">
+                                                                                    <span aria-hidden="true">×</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <p>Идентификатор билета:</p><p><b>{{ $ticket->id }}</b></p>
+                                                                                <p>Время заказа:</p><p><b>{{ $ticket->created_at }}</b></p>
+                                                                                <p>Идентификатор платежа:</p><p><b>{{ $ticket->payment_id }}</b></p>
+                                                                            </div>
+                                                                            <div
+                                                                                class="modal-footer justify-content-between">
+                                                                                <button type="button"
+                                                                                        class="btn btn-outline-light"
+                                                                                        data-dismiss="modal">Закрыть
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            @else
+                                                                {{ $ticket->author }}
+                                                            @endif
+                                                        </td>
+
                                                         <td style=""><a href="{{ route('admin.edit') }}?ticket_id={{ $ticket->id }}">
                                                                 <button type="button" class="btn btn-warning">
                                                                     <i class="fa fa-edit" aria-hidden="true"></i>

@@ -227,17 +227,11 @@
 
                     <h2 class="section-heading"><p>Способ оплаты</p></h2>
                     <div id="payments">
-                        <div onclick="clickHider()" id="hider">&#8744;</div>
-                        <form>
+{{--                        <div onclick="clickHider()" id="hider">&#8744;</div>--}}
                             <div onclick="choseCard()" id="card-outer" class="payment">
                                 <img src="{{ asset('assets/img/payments/card.png') }}" alt=""> <label for="card">Картой
-                                    онлайн</label> <input  name="payment" id="card" type="radio">
+                                    онлайн</label> <input checked name="payment" id="card" type="radio">
                             </div>
-                            <div onclick="choseCash()" id="cash-outer" class="payment">
-                                <img src="{{ asset('assets/img/payments/cash.png') }}" alt=""> <label for="cash">Наличными
-                                    водителю</label> <input checked name="payment" id="cash" type="radio">
-                            </div>
-                        </form>
                     </div>
                 </div>
                 <div id="passengers-outer" class="col-12 col-lg-9">
@@ -265,7 +259,56 @@
                         </div>
                         <div class="data-group col-12 col-lg-3 col-md-6">
                             <label for="address_1">Адрес сбора</label>
-                            <input id="address_1" type="text">
+                            @switch($trip_id)
+                                @case(1)
+                                    <select id="address_1">
+                                        <option disabled selected>Выберите остановку</option>
+                                        <option>Сибирь (05:15)</option>
+                                        <option>Гимназия (05:17)</option>
+                                        <option>Церковь (05:19)</option>
+                                        <option>ГК Нефтяник 1 (05:21)</option>
+                                        <option>Аэропорт (05:23)</option>
+                                        <option>Трансагенство - пристань (05:27)</option>
+                                        <option>Почта (05:29)</option>
+                                        <option>ТЦ Юбилейный (05:31)</option>
+                                        <option>Соц.Защита (05:33)</option>
+                                        <option>Горбольница (05:35)</option>
+                                        <option>ТПП Урайнефтегаз (05:35)</option>
+                                        <option>Молодежная (05:39)</option>
+                                        <option>Музей (05:41)</option>
+                                        <option>Дом Ребенка (05:43)</option>
+                                        <option>Архив (05:45)</option>
+                                        <option>Типография (05:47)</option>
+                                        <option>Гармония (05:49)</option>
+                                        <option>Электросети (05:51)</option>
+                                    </select>
+                                @break
+                                @case(2)
+                                    <select id="address_1">
+                                        <option disabled selected>Выберите остановку</option>
+                                        <option>Сибирь (05:15)</option>
+                                        <option>Гимназия (05:17)</option>
+                                        <option>Церковь (05:19)</option>
+                                        <option>ГК Нефтяник 1 (05:21)</option>
+                                        <option>Аэропорт (05:23)</option>
+                                        <option>Трансагенство - пристань (05:27)</option>
+                                        <option>Почта (05:29)</option>
+                                        <option>ТЦ Юбилейный (05:31)</option>
+                                        <option>Соц.Защита (05:33)</option>
+                                        <option>Горбольница (05:35)</option>
+                                        <option>ТПП Урайнефтегаз (05:35)</option>
+                                        <option>Молодежная (05:39)</option>
+                                        <option>Музей (05:41)</option>
+                                        <option>Дом Ребенка (05:43)</option>
+                                        <option>Архив (05:45)</option>
+                                        <option>Типография (05:47)</option>
+                                        <option>Гармония (05:49)</option>
+                                        <option>Электросети (05:51)</option>
+                                    </select>
+                                @break
+                                @default
+                                    <input id="address_1" type="text">
+                            @endswitch
                             <div class="checkbox-group" id="together-outer" style="display: none;">
                                 <div class="checkbox">
                                     <input type="checkbox" id="together" class="checkbox-input" onclick="together()"/>
@@ -539,7 +582,12 @@
                         <input id="count" type="hidden" value="{{ $trip_count }}">
                         <input id="trip_id" type="hidden" value="{{ $trip_id }}">
                         <input id="date" type="hidden" value="{{ $clear_date }}">
+{{--                        @guest--}}
 {{--                        <p>Бронирование временно доступно только через диспетчера: <p><a href="tel:79088962999">8 (908) 89-62-999</p></a></p>--}}
+{{--                        @endguest--}}
+{{--                        @auth--}}
+{{--                            <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Оплатить</button>--}}
+{{--                        @endauth--}}
                         <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Оплатить</button>
                     </div>
                 </div>

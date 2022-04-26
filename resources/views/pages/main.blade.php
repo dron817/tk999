@@ -92,85 +92,87 @@
             <h2 class="section-heading">Расписание</h2>
             <div class="row">
                 @foreach($tickets as $ticket)
-                <div class="col-12 schedule">
-                    <span class="route">
-                        <a href="#">
-                            <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>
-                            {{ $ticket->from }} - {{ $ticket->to }}
-                        </a>
-                        <p class="text-muted">ежедневно</p>
-                        <p>  <a data-bs-toggle="collapse" href="#route-{{ $ticket->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
-                    </span>
-                    <div class="times">
-                    <span class="from">
-                            <p class="time">{{ $ticket->from_time }}</p>
-                            <p class="place text-muted">{{ $ticket->from_desc }}</p>
-                    </span>
-                        <span class="duration">
-                            <p class="text-muted">{{ $ticket->duration }}</p>
-                    </span>
-                        <span class="to">
-                        <p class="time">~{{ $ticket->to_time }}</p>
-                        <p class="place text-muted">{{ $ticket->to_desc }}</p>
-                    </span>
-                    </div>
-                    <div class="choose">
-                        <span class="price">
-                            <p>от {{ $ticket->price }} р.</p>
-                        </span>
-                        <span class="buy">
-                            <button onclick="location.href='{{ route('tickets') }}?from={{ $ticket->from }}&to={{ $ticket->to }}';">Выбрать дату</button>
-                        </span>
-                    </div>
-                </div>
-                <div class="collapse" id="route-{{ $ticket->id }}">
-                    <div class="card card-body">
-                        <table>
-                            <tr>
-                                <th>Станция</th>
-                                <th>Приб.</th>
-                                <th>Стоянка</th>
-                                <th>Отпр.</th>
-                            </tr>
-                            <tr>
-                                <td>Урай, по адресам</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>0:05</td>
-                            </tr>
-                            <tr>
-                                <td>Окружная клиническая больница</td>
-                                <td>5:04</td>
-                                <td>1 мин</td>
-                                <td>5:05</td>
-                            </tr>
-                            <tr>
-                                <td>Cтудгордок</td>
-                                <td>5:09</td>
-                                <td>1 мин</td>
-                                <td>5:10</td>
-                            </tr>
-                            <tr>
-                                <td>Ханты-Мансийск, аэропорт</td>
-                                <td>5:14</td>
-                                <td>1 мин</td>
-                                <td>5:15</td>
-                            </tr>
-                            <tr>
-                                <td>Ханты-Мансийск, авто-речной вокзал</td>
-                                <td>5:29</td>
-                                <td>1 мин</td>
-                                <td>5:30</td>
-                            </tr>
-                            <tr>
-                                <td>Ханты-Мансийск, Трансагентство</td>
-                                <td>5:45</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                    @if($ticket->days_of_week<>'')
+                        <div class="col-12 schedule">
+                            <span class="route">
+                                <a href="#">
+                                    <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>
+                                    {{ $ticket->from }} - {{ $ticket->to }}
+                                </a>
+                                <p class="text-muted">ежедневно</p>
+                                <p>  <a data-bs-toggle="collapse" href="#route-{{ $ticket->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
+                            </span>
+                            <div class="times">
+                            <span class="from">
+                                    <p class="time">{{ $ticket->from_time }}</p>
+                                    <p class="place text-muted">{{ $ticket->from_desc }}</p>
+                            </span>
+                                <span class="duration">
+                                    <p class="text-muted">{{ $ticket->duration }}</p>
+                            </span>
+                                <span class="to">
+                                <p class="time">~{{ $ticket->to_time }}</p>
+                                <p class="place text-muted">{{ $ticket->to_desc }}</p>
+                            </span>
+                            </div>
+                            <div class="choose">
+                                <span class="price">
+                                    <p>от {{ $ticket->price }} р.</p>
+                                </span>
+                                <span class="buy">
+                                    <button onclick="location.href='{{ route('tickets') }}?from={{ $ticket->from }}&to={{ $ticket->to }}';">Выбрать дату</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="collapse" id="route-{{ $ticket->id }}">
+                            <div class="card card-body">
+                                <table>
+                                    <tr>
+                                        <th>Станция</th>
+                                        <th>Приб.</th>
+                                        <th>Стоянка</th>
+                                        <th>Отпр.</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Урай, по адресам</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>0:05</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Окружная клиническая больница</td>
+                                        <td>5:04</td>
+                                        <td>1 мин</td>
+                                        <td>5:05</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cтудгордок</td>
+                                        <td>5:09</td>
+                                        <td>1 мин</td>
+                                        <td>5:10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ханты-Мансийск, аэропорт</td>
+                                        <td>5:14</td>
+                                        <td>1 мин</td>
+                                        <td>5:15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ханты-Мансийск, авто-речной вокзал</td>
+                                        <td>5:29</td>
+                                        <td>1 мин</td>
+                                        <td>5:30</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ханты-Мансийск, Трансагентство</td>
+                                        <td>5:45</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </div>

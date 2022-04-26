@@ -46,9 +46,6 @@ class TripsController extends Controller
         $trips = $trip_obj->where($from, $to);
 
 
-
-
-        $ticket_buy = 0;
         $tickets_obj = new Ticket;
         foreach ($trips as $trip){
             $num = $trip->num;
@@ -61,22 +58,6 @@ class TripsController extends Controller
                 }
             }
         }
-
-//        $ticket = new Ticket;
-//        $ticket_buy = 0; // если неизвестно обратное, считаем все места свободными
-//        foreach ($trips as $trip) {
-//            $trip_data = $trip_obj->getTripById($trip->id); //получаем данные текущего маршрута
-//            $num = $trip_data->num;
-//            $trips_place = $trip_obj->getTripsByNum($num)->toArray(); //получаем все маршруты с таким же NUM
-//            foreach ($trips_place as $trip) {
-//                $tickets = $ticket->getTicketsByTrip($trip->id, $from_date_clear)->toArray(); //получаем билеты каждого из маршрутов на эту дату
-//                foreach ($tickets as $ticket_once) {
-//                    $ticket_buy++;  //занимаем места каждым найденным билетом
-//                };
-//                $trip->ticket_buy= $ticket_buy;
-//                $ticket_buy = 0; // если неизвестно обратное, считаем все места свободными
-//            }
-//        }
 
         return view('pages/tickets', ['tickets' => $trips, 'from' => $from, 'to' => $to, 'from_date' => $from_date,
             'from_date_long' => $from_date_long, 'to_date' => $to_date, 'after_date' => $after_date,

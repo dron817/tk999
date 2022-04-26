@@ -51,7 +51,7 @@ function SendForm() {
     $.ajax({
         dataType: "json",
         type: "POST",
-        url: "/order",
+        url: "/letBuy",
         data: {
             data: data,
             "_token": $('input[name="_token"]').val()
@@ -63,10 +63,6 @@ function SendForm() {
         setTimeout(viewResult, 1);
     })
 }
-
-$("#send").click(function () {
-    SendForm();
-});
 
 function booking() {
     let adult = Number($('#adult').val());
@@ -93,7 +89,7 @@ function booking() {
         data[i]['doc'] = 0;
         data[i]['address'] = "-";
     }
-        data['payment'] = 'booking'
+    data['payment'] = 'booking'
 
     data['trip_id'] = $('#trip_id').val();
     data['date'] = $('#date').val();
@@ -101,17 +97,16 @@ function booking() {
     data['author'] = $('#author').val();
     data['sendSMS'] = "0";
 
-    data['price'] = $('#count').val()*adult + $('#count').val()*kids*0.5;
-
     $.ajax({
         dataType: "json",
         type: "POST",
-        url: "/order",
+        url: "home/booking",
         data: {
             data: data,
             "_token": $('input[name="_token"]').val()
         }
     }).done(function (msg) {
+        // console.log(msg['redirect'])
         location.href=$('#admin_link').val();
     })
 }

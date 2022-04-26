@@ -152,4 +152,24 @@ class AdminController extends Controller
         return view('admin.print', ['tickets' => $tickets_all, 'date' => $date, 'trip' => $trip_name]);
     }
 
+    function tripsManagement()
+    {
+        $trips_obj = new Trip();
+        $trips = $trips_obj->getAllTrips();
+        return view('admin.tripsManagement', ['trips' => $trips]);
+    }
+
+    function letEditTrip(Request $data){
+        $trips_obj = new Trip();
+
+        $days_arr = explode("_", $data->days);
+        $days = implode(" ", $days_arr);
+        $trip = $trips_obj->find($data->trip_id);
+        $trip->days_of_week = $days;
+        $trip->save();
+
+        $trips = $trips_obj->getAllTrips();
+        return view('admin.tripsManagement', ['trips' => $trips]);
+    }
+
 }

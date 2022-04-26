@@ -63,13 +63,30 @@
                     $now = date('U'); //получаем текущее время в секундах
                     if ($from_date_clear == date('d.m.Y')){ //только если выбран сегодняшний день
                         foreach ($tickets as $ticket){
+
                             $from_time_seconds = strtotime($ticket->from_time); //получаем время отправления в секундах (из-за формата работает только сегодняшним днём)
-                            if ($now < $from_time_seconds){ //если секунд в билете больше, чем уже прошло
-                                $tickets_actual[] = $ticket; //то добавляем его в обновленный массив
-                            }
+                                if ($now < $from_time_seconds){ //если секунд в билете больше, чем уже прошло
+                                    $tickets_actual[] = $ticket; //то добавляем его в обновленный массив
+                                }
                         }
                     }
                     else $tickets_actual = $tickets; //елси дата не сегодняшняя, то просто выводим все билеты
+
+                    foreach ($tickets_actual as $ticket_key => $ticket){ //убираем рейсы, которые не ходят сегодня
+                            $now_day_of_week = date('w', strtotime($from_date_clear));
+                            $now_day_of_week = $now_day_of_week==0?7:$now_day_of_week;
+                            $days_weeks_array = explode(" ", $ticket->days_of_week);
+                            $f=0;
+                            foreach ($days_weeks_array as $day_of_week){
+                                if ($day_of_week == $now_day_of_week)
+                                    $f=1;
+                            }
+                            if (!$f) unset($tickets_actual[$ticket_key]);
+                    }
+
+                @endphp
+                @php
+                    //print_r(date('w', strtotime($from_date_clear))<>'4');
                 @endphp
 
                 @forelse($tickets_actual as $ticket)
@@ -78,6 +95,7 @@
                         <a href="#">
                             <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>
                             {{ $ticket->from }} - {{ $ticket->to }}
+
                         </a>
                         <p class="text-muted">ежедневно</p>
                         <p>  <a data-bs-toggle="collapse" href="#route-{{ $ticket->id }}" role="button" aria-expanded="false"

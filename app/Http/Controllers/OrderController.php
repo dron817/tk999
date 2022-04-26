@@ -30,8 +30,8 @@ class OrderController extends Controller
     function getOrder(Request $request){
         $order_id = $_GET['order_id'];
 
-        $ticket = new Ticket();
-        $tickets = $ticket->getTicketsByOrderID($order_id);
+        $ticket_obj = new Ticket();
+        $tickets = $ticket_obj->getTicketsByOrderID($order_id);
 
         $trip = new Trip();
         $trip_info = $trip->getTripById($tickets{0}->trip_id);
@@ -40,41 +40,49 @@ class OrderController extends Controller
         foreach ($tickets as $ticket){
             $tickets_arr[] = json_decode(json_encode($ticket), true);
             $i++;
+            $payment_id = $ticket->payment_id;
+            $author = $ticket->author;
         }
-        return view('pages/order', ['tickets' => $tickets, 'trip' => $trip_info]);
+
+        $PaymentController_obj = new PaymentController();
+        if ($author == 'web')
+            $payed = $PaymentController_obj->checkPayment($payment_id);
+        else
+            $payed = 'succeeded';
+
+        $payment_url = 'https://yoomoney.ru/checkout/payments/v2/contract?orderId='.$payment_id;
+
+        return view('pages/order', ['tickets' => $tickets, 'trip' => $trip_info, 'payed' => $payed, 'payment_url' => $payment_url]);
     }
 
-    function letOrder(Request $request): array
+    function letBuy(Request $request): array
     {
         $ticket_obj = new Ticket();
         $order_id = $ticket_obj->getMaxOrder()+1;
         Cookie::queue('order_id', $order_id, 10);
-
         $PaymentController_obj = new PaymentController;
-        $payment_url = $PaymentController_obj->payCreate($order_id, $_POST['data']['price']);
+        $payment_url = $PaymentController_obj->payCreate($order_id, $_POST['data']['price'], $_POST['data'][1]['fio'], $_POST['data'][1]['phone']);
+
+        $payment_id = substr($payment_url, -36, 36);
 
         $count = $_POST['data']['count'];
+
         for($i=1; $i<=$count; $i++){
-            $ticket = new Ticket();
-
-//            $busy = $ticket->isBusy($_POST['data']['trip_id'], $_POST['data']['date'], $_POST['data'][$i]['place']);
-//            if (!$busy) break;
-
-            $ticket->fio = $_POST['data'][$i]['fio'];
-            $ticket->place = $_POST['data'][$i]['place'];
-            $ticket->doc = $_POST['data'][$i]['doc'];
-            $ticket->phone = '0';
-            $ticket->phone = $_POST['data'][$i]['phone'];
-            $ticket->tariff = $_POST['data'][$i]['tariff'];
-            $ticket->address = '-';
-            $ticket->address = $_POST['data'][$i]['address'];
-            $ticket->date = $_POST['data']['date'];
-            $ticket->trip_id = $_POST['data']['trip_id'];
-            $ticket->order_id = $order_id;
-//            $ticket->pay_id = $payment_id;
-            $ticket->author = $_POST['data']['author'];
-            $ticket->save();
-            $tickets_id[$i]=$ticket->getQueueableId();
+            $ticket_obj = new Ticket();
+            $ticket_obj->fio = $_POST['data'][$i]['fio'];
+            $ticket_obj->place = $_POST['data'][$i]['place'];
+            $ticket_obj->doc = $_POST['data'][$i]['doc'];
+            $ticket_obj->phone = '0';
+            $ticket_obj->phone = $_POST['data'][$i]['phone'];
+            $ticket_obj->tariff = $_POST['data'][$i]['tariff'];
+            $ticket_obj->address = '-';
+            $ticket_obj->address = $_POST['data'][$i]['address'];
+            $ticket_obj->date = $_POST['data']['date'];
+            $ticket_obj->trip_id = $_POST['data']['trip_id'];
+            $ticket_obj->order_id = $order_id;
+            $ticket_obj->payment_id = $payment_id;
+            $ticket_obj->author = $_POST['data']['author'];
+            $ticket_obj->save();
         }
 
         $answer = array(
@@ -83,27 +91,34 @@ class OrderController extends Controller
         return ($answer);
     }
 
-    function sendSMS($order_id = 1, $phone = '79964443105'){
-        $server = 'http://gateway.api.sc/rest/';
-        header ("Content-Type: text/html; charset=utf-8");
-        include_once('sms/StreamClass.php');
-        $stream = new STREAM();
+    function letBooking(Request $request): array
+    {
+        date_default_timezone_set('Asia/Yekaterinburg');
+        $ticket_obj = new Ticket();
+        $order_id = $ticket_obj->getMaxOrder()+1;
 
-        // данные пользователя
-        $login = '79964443105';							//логин
-        $password = 'xtkbBqUZXg';							//пароль
+        $count = $_POST['data']['count'];
 
-        $sourceAddress = 'TK-999';						//имя отправителя сообщения (отличное от testsms, имя отправителя Вы
-        //можете запросить в личном кабинете)
-        $destinationAddress = $phone;				//номер получателя единичного сообщения (в формате 79111234567 для РФ)
-        $data = 'Заказ №'.$order_id.' | Ваши билеты доступны по ссылке: '.URL::route('getOrder', ['order_id' => $order_id]);									//Текст сообщения
-        //для экранирования спец. символов в POST-запросах
-        $validity = 1440;									//время жизни сообщения, в минутах (необязательный параметр)
-
-        $session = $stream -> GetSessionId_Get($server,$login,$password);
-
-        // отправка единичного sms-сообщения
-        $send_sms = $stream -> SendSms($server,$session,$sourceAddress,$destinationAddress,$data,$validity);
+        for($i=1; $i<=$count; $i++){
+            $ticket_obj = new Ticket();
+            $ticket_obj->fio = $_POST['data'][$i]['fio'];
+            $ticket_obj->place = $_POST['data'][$i]['place'];
+            $ticket_obj->doc = $_POST['data'][$i]['doc'];
+            $ticket_obj->phone = '0';
+            $ticket_obj->phone = $_POST['data'][$i]['phone'];
+            $ticket_obj->tariff = $_POST['data'][$i]['tariff'];
+            $ticket_obj->address = '-';
+            $ticket_obj->address = $_POST['data'][$i]['address'];
+            $ticket_obj->date = $_POST['data']['date'];
+            $ticket_obj->trip_id = $_POST['data']['trip_id'];
+            $ticket_obj->order_id = $order_id;
+            $ticket_obj->payment_id = '-';
+            $ticket_obj->author = $_POST['data']['author'];
+            $ticket_obj->save();
+        }
+        $answer = array(
+            'redirect' => $count
+        );
+        return ($answer);
     }
-
 }

@@ -19,6 +19,7 @@ class PlacesController extends Controller
         $trip = new Trip;
 
         $trip_data = $trip->getTripById($request->trip_id); //получаем данные текущего маршрута
+        $trip_count = $trip_data->price;
         $num = $trip_data->num;
         $trips = $trip->getTripsByNum($num)->toArray(); //получаем все маршруты с таким же NUM
         foreach ($trips as $trip){
@@ -31,7 +32,7 @@ class PlacesController extends Controller
         $tong = $trip_data->tong;
         $date = $this->RusDate(date('d F', strtotime($clear_date)));
         return view('pages/places', ['from' => $from, 'to' => $to, 'date' => $date, 'ticket_buy' => $ticket_buy,
-            'clear_date' => $clear_date, 'trip_id' => $request->trip_id, 'trip_count' => $trip->price, 'tong' => $tong]);
+            'clear_date' => $clear_date, 'trip_id' => $request->trip_id, 'trip_count' => $trip_count, 'tong' => $tong]);
     }
 
 }

@@ -24,6 +24,7 @@ class CreateTripsTable extends Migration
             $table->string('change_date')->nullable();
             $table->string('duration');
             $table->integer('price');
+            $table->integer('days_of_week');
             $table->integer('tong')->nullable();
             $table->string('from_desc')->nullable();
             $table->string('to_desc')->nullable();

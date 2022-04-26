@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Invoice Example</title>
+    <title>Билет пассажира ТК999</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -17,7 +17,7 @@
             left:150px;
             top:0;
             width: 60%;
-            content: url('../assets/img/ticket-bus.jpg');
+            content: url('https://tk999.ru/assets/img/ticket-bus.jpg');
             opacity:0.3;
         }
         .top-line{
@@ -50,7 +50,13 @@
                 {{ $trip_info->from }} - {{ $trip_info->to }}<br><br>
                 <b>Отправление:</b> <br> {{ $trip_info->from_time }} {{ $data->date }}<br><br>
                 <b>Прибытие:</b> <br> {{ $trip_info->to_time }} {{ $data->date }}<br><br>
-                <b>Цена:</b> {{ $trip_info->price }} рублей
+                <b>Цена:</b>
+                @if(($data->tariff==0))
+                    {{ $trip_info->price }}
+                @else
+                    {{ $trip_info->price/2 }}
+                @endif
+                рублей
             </td>
         </tr>
         <tr style="border-top: 2px solid black;">

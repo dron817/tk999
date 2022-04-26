@@ -14,21 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//TODO В билете указывать половину стоимости для детского тарифа
 //TODO Не нажимается Отправить СМС с билетами
-//TODO Документы
-//TODO Ссылка на ЖД (электричка и поезд)
-//TODO Ссылка на другие автобусы (ХАНТЫ - СУРГУТ)
-//TODO Ссылка на Авиа
-
-//TODO Урай-Нягань ПН СР ПТ (5-00)
-//TODO Урай-Советский ПН СР ПТ (5-00)
-//TODO Советский-Нягань ПН СР ПТ (8-00)
-//TODO Нягань-Урай ПН СР ПТ (14-00)
-//TODO Нягань-Советский ПН СР ПТ (14-00)
-//TODO Советский-Урай ПН СР ПТ (16-00)
-
-//TODO Советский-Урай 8-40 изменить время
 
 //TODO ХМ по адресам
 
@@ -40,24 +26,21 @@ use Illuminate\Support\Facades\Route;
 
 //TODO ХМ в Урай - без аэропорта
 
-
-
-
 Route::get('/', 'App\Http\Controllers\TripsController@getAll')->name('index');
 
 Route::get('/tickets_list', 'App\Http\Controllers\TripsController@getTrip')->name('tickets');
 
 Route::get('/places', 'App\Http\Controllers\PlacesController@getPlaces')->name('places');
 
-Route::post('/order', 'App\Http\Controllers\OrderController@letOrder')->name('letOrder');
-
 Route::get('/print', 'App\Http\Controllers\OrderController@print')->name('print');
 
 Route::get('/order_show', 'App\Http\Controllers\OrderController@getOrder')->name('getOrder');
 
+Route::any('/letBuy', 'App\Http\Controllers\OrderController@letBuy')->name('letBuy');
+
 Route::get('/sendSMS', 'App\Http\Controllers\OrderController@sendSMS')->name('sendSMS');
 
-Route::any('/pay', [App\Http\Controllers\Payment\PaymentController::class, 'payCreate'])->name('pay.create');
+//Route::any('/pay', [App\Http\Controllers\Payment\PaymentController::class, 'payCreate'])->name('pay.create');
 Route::any('/pay/callback', [App\Http\Controllers\Payment\PaymentController::class, 'payCallback'])->name('pay.callback');
 
 Auth::routes();
@@ -70,6 +53,10 @@ Route::middleware(['auth'])->prefix('home')->group( function(){
     Route::any('/letEdit', 'App\Http\Controllers\AdminController@letEdit')->name('admin.letEdit');
     Route::get('/delete', 'App\Http\Controllers\AdminController@delOrder')->name('admin.delete');
     Route::get('/last', 'App\Http\Controllers\AdminController@lastOrders')->name('admin.last');
+    Route::get('/tripsManagement', 'App\Http\Controllers\AdminController@tripsManagement')->name('admin.tripsManagement');
+    Route::get('/letEditTrip', 'App\Http\Controllers\AdminController@letEditTrip')->name('admin.letEditTrip');
+
+    Route::any('/booking', 'App\Http\Controllers\OrderController@letBooking')->name('letBooking');
 });
 
 
