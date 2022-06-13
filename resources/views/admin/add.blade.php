@@ -189,7 +189,7 @@
                                                         $.ajax({
                                                             dataType: "json",
                                                             type: "POST",
-                                                            url: "/order",
+                                                            url: "booking",
                                                             data: {
                                                                 data: data,
                                                                 "_token": $('input[name="_token"]').val()

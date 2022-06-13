@@ -66,6 +66,7 @@
 
                             $from_time_seconds = strtotime($ticket->from_time); //получаем время отправления в секундах (из-за формата работает только сегодняшним днём)
                                 if ($now < $from_time_seconds){ //если секунд в билете больше, чем уже прошло
+                                //if ($now - ($ticket->dempfer_time*60) < $from_time_seconds){ //если секунд в билете больше, чем уже прошло
                                     $tickets_actual[] = $ticket; //то добавляем его в обновленный массив
                                 }
                         }

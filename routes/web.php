@@ -40,6 +40,8 @@ Route::any('/letBuy', 'App\Http\Controllers\OrderController@letBuy')->name('letB
 
 Route::get('/sendSMS', 'App\Http\Controllers\OrderController@sendSMS')->name('sendSMS');
 
+Route::any('/daemon', 'App\Http\Controllers\Daemon@index')->name('daemon');
+
 //Route::any('/pay', [App\Http\Controllers\Payment\PaymentController::class, 'payCreate'])->name('pay.create');
 Route::any('/pay/callback', [App\Http\Controllers\Payment\PaymentController::class, 'payCallback'])->name('pay.callback');
 

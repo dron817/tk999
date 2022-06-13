@@ -33,7 +33,7 @@
     <table width="100%">
         <tr class="bottom-line">
             <td><h2>Билет на автобус</h2></td>
-            <td style="text-align: right"><strong>Заказ №{{ $data->order_id }}</strong></td>
+            <td style="text-align: right"><strong>Заказ №{{ $data->order_id }} <br> Билет №{{ $data->id }}</strong></td>
         </tr>
         <tr>
             <td style="padding-bottom: 16px;">

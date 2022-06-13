@@ -132,6 +132,7 @@
                                                                                 </button>
                                                                             </div>
                                                                             <div class="modal-body">
+                                                                                <p>Номер заказа:</p><p><b>{{ $ticket->order_id }}</b></p>
                                                                                 <p>Идентификатор билета:</p><p><b>{{ $ticket->id }}</b></p>
                                                                                 <p>Время заказа:</p><p><b>{{ $ticket->created_at }}</b></p>
                                                                                 <p>Идентификатор платежа:</p><p><b>{{ $ticket->payment_id }}</b></p>

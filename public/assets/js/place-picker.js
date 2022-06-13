@@ -185,7 +185,8 @@ function kidsPlus() {
     $("#kids").val(kids);
 
     let cost = $('#count').val();
-    let inner = cost*adult + cost*kids*0.5 + ' р.';
+    let cost_kids = $('#count_kids').val();
+    let inner = cost*adult + cost_kids*kids + ' р.';
     $("#price").html(inner);
 }
 
@@ -202,7 +203,8 @@ function kidsMinus() {
     $("#kids").val(kids);
 
     let cost = $('#count').val();
-    let inner = cost*adult + cost*kids*0.5 + ' р.';
+    let cost_kids = $('#count_kids').val();
+    let inner = cost*adult + cost_kids*kids + ' р.';
     $("#price").html(inner);
 }
 
