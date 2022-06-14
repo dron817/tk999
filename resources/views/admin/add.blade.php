@@ -140,12 +140,6 @@
                                                     <script>
                                                         $('#phone').mask('79999999999');
                                                     </script>
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input class="custom-control-input" type="checkbox" id="sendSMS" value="1">
-                                                            <label for="sendSMS " class="custom-control-label">Отправить СМС с билетами</label>
-                                                        </div>
-                                                    </div>
                                                     <label for="doc">Номер документа</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
@@ -159,6 +153,20 @@
                                                             <span class="input-group-text"><i class="fas fa-map-marker"></i></span>
                                                         </div>
                                                         <input type="text" class="form-control" id="address">
+                                                    </div>
+                                                    <label for="comment">Комментарий</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="comment">
+                                                    </div>
+                                                    <label for="email">E-mail</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                        </div>
+                                                        <input type="email" class="form-control" id="email">
                                                     </div>
                                                 </div>
                                                 @csrf
@@ -185,6 +193,9 @@
                                                         data['count'] = 1;
                                                         data['price'] = $('#price').val();;
                                                         data['author'] = "{{ Auth::user()->name }}";
+
+                                                        data['comment'] = $('#comment').val();
+                                                        data['email'] = $('#email').val();
 
                                                         $.ajax({
                                                             dataType: "json",

@@ -16,6 +16,11 @@ class Ticket extends Model
         return DB::table($this->table)->insertGetId($ticket);
     }
 
+    public function setPayedOnTicket($id)
+    {
+        DB::table('tickets')->where('id', '=', $id)->update(['payment_status' => 'payed']);
+    }
+
     public function getTicketByID($id)
     {
         return $user = DB::table('tickets')->where('id', '=', $id)->first();
@@ -55,3 +60,4 @@ class Ticket extends Model
         return DB::table('tickets')->max('order_id');
     }
 }
+

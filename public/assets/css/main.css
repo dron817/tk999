@@ -240,6 +240,57 @@ a.disabled {
 }
 /* POPULAR SECTION -- END */
 
+/* LINKS SECTION -- START */
+#links-section{
+    margin-top: 30px;
+}
+#links-section img:hover{
+    cursor: pointer;
+    filter: blur(1px) grayscale(100%);
+}
+#links-section span{
+    font-family: Roboto, serif;
+}
+#links-section .second-text{
+    font-weight: bold;
+}
+#links-section .col-12{
+    padding-bottom: 15px;
+}
+#links-section a{
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+    padding-left: 10px;
+    padding-top: 115px;
+    filter: grayscale(30%) brightness(80%);
+    border-radius: 5px;
+    transition: .5s;
+    font-size: 20px;
+    line-height: 1.2;
+    background-size: cover;
+    text-shadow: 1px 1px #ffffff, 1px -1px #ffffff, -1px 1px #ffffff, -1px -1px #ffffff, 3px 3px 6px rgba(0,0,0,.5);
+}
+#links-section a:hover {
+    filter: grayscale(0%) brightness(100%);
+    transform: scale(1.02);
+}
+#rzd{
+    background-image: url("../img/rzd.jpg");
+}
+#svrpk{
+    background-image: url("../img/svrpk.jpg");
+}
+#biletDO{
+    background-image: url("../img/biletDO.jpg");
+}
+#ya{
+    background-image: url("../img/ya.jpg");
+}
+/* LINKS SECTION -- END */
+
 /* SCHEDULE SECTION -- START */
 #schedule-section .schedule{
     background-color: white;
@@ -895,6 +946,28 @@ b.col-12{
     .data-group {
         margin-bottom:20px;
     }
+}
+
+/* ORDER DATA SECTION -- START */
+.order-data-outer.row {
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 0;
+    margin-top: 20px;
+}
+.order-data-outer label {
+    padding-left: 3px;
+}
+
+.order-data-outer input[type="text"] {
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+    border-radius: 5px;
+    padding: 7px;
+}
+.order-data-outer input[type="text"]:hover {
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 25%), 0 0 2px rgb(13 35 67 / 35%);
 }
 
 /* CUSTOM CHECKBOX */

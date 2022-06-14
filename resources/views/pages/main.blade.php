@@ -42,27 +42,6 @@
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="UG" href="{{ route('tickets') }}?from=Урай&to=Югорск">
-                        <span class="from">Урай -</span>
-                        <span class="to">Югорск</span>
-                        <span class="price">от 1000 р.</span>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="SV" href="{{ route('tickets') }}?from=Урай&to=Советский">
-                        <span class="from">Урай -</span>
-                        <span class="to">Советский</span>
-                        <span class="price">от 1000 р.</span>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="NY" href="{{ route('tickets') }}?from=Урай&to=Нягань">
-                        <span class="from">Урай -</span>
-                        <span class="to">Нягань</span>
-                        <span class="price">от 1000 р.</span>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
                     <a id="UA" href="{{ route('tickets') }}?from=Устье-Аха&to=Урай">
                         <span class="from">Устье-Аха -</span>
                         <span class="to">Урай</span>
@@ -76,13 +55,38 @@
                         <span class="price">от 1400 р.</span>
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section id="links-section">
+        <div class="container">
+            <h2 class="section-heading">Полезные ссылки</h2>
+            <div class="row">
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <a id="UG" href="{{ route('tickets') }}?from=Югорск&to=Урай">
-                        <span class="from">Югорск -</span>
-                        <span class="to">Урай</span>
-                        <span class="price">от 1000 р.</span>
+                    <a id="rzd" href="https://www.rzd.ru/">
+                        <span class="first-text">Билеты на поезд</span>
+                        <span class="second-text">Купить на сайте РЖД</span>
                     </a>
                 </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a id="svrpk" href="https://svrpk.ru/">
+                        <span class="first-text">Билеты на электричку</span>
+                        <span class="second-text">Купить на сайте СВРПК</span>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a id="biletDO" href="https://bilet.do/">
+                        <span class="first-text">Автобус в направлении Сургут</span>
+                        <span class="second-text">Купить на сайте Bilet.do</span>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a id="ya" href="https://rasp.yandex.ru/bus/tyumen--tavda">
+                        <span class="first-text">Направление Тавда - Тюмень </span>
+                        <span class="second-text">на Яндекс.Расписании</span>
+                    </a>
+                </div>
+            </div>
             </div>
         </div>
     </section>
@@ -126,6 +130,7 @@
                         </div>
                         <div class="collapse" id="route-{{ $ticket->id }}">
                             <div class="card card-body">
+                                В разработке
 {{--                                <table>--}}
 {{--                                    <tr>--}}
 {{--                                        <th>Станция</th>--}}

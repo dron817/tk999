@@ -42,11 +42,19 @@ function SendForm() {
 
     data['trip_id'] = $('#trip_id').val();
     data['date'] = $('#date').val();
+
+    data['comment'] = $('#comment').val();
+    data['email'] = $('#email').val();
+
+
     data['count'] = count;
     data['author'] = 'web';
 
 
     data['price'] = $('#count').val()*adult + $('#count').val()*kids*0.5;
+    let cost = $('#count').val();
+    let cost_kids = $('#count_kids').val();
+    data['price'] =cost*adult + cost_kids*kids;
 
     $.ajax({
         dataType: "json",
@@ -95,6 +103,8 @@ function booking() {
     data['date'] = $('#date').val();
     data['count'] = count;
     data['author'] = $('#author').val();
+    data['comment'] = $('#comment').val();
+    data['email'] = $('#email').val();
     data['sendSMS'] = "0";
 
     $.ajax({
@@ -156,7 +166,8 @@ function pickPlace(id) {
     $("#kids").val(kids);
 
     let cost = $('#count').val();
-    let inner = cost*adult + cost*kids*0.5 + ' р.';
+    let cost_kids = $('#count_kids').val();
+    let inner = cost*adult + cost_kids*kids + ' р.';
     $("#price").html(inner);
 }
 
@@ -325,3 +336,4 @@ $('#address_1').change(function () {
         }
     }
 })()
+

@@ -11,7 +11,7 @@
 @section('custom-js-after')
     <script src="{{ asset('/assets/js/progress-button/classie.js') }}"></script>
     <script src="{{ asset('/assets/js/progress-button/progressButton.js') }}"></script>
-    <script src="{{ asset('/assets/js/place-picker.js') }}"></script>
+    <script src="{{ asset('/assets/js/place-picker.js') }}?reboot=3"></script>
     <script>
         [].slice.call( document.querySelectorAll( 'button.progress-button' ) ).forEach( function( bttn ) {
             new ProgressButton( bttn, {
@@ -227,355 +227,31 @@
 
                     <h2 class="section-heading"><p>Способ оплаты</p></h2>
                     <div id="payments">
-{{--                        <div onclick="clickHider()" id="hider">&#8744;</div>--}}
-                            <div onclick="choseCard()" id="card-outer" class="payment">
-                                <img src="{{ asset('assets/img/payments/card.png') }}" alt=""> <label for="card">Картой
-                                    онлайн</label> <input checked name="payment" id="card" type="radio">
-                            </div>
+                        {{--                        <div onclick="clickHider()" id="hider">&#8744;</div>--}}
+                        <div onclick="choseCard()" id="card-outer" class="payment">
+                            <img src="{{ asset('assets/img/payments/card.png') }}" alt=""> <label for="card">Картой
+                                онлайн</label> <input checked name="payment" id="card" type="radio">
+                        </div>
                     </div>
                 </div>
                 <div id="passengers-outer" class="col-12 col-lg-9">
                     <h2 class="section-heading"><p>Данные пассажиров</p></h2>
-                    <div class="person-data-outer row" id="pd_1">
-                        <b class="col-12">Пассажир №1 -
-                            Тариф: <span id="tarif_1">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6">
-                            <label for="fio_1">Фамилия Имя Отчество</label>
-                            <input id="fio_1" type="text">
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6">
-                            <label for="phone_1">Телефон</label>
-                            <input id="phone_1" type="text">
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6">
-                            <label for="doc_1">Номер документа</label>
-                            <input id="doc_1" type="text">
-                            <div class="checkbox-group">
-                                <div class="checkbox">
-                                    <input type="checkbox" id="withOutDoc_1" class="checkbox-input"/>
-                                    <label for="withOutDoc_1" class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6">
-                            <label for="address_1">Адрес сбора</label>
-                            @switch($trip_id)
-                                @case(1)
-                                    <select id="address_1">
-                                        <option disabled selected>Выберите остановку</option>
-                                        <option>Сибирь (05:15)</option>
-                                        <option>Гимназия (05:17)</option>
-                                        <option>Церковь (05:19)</option>
-                                        <option>ГК Нефтяник 1 (05:21)</option>
-                                        <option>Аэропорт (05:23)</option>
-                                        <option>Трансагенство - пристань (05:27)</option>
-                                        <option>Почта (05:29)</option>
-                                        <option>ТЦ Юбилейный (05:31)</option>
-                                        <option>Соц.Защита (05:33)</option>
-                                        <option>Горбольница (05:35)</option>
-                                        <option>ТПП Урайнефтегаз (05:35)</option>
-                                        <option>Молодежная (05:39)</option>
-                                        <option>Музей (05:41)</option>
-                                        <option>Дом Ребенка (05:43)</option>
-                                        <option>Архив (05:45)</option>
-                                        <option>Типография (05:47)</option>
-                                        <option>Гармония (05:49)</option>
-                                        <option>Электросети (05:51)</option>
-                                    </select>
-                                @break
-                                @case(2)
-                                    <select id="address_1">
-                                        <option disabled selected>Выберите остановку</option>
-                                        <option>Сибирь (14:45)</option>
-                                        <option>Гимназия (14:47)</option>
-                                        <option>Церковь (14:49)</option>
-                                        <option>ГК Нефтяник 1 (14:51)</option>
-                                        <option>Аэропорт (14:53)</option>
-                                        <option>Звёзды Югры (14:55)</option>
-                                        <option>Трансагенство - пристань (14:57)</option>
-                                        <option>Почта (14:59)</option>
-                                        <option>ТЦ Юбилейный (15:01)</option>
-                                        <option>Соц.Защита (15:03)</option>
-                                        <option>Горбольница (15:05)</option>
-                                        <option>ТПП Урайнефтегаз (15:07)</option>
-                                        <option>Молодежная (15:09)</option>
-                                        <option>Музей (15:11)</option>
-                                        <option>Дом Ребенка (15:13)</option>
-                                        <option>Архив (15:15)</option>
-                                        <option>Типография (15:17)</option>
-                                        <option>Гармония (15:19)</option>
-                                        <option>Электросети (15:21)</option>
-                                    </select>
-                                @break
-                                @default
-                                    <input id="address_1" type="text">
-                            @endswitch
-                            <div class="checkbox-group" id="together-outer" style="display: none;">
-                                <div class="checkbox">
-                                    <input type="checkbox" id="together" class="checkbox-input" onclick="together()"/>
-                                    <label for="together"
-                                           class="checkbox-label"></label><span>Одинаковый для всех</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_2" style="display: none;"><b class="col-12">Пассажир №2 -
-                            Тариф: <span id="tarif_2">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_2">Фамилия Имя Отчество</label><input
-                                type="text" id="fio_2"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_2"><label
-                                for="phone_2">Телефон</label><input type="text" id="phone_2"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_2">Номер
-                                документа</label><input type="text" id="doc_2">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_2"><label for="withOutDoc_2"
-                                                                                      class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_2">Адрес
-                                сбора</label><input type="text" id="address_2"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_3" style="display: none;"><b class="col-12">Пассажир №3 -
-                            Тариф: <span id="tarif_3">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_3">Фамилия Имя Отчество</label><input
-                                type="text" id="fio_3"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_3"><label
-                                for="phone_3">Телефон</label><input type="text" id="phone_3"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_3">Номер
-                                документа</label><input type="text" id="doc_3">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_3"><label for="withOutDoc_3"
-                                                                                      class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_3">Адрес
-                                сбора</label><input type="text" id="address_3"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_4" style="display: none;"><b class="col-12">Пассажир №4 -
-                            Тариф: <span id="tarif_4">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_4">Фамилия Имя Отчество</label><input
-                                type="text" id="fio_4"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_4"><label
-                                for="phone_4">Телефон</label><input type="text" id="phone_4"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_4">Номер
-                                документа</label><input type="text" id="doc_4">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_4"><label for="withOutDoc_4"
-                                                                                      class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_4">Адрес
-                                сбора</label><input type="text" id="address_4"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_5" style="display: none;"><b class="col-12">Пассажир №5 -
-                            Тариф: <span id="tarif_5">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_5">Фамилия Имя Отчество</label><input
-                                type="text" id="fio_5"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_5"><label
-                                for="phone_5">Телефон</label><input type="text" id="phone_5"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_5">Номер
-                                документа</label><input type="text" id="doc_5">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_5"><label for="withOutDoc_5"
-                                                                                      class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_5">Адрес
-                                сбора</label><input type="text" id="address_5"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_6" style="display: none;"><b class="col-12">Пассажир №6 -
-                            Тариф: <span id="tarif_6">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_6">Фамилия Имя Отчество</label><input
-                                type="text" id="fio_6"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_6"><label
-                                for="phone_6">Телефон</label><input type="text" id="phone_6"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_6">Номер
-                                документа</label><input type="text" id="doc_6">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_6"><label for="withOutDoc_6"
-                                                                                      class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_6">Адрес
-                                сбора</label><input type="text" id="address_6"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_7" style="display: none;"><b class="col-12">Пассажир №7 -
-                            Тариф: <span id="tarif_7">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_7">Фамилия Имя Отчество</label><input
-                                type="text" id="fio_7"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_7"><label
-                                for="phone_7">Телефон</label><input type="text" id="phone_7"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_7">Номер
-                                документа</label><input type="text" id="doc_7">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_7"><label for="withOutDoc_7"
-                                                                                      class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_7">Адрес
-                                сбора</label><input type="text" id="address_7"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_8" style="display: none;"><b class="col-12">Пассажир №8 -
-                            Тариф: <span id="tarif_8">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_8">Фамилия Имя Отчество</label><input
-                                type="text" id="fio_8"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_8"><label
-                                for="phone_8">Телефон</label><input type="text" id="phone_8"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_8">Номер
-                                документа</label><input type="text" id="doc_8">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_8"><label for="withOutDoc_8"
-                                                                                      class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_8">Адрес
-                                сбора</label><input type="text" id="address_8"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_9" style="display: none;"><b class="col-12">Пассажир №9 -
-                            Тариф: <span id="tarif_9">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_9">Фамилия Имя Отчество</label><input
-                                type="text" id="fio_9"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_9"><label
-                                for="phone_9">Телефон</label><input type="text" id="phone_9"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_9">Номер
-                                документа</label><input type="text" id="doc_9">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_9"><label for="withOutDoc_9"
-                                                                                      class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_9">Адрес
-                                сбора</label><input type="text" id="address_9"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_10" style="display: none;"><b class="col-12">Пассажир №10
-                            - Тариф: <span id="tarif_10">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_10">Фамилия Имя
-                                Отчество</label><input type="text" id="fio_10"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_10"><label for="phone_10">Телефон</label><input
-                                type="text" id="phone_10"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_10">Номер
-                                документа</label><input type="text" id="doc_10">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_10"><label for="withOutDoc_10"
-                                                                                       class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_10">Адрес
-                                сбора</label><input type="text" id="address_10"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_11" style="display: none;"><b class="col-12">Пассажир №11
-                            - Тариф: <span id="tarif_11">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_11">Фамилия Имя
-                                Отчество</label><input type="text" id="fio_11"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_11"><label for="phone_11">Телефон</label><input
-                                type="text" id="phone_11"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_11">Номер
-                                документа</label><input type="text" id="doc_11">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_11"><label for="withOutDoc_11"
-                                                                                       class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_11">Адрес
-                                сбора</label><input type="text" id="address_11"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_12" style="display: none;"><b class="col-12">Пассажир №12
-                            - Тариф: <span id="tarif_12">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_12">Фамилия Имя
-                                Отчество</label><input type="text" id="fio_12"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_12"><label for="phone_12">Телефон</label><input
-                                type="text" id="phone_12"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_12">Номер
-                                документа</label><input type="text" id="doc_12">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_12"><label for="withOutDoc_12"
-                                                                                       class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_12">Адрес
-                                сбора</label><input type="text" id="address_12"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_13" style="display: none;"><b class="col-12">Пассажир №13
-                            - Тариф: <span id="tarif_13">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_13">Фамилия Имя
-                                Отчество</label><input type="text" id="fio_13"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_13"><label for="phone_13">Телефон</label><input
-                                type="text" id="phone_13"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_13">Номер
-                                документа</label><input type="text" id="doc_13">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_13"><label for="withOutDoc_13"
-                                                                                       class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_13">Адрес
-                                сбора</label><input type="text" id="address_13"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_14" style="display: none;"><b class="col-12">Пассажир №14
-                            - Тариф: <span id="tarif_14">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_14">Фамилия Имя
-                                Отчество</label><input type="text" id="fio_14"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_14"><label for="phone_14">Телефон</label><input
-                                type="text" id="phone_14"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_14">Номер
-                                документа</label><input type="text" id="doc_14">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_14"><label for="withOutDoc_14"
-                                                                                       class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_14">Адрес
-                                сбора</label><input type="text" id="address_14"></div>
-                    </div>
-                    <div class="person-data-outer row" id="pd_15" style="display: none;"><b class="col-12">Пассажир №15
-                            - Тариф: <span id="tarif_15">взрослый</span></b>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="fio_15">Фамилия Имя
-                                Отчество</label><input type="text" id="fio_15"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6" id="phone-outer_15"><label for="phone_15">Телефон</label><input
-                                type="text" id="phone_15"></div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="doc_15">Номер
-                                документа</label><input type="text" id="doc_15">
-                            <div class="checkbox-group">
-                                <div class="checkbox"><input type="checkbox" class="checkbox-input"
-                                                             id="withOutDoc_15"><label for="withOutDoc_15"
-                                                                                       class="checkbox-label"></label><span>Не указывать</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="data-group col-12 col-lg-3 col-md-6"><label for="address_15">Адрес
-                                сбора</label><input type="text" id="address_15"></div>
-                    </div>
-                    <script>
-                        for (let i=1; i<=15; i++)
-                            $('#phone_'+i).mask('79999999999');
-                    </script>
+                    @for ($i = 1; $i <= 20; $i++)
+                        @include('tpl.passenger', array('num' => $i))
+                    @endfor
                 </div>
+                    <div class="col-12">
+                        <div class="order-data-outer row">
+                            <div class="data-group col-12 col-lg-6 col-md-6">
+                                <label for="comment">Комментарий к заказу</label>
+                                <input type="text" id="comment" placeholder="необязательно">
+                            </div>
+                            <div class="data-group col-12 col-lg-6 col-md-6">
+                                <label for="email">Электронная почта для отправки билетов</label>
+                                <input type="text" id="email" placeholder="функция тестируется">
+                            </div>
+                        </div>
+                    </div>
                 <div class="col-12">
                     <div class="sum-outer">
                         <p>Общая стоимость: <span id="price">{{ $trip_count }} р.</span></p>
@@ -584,12 +260,12 @@
                         <input id="count_kids" type="hidden" value="{{ $trip_count_kids }}">
                         <input id="trip_id" type="hidden" value="{{ $trip_id }}">
                         <input id="date" type="hidden" value="{{ $clear_date }}">
-{{--                        @guest--}}
-{{--                        <p>Бронирование временно доступно только через диспетчера: <p><a href="tel:79088962999">8 (908) 89-62-999</p></a></p>--}}
-{{--                        @endguest--}}
-{{--                        @auth--}}
-{{--                            <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Оплатить</button>--}}
-{{--                        @endauth--}}
+                        {{--                        @guest--}}
+                        {{--                        <p>Бронирование временно доступно только через диспетчера: <p><a href="tel:79088962999">8 (908) 89-62-999</p></a></p>--}}
+                        {{--                        @endguest--}}
+                        {{--                        @auth--}}
+                        {{--                            <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Оплатить</button>--}}
+                        {{--                        @endauth--}}
                         <button id="send" class="progress-button" data-style="rotate-angle-bottom" data-perspective data-horizontal>Оплатить</button>
                     </div>
                 </div>

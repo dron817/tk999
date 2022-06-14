@@ -37,18 +37,27 @@ class OrderController extends Controller
         $trip_info = $trip->getTripById($tickets{0}->trip_id);
 
         $i=0;
+
+
+        $PaymentController_obj = new PaymentController();
+
         foreach ($tickets as $ticket){
             $tickets_arr[] = json_decode(json_encode($ticket), true);
             $i++;
             $payment_id = $ticket->payment_id;
             $author = $ticket->author;
+            if ($author == 'web'){
+                $payed = $PaymentController_obj->checkPayment($payment_id);
+                if ($payed=='succeeded'){
+                    $ticket_obj->setPayedOnTicket($ticket->id);
+                }
+            }
+            else
+                $payed = 'succeeded';
         }
 
-        $PaymentController_obj = new PaymentController();
-        if ($author == 'web')
-            $payed = $PaymentController_obj->checkPayment($payment_id);
-        else
-            $payed = 'succeeded';
+
+
 
         $payment_url = 'https://yoomoney.ru/checkout/payments/v2/contract?orderId='.$payment_id;
 
@@ -77,6 +86,10 @@ class OrderController extends Controller
             $ticket_obj->tariff = $_POST['data'][$i]['tariff'];
             $ticket_obj->address = '-';
             $ticket_obj->address = $_POST['data'][$i]['address'];
+            $ticket_obj->comment = ' ';
+            $ticket_obj->comment = $_POST['data']['comment'];
+            $ticket_obj->email = ' ';
+            $ticket_obj->email = $_POST['data']['email'];
             $ticket_obj->date = $_POST['data']['date'];
             $ticket_obj->trip_id = $_POST['data']['trip_id'];
             $ticket_obj->order_id = $order_id;
@@ -109,6 +122,10 @@ class OrderController extends Controller
             $ticket_obj->tariff = $_POST['data'][$i]['tariff'];
             $ticket_obj->address = '-';
             $ticket_obj->address = $_POST['data'][$i]['address'];
+            $ticket_obj->comment = ' ';
+            $ticket_obj->comment = $_POST['data']['comment'];
+            $ticket_obj->email = ' ';
+            $ticket_obj->email = $_POST['data']['email'];
             $ticket_obj->date = $_POST['data']['date'];
             $ticket_obj->trip_id = $_POST['data']['trip_id'];
             $ticket_obj->order_id = $order_id;

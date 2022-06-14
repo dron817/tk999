@@ -110,7 +110,7 @@
                                                                 Детский @endif</td>
                                                         <td style="">@if($ticket->phone == 0) Не
                                                             указан @else {{ $ticket->phone }} @endif</td>
-                                                        <td style="">{{ $ticket->address }}</td>
+                                                        <td style="">{{ $ticket->address }} <b>{{ $ticket->comment }}</b></td>
 
                                                         <td style="">
                                                             @if($ticket->author == 'web')

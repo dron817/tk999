@@ -80,7 +80,7 @@
                                                         <td style="">@if($ticket->tariff == 0) Взрослый @else Детский @endif</td>
                                                         <td style="">@if($ticket->phone == 0) Не указан @else {{ $ticket->phone }} @endif</td>
                                                         <td style="">@if($ticket->doc == 0) Не указан @else {{ $ticket->doc }} @endif</td>
-                                                        <td style="">{{ $ticket->address }}</td>
+                                                        <td style="">{{ $ticket->address }} <b>{{ $ticket->comment }}</b></td>
                                                     </tr>
                                                 @endif
                                             @empty
