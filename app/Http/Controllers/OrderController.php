@@ -48,9 +48,9 @@ class OrderController extends Controller
             $author = $ticket->author;
             if ($author == 'web'){
                 $payed = $PaymentController_obj->checkPayment($payment_id);
-                if ($payed=='succeeded'){
-                    $ticket_obj->setPayedOnTicket($ticket->id);
-                }
+//                 if ($payed=='succeeded'){
+//                     $ticket_obj->setPayedOnTicket($ticket->id);
+//                 }
             }
             else
                 $payed = 'succeeded';

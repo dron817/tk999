@@ -31,10 +31,12 @@ class PlacesController extends Controller
         }
 
         $tong = $trip_data->tong;
+        $dempfer_time = $trip_data->dempfer_time;
         $date = $this->RusDate(date('d F', strtotime($clear_date)));
         return view('pages/places', ['from' => $from, 'to' => $to, 'date' => $date, 'ticket_buy' => $ticket_buy,
-            'clear_date' => $clear_date, 'trip_id' => $request->trip_id,
-            'trip_count' => $trip_count, 'trip_count_kids' => $trip_count_kids, 'tong' => $tong]);
+            'clear_date' => $clear_date, 'trip_id' => $request->trip_id, 'trip_count' => $trip_count,
+            'trip_count_kids' => $trip_count_kids, 'tong' => $tong, 'trip_data' => $trip_data
+        ]);
     }
 
 }

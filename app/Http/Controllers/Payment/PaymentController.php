@@ -85,12 +85,19 @@ class PaymentController extends Controller
         $client = new Client();
         $client->setAuth($this->clientId, $this->clientSecret);
 
-        $paymentId = Cookie::get('payment_id');
-        $payment = $client->getPaymentInfo($paymentId);
-
         $order_id = Cookie::get('order_id');
+        $paymentId = Cookie::get('payment_id');
+        if ($paymentId)
+            $payment = $client->getPaymentInfo($paymentId);
+        else
+            if ($order_id)
+                return redirect ( route('getOrder').'?order_id='.$order_id );
+            else
+                return redirect ( route('index'));
+
         $ticket_object = new Ticket();
         $tickets = $ticket_object->getTicketsByOrderID($order_id);
+
         if ($payment->getStatus() == 'succeeded'){
             $this->sendSMS($order_id, $tickets{0}->phone);
             return redirect ( route('getOrder').'?order_id='.$order_id );
