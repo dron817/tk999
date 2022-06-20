@@ -14,10 +14,10 @@ class Daemon extends Controller
 
         $ticket_obj = new Ticket();
         $PaymentController_obj = new PaymentController();
-        $tickets = $ticket_obj->getLastWebTickets(20);
+        $tickets = $ticket_obj->getLastWebTickets(10);
 
         $crr_time = time();
-        $time_for_paying = 60;
+        $time_for_paying = 600;
         echo $crr_time;
 
         echo "<table border=1>";
@@ -26,12 +26,14 @@ class Daemon extends Controller
         $n=1;
         $deleted = 0;
         foreach ($tickets as $ticket){
-            $after = strtotime($ticket->created_at)>1655180634?true:false;
+            $after = strtotime($ticket->created_at)>1655180634;
             $payed = $PaymentController_obj->checkPayment($ticket->payment_id);
-            if ($after and $payed=='canceled'){
+            if (( $time_for_paying + strtotime($ticket->created_at) < $crr_time) and $payed == 'pending' ){
                     $ticket_obj = new Ticket();
                     $ticket = $ticket_obj->find($ticket->id);
-                    if (isset($ticket)) $ticket->delete();
+                    $ticket->deleted='1';
+                    $ticket->save();
+            //        if (isset($ticket)) $ticket->delete();
                     $del=0;
                     $deleted++;
             }
@@ -50,7 +52,7 @@ class Daemon extends Controller
         }
         echo "</table>";
         echo "Удалено билетов: ".$deleted;
-
+        echo "</br>";
 
 //         $file = 'people.txt';
 //         // Открываем файл для получения существующего содержимого

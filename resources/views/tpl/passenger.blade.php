@@ -77,12 +77,25 @@
                 <option>Электросети (15:21)</option>
             </select>
             @break
-            @case(3 or 4)
+            @case(3)
             <select id="address_{{ $num }}">
                 <option selected>Ж/Д Вокзал</option>
             </select>
             @break
-            @case(8 or 10)
+            @case(4)
+            <select id="address_{{ $num }}">
+                <option selected>Ж/Д Вокзал</option>
+            </select>
+            @break
+            @case(8)
+            <select id="address_{{ $num }}">
+                <option disabled selected>Выберите остановку</option>
+                <option>Трансагенство</option>
+                <option>Окружная клиническая больница</option>
+                <option>Речпорт(автовокзал)</option>
+            </select>
+            @break
+            @case(10)
             <select id="address_{{ $num }}">
                 <option disabled selected>Выберите остановку</option>
                 <option>Трансагенство</option>

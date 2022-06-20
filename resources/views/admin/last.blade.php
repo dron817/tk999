@@ -114,10 +114,17 @@
 
                                                         <td style="">
                                                             @if($ticket->author == 'web')
-                                                                <button type="button" class="btn btn-info"
+                                                                <button style="width: 76px;" type="button" class="btn btn-info"
                                                                         data-toggle="modal"
                                                                         data-target="#modal-info{{ $ticket->id }}">
                                                                     WEB
+                                                                    @if($ticket->payed == 'succeeded')
+                                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                                    @elseif($ticket->payed == 'pending')
+                                                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                                                    @else
+                                                                        <i class="fa fa-ban" aria-hidden="true"></i>
+                                                                    @endif
                                                                 </button>
                                                                 <div class="modal fade" id="modal-info{{ $ticket->id }}"
                                                                      style="display: none;" aria-hidden="true">

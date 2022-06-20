@@ -28,22 +28,22 @@ class Ticket extends Model
 
     public function getTicketsByTrip($trip_id, $date): Collection
     {
-        return $user = DB::table('tickets')->where('trip_id', '=', $trip_id)->where('date', '=', $date)->orderBy('place', 'asc')->get();
+        return $user = DB::table('tickets')->where('trip_id', '=', $trip_id)->where('date', '=', $date)->where('deleted', '=', '0')->orderBy('place', 'asc')->get();
     }
 
     public function getTicketsByOrderID($order_id): array
     {
-        return $user = DB::table('tickets')->where('order_id', '=', $order_id)->get()->toArray();
+        return $user = DB::table('tickets')->where('order_id', '=', $order_id)->where('deleted', '=', '0')->get()->toArray();
     }
 
     public function getTicketsByNum($trip_num, $date): Collection
     {
-        return $user = DB::table('tickets')->where('num', '=', $trip_num)->where('date', '=', $date)->get();
+        return $user = DB::table('tickets')->where('num', '=', $trip_num)->where('date', '=', $date)->where('deleted', '=', '0')->get();
     }
 
     public function getLastWebTickets($limit = 20): Collection
     {
-        return DB::table('tickets')->where('author', '=', 'web')->limit($limit)->orderBy('id', 'desc')->get();
+        return DB::table('tickets')->where('author', '=', 'web')->where('deleted', '=', '0')->limit($limit)->orderBy('id', 'desc')->get();
     }
 
     public function isBusy($trip_id, $date, $place): bool

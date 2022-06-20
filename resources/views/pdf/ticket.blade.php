@@ -54,13 +54,13 @@
                 @if(($data->tariff==0))
                     {{ $trip_info->price }}
                 @else
-                    {{ $trip_info->price/2 }}
+                    {{ $trip_info->price_kids }}
                 @endif
                 рублей
             </td>
         </tr>
         <tr style="border-top: 2px solid black;">
-            <td>ИП Аднакулов Г.В.<br>ОГРН 304860630800061 Лицензия АСС-86-154006 от 25.11.2014г.</td>
+            <td>ИП Аднакулов Г.В.<br>ОГРН 304860630800061 Лицензия ACC-86-000613 от 26.03.2019г.</td>
         </tr>
     </table>
 </div>

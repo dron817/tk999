@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\Trip;
+use App\Http\Controllers\Payment\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -13,6 +14,7 @@ class AdminController extends Controller
     {
         $ticket_obj = new Ticket();
         $trip_obj = new Trip();
+        $paymentControllerObj = new PaymentController();
 
 
         $date = $_GET['date'] ?? date("d.m.Y");
@@ -37,6 +39,10 @@ class AdminController extends Controller
 
                 $ticket->way = $crr_trip->from.'>'.$crr_trip->to;
 
+                $ticket->payed = '';
+                if($ticket->author == 'web')
+                    $ticket->payed = $paymentControllerObj->checkPayment($ticket->payment_id);
+
                 $tickets_all->push($ticket);
                 unset($free_places[$ticket->place-1]);
             }
@@ -49,7 +55,9 @@ class AdminController extends Controller
     {
         $ticket_obj = new Ticket();
         $ticket = $ticket_obj->find($_GET['ticket_id']);
-        if (isset($ticket)) $ticket->delete();
+        $ticket->deleted='1';
+        $ticket->save();
+        //if (isset($ticket)) $ticket->delete();
 
         return $this->getPanel();
     }
@@ -84,10 +92,13 @@ class AdminController extends Controller
         $ticket_obj = new Ticket();
         $tickets = $ticket_obj->getLastWebTickets();
 
+        $paymentControllerObj = new PaymentController();
+
         foreach ($tickets as $ticket) {
             $trip_obj = new Trip();
             $crr_trip = $trip_obj->getTripById($ticket->trip_id);
             $ticket->way = $crr_trip->from.'>'.$crr_trip->to;
+            $ticket->payed = $paymentControllerObj->checkPayment($ticket->payment_id);
         }
 
 

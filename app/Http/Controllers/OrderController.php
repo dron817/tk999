@@ -66,6 +66,7 @@ class OrderController extends Controller
 
     function letBuy(Request $request): array
     {
+        date_default_timezone_set('Asia/Yekaterinburg');
         $ticket_obj = new Ticket();
         $order_id = $ticket_obj->getMaxOrder()+1;
         Cookie::queue('order_id', $order_id, 10);
@@ -75,6 +76,22 @@ class OrderController extends Controller
         $payment_id = substr($payment_url, -36, 36);
 
         $count = $_POST['data']['count'];
+
+        //Подготовка письма
+        $trip_obj = new Trip();
+        $trip = $trip_obj->getTripById($_POST['data']['trip_id']);
+
+        $to = $_POST['data']['email'];
+        $subject = 'TK999 - билеты';
+        $message = '<b>Рейс:</b> '.$trip->from.' - '.$trip->to.' — '.$_POST['data']['date'].' в '.$trip->from_time.'<br>
+        Ваши билеты доступны по ссылке:<br>
+        https://tk999.ru/order_show?order_id='.$order_id.'<br>
+        Приятной поездки!';
+        $headers = "MIME-Version: 1.0" . "\r\n" ."Content-type: text/html; charset=UTF-8" . "\r\n";
+
+        mail($to, $subject, $message, $headers);
+        //mail('myroyalfamily@ya.ru', 'Новый заказ на сайте', $order_id." - ".$_POST['data'][$i]['fio'], $headers);
+
 
         for($i=1; $i<=$count; $i++){
             $ticket_obj = new Ticket();
@@ -96,7 +113,7 @@ class OrderController extends Controller
             $ticket_obj->payment_id = $payment_id;
             $ticket_obj->author = $_POST['data']['author'];
             $ticket_obj->save();
-        }
+            }
 
         $answer = array(
             'redirect' => $payment_url
