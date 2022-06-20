@@ -70,7 +70,6 @@ a.disabled {
 /*MESSAGE -- START */
 
 .message{
-    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 10%), 0 0 2px rgb(13 35 67 / 10%);
     text-align: center;
     background-color: white;
     padding: 35px 0 20px 0;
@@ -163,9 +162,11 @@ a.disabled {
     top: 5px!important;
 }
 .select2-container--default .select2-selection--single:hover{
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
 }
 #search_date:hover{
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
 }
 /* SEARCH END */
@@ -297,12 +298,14 @@ a.disabled {
     display: flex;
     justify-content: space-between;
     border-radius: 10px;
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
     padding: 20px !important;
     margin-bottom: 10px;
     transition: .5s;
 }
 #schedule-section .schedule:hover{
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
 }
 #schedule-section a{
@@ -469,6 +472,7 @@ a.disabled {
     display: flex;
     justify-content: space-between;
     border-radius: 10px;
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
     transition: .5s;
     padding: 20px !important;
@@ -478,6 +482,7 @@ a.disabled {
     display: inline;
 }
 #ticket-section .ticket:hover{
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
 }
 #ticket-section a{
@@ -665,9 +670,11 @@ a.disabled {
     font-size: 16px;
     border-radius: 5px;
     transition: .5s;
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
 }
 .calendar .text-end a:hover , .calendar .text-start a:hover{
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 7px rgb(13 35 67 / 30%);
 }
 .calendar-img{
@@ -725,6 +732,7 @@ a.disabled {
     display: flex;
     padding: 30px;
     margin-bottom: 30px;
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
     border-radius: 5px;
     background-color: white;
@@ -765,6 +773,7 @@ a.disabled {
     border-radius: 5px;
     text-align: center;
     margin-right: 48px;
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
 }
 #place-piker tr:first-child{
@@ -817,6 +826,7 @@ a.disabled {
     text-align: center;
     font-weight: bold;
     position: relative;
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
 }
 #kids-arrows{
@@ -830,6 +840,7 @@ a.disabled {
     position: absolute;
     justify-content: space-between;
     height: 100%;
+    /*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
 }
 #kids-arrows div{
@@ -841,7 +852,7 @@ a.disabled {
 }
 /* PAYMENTS SECTION -- START */
 
-#payments {
+#payments {/*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
     background-color: white;
     display: flex;
@@ -866,7 +877,7 @@ a.disabled {
     right: 10px;
     top: 20px;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: bold;/*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
     border-radius: 50%;
     height: 30px;
@@ -898,7 +909,7 @@ a.disabled {
 /* PAYMENTS SECTION -- END */
 
 /* PERSON DATA SECTION -- START */
-.person-data-outer.row {
+.person-data-outer.row {/*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
     background-color: white;
     padding: 20px;
@@ -910,12 +921,12 @@ a.disabled {
     padding-left: 3px;
 }
 
-.person-data-outer input[type="text"] {
+.person-data-outer input[type="text"] {/*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
     border-radius: 5px;
     padding: 7px;
 }
-.person-data-outer select {
+.person-data-outer select {/*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
     border-radius: 5px;
     padding: 7px;

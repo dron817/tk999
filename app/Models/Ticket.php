@@ -41,7 +41,7 @@ class Ticket extends Model
         return $user = DB::table('tickets')->where('num', '=', $trip_num)->where('date', '=', $date)->where('deleted', '=', '0')->get();
     }
 
-    public function getLastWebTickets($limit = 20): Collection
+    public function getLastWebTickets($limit = 10): Collection
     {
         return DB::table('tickets')->where('author', '=', 'web')->where('deleted', '=', '0')->limit($limit)->orderBy('id', 'desc')->get();
     }

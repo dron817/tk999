@@ -14,17 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//TODO Не нажимается Отправить СМС с билетами
-
-//TODO ХМ по адресам
-
-//TODO Урай в советский / югорск 2-41 (стоянка)
-//TODO советский в урай ЖД вокзал
-//TODO югорск в урай Ленина 29 (почта)
-
-//TODO ДВОЙНЫЕ БИЛЕТЫ!!!
-
-//TODO ХМ в Урай - без аэропорта
 
 Route::get('/', 'App\Http\Controllers\TripsController@getAll')->name('index');
 
