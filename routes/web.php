@@ -40,6 +40,7 @@ Route::middleware(['auth'])->prefix('home')->group( function(){
     Route::get('/', 'App\Http\Controllers\AdminController@getPanel')->name('admin.home');
     Route::get('/add', 'App\Http\Controllers\AdminController@getAdder')->name('admin.add');
     Route::get('/print', 'App\Http\Controllers\AdminController@getPrint')->name('admin.print');
+    Route::get('/exel', 'App\Http\Controllers\AdminController@getExel')->name('admin.exel');
     Route::get('/edit', 'App\Http\Controllers\AdminController@getEditor')->name('admin.edit');
     Route::any('/letEdit', 'App\Http\Controllers\AdminController@letEdit')->name('admin.letEdit');
     Route::get('/delete', 'App\Http\Controllers\AdminController@delOrder')->name('admin.delete');

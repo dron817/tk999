@@ -75,6 +75,24 @@
                                                 getPrint();
                                             });
                                         </script>
+                                        <div class="dt-buttons btn-group flex-wrap">
+                                            <button id="exel" class="btn btn-success buttons-copy buttons-html5"
+                                                    tabindex="0"
+                                                    aria-controls="example1" type="button">
+                                                <i class="fas fa-fw fa-file"></i><span>Exel</span></button>
+                                        </div>
+                                        <script>
+                                            function getExel() {
+                                                let date = $('#search_date').val();
+                                                let trip_num = $('#trip_num').val();
+                                                location.href = '{{ route('admin.exel') }}?trip_num=' + trip_num + '&date=' + date;
+                                            }
+
+                                            $('#exel').click(function () {
+                                                getExel();
+                                            });
+                                        </script>
+
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="input-group mb-3">

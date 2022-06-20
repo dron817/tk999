@@ -8,6 +8,9 @@ use App\Http\Controllers\Payment\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
+use App\Exports\TicketsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class AdminController extends Controller
 {
     function getPanel()
@@ -161,6 +164,14 @@ class AdminController extends Controller
                 $tickets_all->push($ticket);
         }
         return view('admin.print', ['tickets' => $tickets_all, 'date' => $date, 'trip' => $trip_name]);
+    }
+
+    function getExel()
+    {
+        $trip_obj = new Trip();
+        $trip = $trip_obj->getFirstTripByNum($_GET['trip_num']);
+        $trip_name = $_GET['date'] .' '.$trip->from.' - '.$trip->to.' ('.$trip->from_time.')';
+        return Excel::download(new TicketsExport(), $trip_name.'.xlsx');
     }
 
     function tripsManagement()
