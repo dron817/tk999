@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=320, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <meta http-equiv="Content-Language" content="ru">
     <meta charset="utf8" />
+    <link type="image/x-icon" rel="shortcut icon" href="{{ asset('/assets/favicon.ico') }}">
 
     <!-- Page Settings  -->
     <title>ТК-999 | @yield('title')</title>

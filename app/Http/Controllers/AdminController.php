@@ -11,9 +11,12 @@ use Illuminate\Support\Collection;
 use App\Exports\TicketsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
+use App\DataTables\TicketDataTable;
+
 class AdminController extends Controller
 {
-    function getPanel()
+
+    function getPanel(TicketDataTable $dataTable)
     {
         $ticket_obj = new Ticket();
         $trip_obj = new Trip();
@@ -50,6 +53,8 @@ class AdminController extends Controller
                 unset($free_places[$ticket->place-1]);
             }
         }
+
+        //return $dataTable->render('admin.main', ['tickets' => $tickets_all, 'date' => $date, 'trip_num' => $trip_num, 'free_places' => count($free_places)]);
         return view('admin.main', ['tickets' => $tickets_all, 'date' => $date, 'trip_num' => $trip_num, 'free_places' => count($free_places)]);
     }
 

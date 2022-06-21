@@ -378,6 +378,10 @@
                                         </table>
                                         Свободных мест: <b>{{ $free_places }}</b>
                                     </div>
+{{--                                    <div class="col-12">--}}
+{{--                                        {!! $dataTable->table() !!}--}}
+{{--                                    </div>--}}
+{{--                                    {!! $dataTable->scripts() !!}--}}
                                 </div>
                             </div>
                         </div>
@@ -395,10 +399,14 @@
 @stop
 
 @section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/datepicker.min.css') }}"/>
 @stop
 
 @section('js')
+
     <script src="{{ asset('assets/js/datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/i18n/datepicker.en.js') }}"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 @stop
