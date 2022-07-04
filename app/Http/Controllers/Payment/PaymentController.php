@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
+use App\Models\Trip;
 use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
@@ -24,6 +25,22 @@ class PaymentController extends Controller
     private $clientId = '896857';
     private $clientSecret = 'live_AYNsgIq8BKrSNr--BFOzMA5aFCTGBucebWwh5CJqUvo';
 
+    public function Refund(){
+        $client = new Client();
+        $client->setAuth($this->clientId, $this->clientSecret);
+//         $client->createRefund(
+//             array(
+//                 'amount' => array(
+//                     'value' => 1.0,
+//                     'currency' => 'RUB',
+//                 ),
+//                 'payment_id' => '2a50d3cc-000f-5000-8000-1587ce5641ce',
+//             ),
+//             uniqid('', true)
+//         );
+
+        return redirect ( route('index'));
+    }
 
     public function payCreate($order_id = 1 , $value = 500, $fio = 'Имя не указано', $phone = '79964443105')
     {
@@ -100,10 +117,26 @@ class PaymentController extends Controller
         $tickets = $ticket_object->getTicketsByOrderID($order_id);
 
         if ($payment->getStatus() == 'succeeded'){
-            $this->sendSMS($order_id, $tickets{0}->phone);
+
+            //Подготовка письма
+            $trip_obj = new Trip();
+            $trip = $trip_obj->getTripById($tickets{0}->trip_id);
+
+            $to = $tickets{0}->email;
+            $subject = 'TK999 - билеты';
+            $message = '<b>Рейс:</b> '.$trip->from.' - '.$trip->to.' — '.$tickets{0}->date.' в '.$trip->from_time.'<br>
+            Ваши билеты доступны по ссылке:<br>
+            https://tk999.ru/order_show?order_id='.$order_id.'<br>
+            Приятной поездки!';
+            $headers = "MIME-Version: 1.0" . "\r\n" ."Content-type: text/html; charset=UTF-8" . "\r\n";
+            mail($to, $subject, $message, $headers);
+
+            //$this->sendSMS($order_id, $tickets{0}->phone);
+
             return redirect ( route('getOrder').'?order_id='.$order_id );
         }
     }
+
 
     function sendSMS($order_id = 1, $phone = '79964443105'){
         $server = 'http://gateway.api.sc/rest/';

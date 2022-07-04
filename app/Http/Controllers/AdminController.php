@@ -16,7 +16,7 @@ use App\DataTables\TicketDataTable;
 class AdminController extends Controller
 {
 
-    function getPanel(TicketDataTable $dataTable)
+    function getPanel()
     {
         $ticket_obj = new Ticket();
         $trip_obj = new Trip();

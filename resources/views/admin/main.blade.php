@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Панель диспетчера')
+@section('title', 'TK999 - Панель диспетчера')
 
 @section('content_header')
     <h1>Панель диспетчера</h1>
@@ -40,12 +40,12 @@
                         <div class="card-body">
                             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-4">
+                                    <div class="col-sm-12 col-md-5">
                                         <div class="dt-buttons btn-group flex-wrap">
                                             <button id="add_ticket" class="btn btn-success buttons-copy buttons-html5"
                                                     tabindex="0"
                                                     aria-controls="example1" type="button">
-                                                <span>Добавить билет</span></button>
+                                                <i class="fas fa-fw fa-plus"></i><span>Добавить билет</span></button>
                                         </div>
                                         <script>
                                             function add_ticket() {
@@ -62,7 +62,7 @@
                                             <button id="print" class="btn btn-primary buttons-copy buttons-html5"
                                                     tabindex="0"
                                                     aria-controls="example1" type="button">
-                                                <span>Версия для печати</span></button>
+                                                <i class="fas fa-fw fa-print"></i></button>
                                         </div>
                                         <script>
                                             function getPrint() {
@@ -75,23 +75,25 @@
                                                 getPrint();
                                             });
                                         </script>
-                                        <div class="dt-buttons btn-group flex-wrap">
-                                            <button id="exel" class="btn btn-success buttons-copy buttons-html5"
-                                                    tabindex="0"
-                                                    aria-controls="example1" type="button">
-                                                <i class="fas fa-fw fa-file"></i><span>Exel</span></button>
-                                        </div>
-                                        <script>
-                                            function getExel() {
-                                                let date = $('#search_date').val();
-                                                let trip_num = $('#trip_num').val();
-                                                location.href = '{{ route('admin.exel') }}?trip_num=' + trip_num + '&date=' + date;
-                                            }
+                                        @if( Auth::user()->name == 'TK999')
+                                            <div class="dt-buttons btn-group flex-wrap">
+                                                <button id="exel" class="btn btn-success buttons-copy buttons-html5"
+                                                        tabindex="0"
+                                                        aria-controls="example1" type="button">
+                                                    <i class="fas fa-fw fa-table"></i></button>
+                                            </div>
+                                            <script>
+                                                function getExel() {
+                                                    let date = $('#search_date').val();
+                                                    let trip_num = $('#trip_num').val();
+                                                    location.href = '{{ route('admin.exel') }}?trip_num=' + trip_num + '&date=' + date;
+                                                }
 
-                                            $('#exel').click(function () {
-                                                getExel();
-                                            });
-                                        </script>
+                                                $('#exel').click(function () {
+                                                    getExel();
+                                                });
+                                            </script>
+                                        @endif
 
                                     </div>
                                     <div class="col-sm-2">
@@ -163,10 +165,10 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-1">
                                         <div class="form-group">
                                             <button id="show_trip" type="button" class="btn btn-block btn-info">
-                                                Показать
+                                                <i class="fas fa-fw fa-eye"></i>
                                             </button>
                                         </div>
                                         <script>

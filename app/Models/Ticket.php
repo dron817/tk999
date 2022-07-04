@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
+use App\Models\Ticket;
+use App\Models\Trip;
 
 class Ticket extends Model
 {
@@ -39,6 +41,45 @@ class Ticket extends Model
     public function getTicketsByNum($trip_num, $date): Collection
     {
         return $user = DB::table('tickets')->where('num', '=', $trip_num)->where('date', '=', $date)->where('deleted', '=', '0')->get();
+    }
+
+    public function getAllTicketsByEmail($email): Collection
+    {
+        return $user = DB::table('tickets')->where('email', '=', $email)->orderBy('order_id', 'desc')->get();
+    }
+    public function getActualTicketsByEmail($email): Collection
+    {
+        date_default_timezone_set('Asia/Yekaterinburg');
+
+        $ticket_obj = new Ticket();
+        $trip_obj = new Trip();
+        $tickets_now = new Collection();
+
+        $tickets = $this->getAllTicketsByEmail($email);
+        foreach ($tickets as $ticket){
+                    $trip = $trip_obj->getTripById($ticket->trip_id);
+                    $full_time = strtotime($ticket->date.' '.$trip->from_time);
+                    if (time() < $full_time)
+                        $tickets_now->push($ticket);
+                }
+        return $tickets_now;
+    }
+    public function getOldTicketsByEmail($email): Collection
+    {
+        date_default_timezone_set('Asia/Yekaterinburg');
+
+        $ticket_obj = new Ticket();
+        $trip_obj = new Trip();
+        $tickets_old = new Collection();
+
+        $tickets = $this->getAllTicketsByEmail($email);
+        foreach ($tickets as $ticket){
+                    $trip = $trip_obj->getTripById($ticket->trip_id);
+                    $full_time = strtotime($ticket->date.' '.$trip->from_time);
+                    if (time() > $full_time)
+                        $tickets_old->push($ticket);
+                }
+        return $tickets_old;
     }
 
     public function getLastWebTickets($limit = 10): Collection

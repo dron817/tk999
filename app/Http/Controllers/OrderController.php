@@ -55,10 +55,6 @@ class OrderController extends Controller
             else
                 $payed = 'succeeded';
         }
-
-
-
-
         $payment_url = 'https://yoomoney.ru/checkout/payments/v2/contract?orderId='.$payment_id;
 
         return view('pages/order', ['tickets' => $tickets, 'trip' => $trip_info, 'payed' => $payed, 'payment_url' => $payment_url]);
@@ -81,15 +77,15 @@ class OrderController extends Controller
         $trip_obj = new Trip();
         $trip = $trip_obj->getTripById($_POST['data']['trip_id']);
 
-        $to = $_POST['data']['email'];
-        $subject = 'TK999 - билеты';
-        $message = '<b>Рейс:</b> '.$trip->from.' - '.$trip->to.' — '.$_POST['data']['date'].' в '.$trip->from_time.'<br>
-        Ваши билеты доступны по ссылке:<br>
-        https://tk999.ru/order_show?order_id='.$order_id.'<br>
-        Приятной поездки!';
-        $headers = "MIME-Version: 1.0" . "\r\n" ."Content-type: text/html; charset=UTF-8" . "\r\n";
-
-        mail($to, $subject, $message, $headers);
+//         $to = $_POST['data']['email'];
+//         $subject = 'TK999 - билеты';
+//         $message = '<b>Рейс:</b> '.$trip->from.' - '.$trip->to.' — '.$_POST['data']['date'].' в '.$trip->from_time.'<br>
+//         Ваши билеты доступны по ссылке:<br>
+//         https://tk999.ru/order_show?order_id='.$order_id.'<br>
+//         Приятной поездки!';
+//         $headers = "MIME-Version: 1.0" . "\r\n" ."Content-type: text/html; charset=UTF-8" . "\r\n";
+//
+//         mail($to, $subject, $message, $headers);
         //mail('myroyalfamily@ya.ru', 'Новый заказ на сайте', $order_id." - ".$_POST['data'][$i]['fio'], $headers);
 
 
@@ -154,5 +150,10 @@ class OrderController extends Controller
             'redirect' => $count
         );
         return ($answer);
+    }
+
+    function letRefund(){
+        $refund = new PaymentController();
+        return $refund->Refund();
     }
 }
