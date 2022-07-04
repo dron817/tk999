@@ -131,7 +131,7 @@
                     </div>
                     <div class="collapse" id="route-{{ $ticket->id }}">
                         <div class="card card-body">
-                            <p>В разработке</p>
+                            @include('tpl.trip_track')
                         </div>
                     </div>
                 @empty

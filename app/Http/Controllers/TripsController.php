@@ -13,6 +13,9 @@ class TripsController extends Controller
         $trip = new Trip;
         $trips = $trip->all();
 
+        foreach ($trips as $trip)
+            $trip->middle = json_decode($trip->middle);
+
         return view('pages/main', ['tickets' => $trips]);
     }
 
@@ -58,6 +61,8 @@ class TripsController extends Controller
                 }
             }
         }
+        foreach ($trips as $trip)
+            $trip->middle = json_decode($trip->middle);
 
         return view('pages/tickets', ['tickets' => $trips, 'from' => $from, 'to' => $to, 'from_date' => $from_date,
             'from_date_long' => $from_date_long, 'to_date' => $to_date, 'after_date' => $after_date,
