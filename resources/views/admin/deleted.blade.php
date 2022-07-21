@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="card-header">
-                            <h3 class="card-title">Перечень последних оформленных билетов</h3>
+                            <h3 class="card-title">Перечень последних удалённых билетов</h3>
                         </div>
                         <div class="card-body">
                             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
