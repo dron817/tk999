@@ -92,10 +92,17 @@ class PaymentController extends Controller
     public function checkPayment($payment_id = '29e9a504-000f-5111-8000-1d38829ca836')
     {
         if ($payment_id == '29e9a504-000f-5111-8000-1d38829ca836') return 'succeeded';
+
+        $ticket_obj = new Ticket();
+        $cashed_status = $ticket_obj->getTicketByPaymentId($payment_id)->payment_status;
+        if ($cashed_status == 'succeeded') return 'succeeded';
+
         $client = new Client();
         $client->setAuth($this->clientId, $this->clientSecret);
         $payment = $client->getPaymentInfo($payment_id);
-        return $payment->getStatus();
+        $payment_status = $payment->getStatus();
+        $ticket_obj->setPaymentStatus($payment_id, $payment_status);
+        return $payment_status;
     }
 
     public function payCallback(Request $req)

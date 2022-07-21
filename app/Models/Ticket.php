@@ -18,11 +18,6 @@ class Ticket extends Model
         return DB::table($this->table)->insertGetId($ticket);
     }
 
-    public function setPayedOnTicket($id)
-    {
-        DB::table('tickets')->where('id', '=', $id)->update(['payment_status' => 'payed']);
-    }
-
     public function getTicketByID($id)
     {
         return $user = DB::table('tickets')->where('id', '=', $id)->first();
@@ -47,6 +42,15 @@ class Ticket extends Model
     {
         return $user = DB::table('tickets')->where('email', '=', $email)->orderBy('order_id', 'desc')->get();
     }
+
+    public function getTicketByPaymentId($payment_id){
+        return $user = DB::table('tickets')->where('payment_id', '=', $payment_id)->first();
+    }
+
+    public function setPaymentStatus($payment_id, $payment_status){
+        return DB::table('tickets')->where('payment_id', '=', $payment_id)->update(['payment_status' => $payment_status]);
+    }
+
     public function getActualTicketsByEmail($email): Collection
     {
         date_default_timezone_set('Asia/Yekaterinburg');

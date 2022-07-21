@@ -17,7 +17,7 @@ class Daemon extends Controller
         $tickets = $ticket_obj->getLastWebTickets(10);
 
         $crr_time = time();
-        $time_for_paying = 600;
+        $time_for_paying = 900;
         echo $crr_time;
 
         echo "<table border=1>";

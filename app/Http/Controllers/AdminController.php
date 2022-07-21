@@ -113,6 +113,23 @@ class AdminController extends Controller
         return view('admin.last', ['tickets' => $tickets]);
     }
 
+    function getDeleted(){
+        $ticket_obj = new Ticket();
+        $tickets = $ticket_obj->getLastDeletedTickets();
+
+        $paymentControllerObj = new PaymentController();
+
+        foreach ($tickets as $ticket) {
+            $trip_obj = new Trip();
+            $crr_trip = $trip_obj->getTripById($ticket->trip_id);
+            $ticket->way = $crr_trip->from.'>'.$crr_trip->to;
+            $ticket->payed = $paymentControllerObj->checkPayment($ticket->payment_id);
+        }
+
+
+        return view('admin.last', ['tickets' => $tickets]);
+    }
+
     function getEditor(){
         $ticket_obj = new Ticket();
         $trip_obj = new Trip();
