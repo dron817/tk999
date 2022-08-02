@@ -152,6 +152,15 @@ class OrderController extends Controller
         return ($answer);
     }
 
+    function checkEmpty(){
+        $ticket_obj = new Ticket();
+
+        $answer = array(
+            'tickets' => $_POST['data']['place'][0];
+        );
+        return ($answer);
+    }
+
     function letRefund(){
         $refund = new PaymentController();
         return $refund->Refund();

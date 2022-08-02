@@ -92,7 +92,6 @@
                 <option disabled selected>Выберите остановку</option>
                 <option>Трансагенство</option>
                 <option>Окружная клиническая больница</option>
-                <option>Речпорт(автовокзал)</option>
             </select>
             @break
             @case(10)
@@ -100,7 +99,6 @@
                 <option disabled selected>Выберите остановку</option>
                 <option>Трансагенство</option>
                 <option>Окружная клиническая больница</option>
-                <option>Речпорт(автовокзал)</option>
             </select>
             @break
             @default

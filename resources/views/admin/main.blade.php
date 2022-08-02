@@ -159,7 +159,7 @@
                                                     (08:00)
                                                 </option>
                                                 <option value="10" @if( $trip_num==10) selected @endif>10. Урай - Югорск
-                                                    (17:05)
+                                                    (13:50)
                                                 </option>
                                                 <option value="11" @if( $trip_num==11) selected @endif>11. Урай - Нягань
                                                     (05:00)

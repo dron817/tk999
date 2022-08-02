@@ -11,7 +11,7 @@
 @section('custom-js-after')
     <script src="{{ asset('/assets/js/progress-button/classie.js') }}"></script>
     <script src="{{ asset('/assets/js/progress-button/progressButton.js') }}"></script>
-    <script src="{{ asset('/assets/js/place-picker.js') }}?4"></script>
+    <script src="{{ asset('/assets/js/place-picker.js') }}?5"></script>
     <script>
         [].slice.call( document.querySelectorAll( 'button.progress-button' ) ).forEach( function( bttn ) {
             new ProgressButton( bttn, {
@@ -194,7 +194,7 @@
                 @endif
             </div>
 
-            @auth
+            @moder
                 <div class="row justify-content-md-center">
                     <div class="col-12 col-lg-12">
                         <div id="adult-outer">
@@ -204,7 +204,7 @@
                         </div>
                     </div>
                 </div>
-            @endauth
+            @endmoder
 
 
             <!-- {{ $dtz = date_default_timezone_set('Asia/Yekaterinburg') }} -->

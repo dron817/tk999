@@ -121,11 +121,39 @@ function booking() {
     })
 }
 
+function checkEmpty(){
+    let adult = Number($('#adult').val());
+    let kids = Number($('#kids').val());
+    let count = adult + kids;
+    let data = {};
+    if (count < 1) {
+        return false;
+    }
+    for (let i = 1; i <= count; i++) {
+        data[i] = {};
+        data[i]['place'] = places[i - 1];
+    }
+    $.ajax({
+        dataType: "json",
+        type: "POST",
+        url: "/checkEmpty",
+        data: {
+            data: data,
+            "_token": $('input[name="_token"]').val()
+    }
+    }).done(function (msg) {
+        console.log(msg['tickets'])
+    //     location.href=$('#admin_link').val();
+    })
+}
+
+
 $("#send").click(function () {
     SendForm();
 });
 
 $("#booking").click(function () {
+    // checkEmpty();
     booking();
 });
 

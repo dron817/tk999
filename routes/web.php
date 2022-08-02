@@ -22,6 +22,7 @@ Route::get('/tickets_list', 'App\Http\Controllers\TripsController@getTrip')->nam
 Route::get('/places', 'App\Http\Controllers\PlacesController@getPlaces')->name('places');
 Route::get('/print', 'App\Http\Controllers\OrderController@print')->name('print');
 Route::get('/order_show', 'App\Http\Controllers\OrderController@getOrder')->name('getOrder');
+Route::any('/checkEmpty', 'App\Http\Controllers\OrderController@checkEmpty')->name('checkEmpty');
 Route::any('/letBuy', 'App\Http\Controllers\OrderController@letBuy')->name('letBuy');
 Route::any('/letRefund', 'App\Http\Controllers\OrderController@letRefund')->name('letRefund');
 Route::get('/sendSMS', 'App\Http\Controllers\OrderController@sendSMS')->name('sendSMS');
