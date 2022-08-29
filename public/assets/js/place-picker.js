@@ -1,4 +1,5 @@
 let places = [];
+let PlacesEmpty;
 
 function SendForm() {
     let adult = Number($('#adult').val());
@@ -116,45 +117,61 @@ function booking() {
             "_token": $('input[name="_token"]').val()
         }
     }).done(function (msg) {
-        // console.log(msg['redirect'])
         location.href=$('#admin_link').val();
     })
 }
 
-function checkEmpty(){
-    // let adult = Number($('#adult').val());
-    // let kids = Number($('#kids').val());
-    // let count = adult + kids;
-    // let data = {};
-    // if (count < 1) {
-    //     return false;
-    // }
-    // for (let i = 1; i <= count; i++) {
-    //     data[i] = {};
-    //     data[i]['place'] = places[i - 1];
-    // }
-    // $.ajax({
-    //     dataType: "json",
-    //     type: "POST",
-    //     url: "/checkEmpty",
-    //     data: {
-    //         data: data,
-    //         "_token": $('input[name="_token"]').val()
-    // }
-    // }).done(function (msg) {
-    //     console.log(msg['tickets'])
-    // //     location.href=$('#admin_link').val();
-    // })
+function checkEmpty(action) {
+    let trip_id = $('#trip_id').val();
+    let date = $('#date').val();
+    let adult = Number($('#adult').val());
+    let kids = Number($('#kids').val());
+    let count = adult + kids;
+    let data = {};
+    if (count < 1) {
+        return false;
+    }
+    for (let i = 1; i <= count; i++) {
+        data[i] = {};
+        data[i]['place'] = places[i - 1];
+    }
+    $.ajax({
+        dataType: "json",
+        type: "POST",
+        url: "/checkEmpty",
+        data: {
+            trip_id: trip_id,
+            date: date,
+            data: data,
+            "_token": $('input[name="_token"]').val()
+    }
+    }).done(function (msg) {
+        if (msg['tickets'].length === 0) {
+            if (action === 'SendForm') SendForm();
+            if (action === 'booking') booking();
+        }
+        else{
+            let busyPlaces = '';
+            for (let i = 0; i < msg['tickets'].length; i++) {
+                let placeId = msg['tickets'][i];
+                $("#" + placeId).prop('checked', false);
+                $("#" + placeId).prop('disabled', true);
+                pickPlace(placeId);
+                busyPlaces = busyPlaces + ' ' + placeId;
+            }
+            alert('Выбранные вами места:'+ busyPlaces + ' - уже были заняты. Пожалуйста, выберите другие.');
+            return false;
+        }
+    })
 }
 
 
 $("#send").click(function () {
-    SendForm();
+    checkEmpty('SendForm');
 });
 
 $("#booking").click(function () {
-    // checkEmpty();
-    booking();
+    checkEmpty('booking');
 });
 
 
@@ -167,7 +184,7 @@ function pickPlace(id) {
         places.push(id);
         adult++;
     } else {
-        places.splice(places.indexOf(id), 1);
+        places.splice(places.indexOf(Number(id)), 1);
         if (kids > 0)
             if (adult <= 1)
                 kids--;

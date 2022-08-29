@@ -101,8 +101,9 @@ class Ticket extends Model
         $ticket = DB::table('tickets')->where('trip_id', '=', $trip_id)
             ->where('date', '=', $date)
             ->where('place', '=', $place)
-            ->get();
-        return !empty($ticket);
+            ->where('deleted', '=', '0')
+            ->count();
+        return $ticket;
     }
 
     public function getMaxOrder()

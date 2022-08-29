@@ -86,30 +86,32 @@ class OrderController extends Controller
 //         $headers = "MIME-Version: 1.0" . "\r\n" ."Content-type: text/html; charset=UTF-8" . "\r\n";
 //
 //         mail($to, $subject, $message, $headers);
-        //mail('myroyalfamily@ya.ru', 'Новый заказ на сайте', $order_id." - ".$_POST['data'][$i]['fio'], $headers);
+//         mail('myroyalfamily@ya.ru', 'Новый заказ на сайте', $order_id." - ".$_POST['data'][$i]['fio'], $headers);
 
 
         for($i=1; $i<=$count; $i++){
             $ticket_obj = new Ticket();
-            $ticket_obj->fio = $_POST['data'][$i]['fio'];
-            $ticket_obj->place = $_POST['data'][$i]['place'];
-            $ticket_obj->doc = $_POST['data'][$i]['doc'];
-            $ticket_obj->phone = '0';
-            $ticket_obj->phone = $_POST['data'][$i]['phone'];
-            $ticket_obj->tariff = $_POST['data'][$i]['tariff'];
-            $ticket_obj->address = '-';
-            $ticket_obj->address = $_POST['data'][$i]['address'];
-            $ticket_obj->comment = ' ';
-            $ticket_obj->comment = $_POST['data']['comment'];
-            $ticket_obj->email = ' ';
-            $ticket_obj->email = $_POST['data']['email'];
-            $ticket_obj->date = $_POST['data']['date'];
-            $ticket_obj->trip_id = $_POST['data']['trip_id'];
-            $ticket_obj->order_id = $order_id;
-            $ticket_obj->payment_id = $payment_id;
-            $ticket_obj->author = $_POST['data']['author'];
+                $ticket_obj->fio = $_POST['data'][$i]['fio'];
+                $ticket_obj->place = $_POST['data'][$i]['place'];
+                $ticket_obj->doc = $_POST['data'][$i]['doc'];
+                $ticket_obj->phone = '0';
+                $ticket_obj->phone = $_POST['data'][$i]['phone'];
+                $ticket_obj->tariff = $_POST['data'][$i]['tariff'];
+                $ticket_obj->address = '-';
+                $ticket_obj->address = $_POST['data'][$i]['address'];
+                $ticket_obj->comment = ' ';
+                $ticket_obj->comment = $_POST['data']['comment'];
+                $ticket_obj->email = ' ';
+                $ticket_obj->email = $_POST['data']['email'];
+                $ticket_obj->date = $_POST['data']['date'];
+                $ticket_obj->trip_id = $_POST['data']['trip_id'];
+                $ticket_obj->order_id = $order_id;
+                $ticket_obj->payment_id = $payment_id;
+                $ticket_obj->author = $_POST['data']['author'];
+                $ticket_obj->payment_status = 'created';
+                $ticket_obj->deleted = 0;
             $ticket_obj->save();
-            }
+        }
 
         $answer = array(
             'redirect' => $payment_url
@@ -153,12 +155,19 @@ class OrderController extends Controller
     }
 
     function checkEmpty(){
-//         $ticket_obj = new Ticket();
-//
-//         $answer = array(
-//             'tickets' => $_POST['data']['place'][0]
-//         );
-//         return ($answer);
+        $ticket_obj = new Ticket();
+
+        $busy_arr = array();
+        foreach ($_POST['data'] as $query){
+
+            if ($ticket_obj->isBusy($_POST['trip_id'], $_POST['date'], $query['place']))
+                array_push($busy_arr, $query['place']);
+        }
+
+        $answer = array(
+            'tickets' => $busy_arr
+        );
+        return ($answer);
     }
 
     function letRefund(){

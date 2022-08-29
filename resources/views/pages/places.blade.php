@@ -9,9 +9,11 @@
     <script src="{{ asset('assets/js/jquery.maskedinput.min.js') }}"></script>
 @endsection
 @section('custom-js-after')
+    <meta http-equiv="Cache-Control" content="max-age=0, must-revalidate">
+    <meta http-equiv="expires" content="0">
     <script src="{{ asset('/assets/js/progress-button/classie.js') }}"></script>
     <script src="{{ asset('/assets/js/progress-button/progressButton.js') }}"></script>
-    <script src="{{ asset('/assets/js/place-picker.js') }}?v7"></script>
+    <script src="{{ asset('/assets/js/place-picker.js') }}?v8"></script>
     <script>
         [].slice.call( document.querySelectorAll( 'button.progress-button' ) ).forEach( function( bttn ) {
             new ProgressButton( bttn, {

@@ -149,6 +149,10 @@
                 alert('Укажите телефон как минимум для первого пассажира');
                 return false;
             }
+            if ($('#email').val() === '') {
+                alert('Укажите адрес почты для отправки билетов');
+                return false;
+            }
 			// disable the button
 			self.button.setAttribute( 'disabled', '' );
 			// add class state-loading to the button (applies a specific transform to the button depending which data-style is defined - defined in the stylesheets)

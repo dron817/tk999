@@ -289,8 +289,35 @@
                                                         })
                                                     }
 
+                                                    function checkEmpty() {
+                                                        let data = {};
+                                                        data[1] = {};
+                                                        let trip_id = $('#trip_id').val();
+                                                        let date = $('#date').val();
+                                                        data[1]['place'] = $('#place').val();
+                                                        $.ajax({
+                                                            dataType: "json",
+                                                            type: "POST",
+                                                            url: "/checkEmpty",
+                                                            data: {
+                                                                trip_id: trip_id,
+                                                                date: date,
+                                                                data: data,
+                                                                "_token": $('input[name="_token"]').val()
+                                                            }
+                                                        }).done(function (msg) {
+                                                            if (msg['tickets'].length === 0) {
+                                                                SendForm();
+                                                            }
+                                                            else{
+                                                                alert('Выбранное вами место:'+ $('#place').val() + ' - уже было занято. Пожалуйста, выберите другое.');
+                                                                return false;
+                                                            }
+                                                        })
+                                                    }
+
                                                     $("#send").click(function () {
-                                                        SendForm();
+                                                        checkEmpty();
                                                     });
                                                 </script>
                                         </div>

@@ -46,7 +46,7 @@
 .progress-button .content::after  {
 	position: absolute;
 	right: 20px;
-	color: #0e7138;
+	color: #ed1124;
 	font-family: "icomoon";
 	opacity: 0;
 	-webkit-transition: opacity 0.3s 0.3s;
@@ -54,11 +54,11 @@
 }
 
 .progress-button .content::before {
-	content: "\e600"; /* Checkmark for success */
+	content: "\2717"; /* Checkmark for success */
 }
 
 .progress-button .content::after {
-	content: "\e601"; /* Cross for error */
+	content: "\2717"; /* Cross for error */
 }
 
 .progress-button.state-success .content::before,
