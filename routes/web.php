@@ -43,6 +43,7 @@ Route::middleware(['role:admin|agent'])->prefix('home')->group( function(){
     Route::get('/edit', 'App\Http\Controllers\AdminController@getEditor')->name('admin.edit');
     Route::any('/letEdit', 'App\Http\Controllers\AdminController@letEdit')->name('admin.letEdit');
     Route::get('/delete', 'App\Http\Controllers\AdminController@delOrder')->name('admin.delete');
+    Route::get('/restore', 'App\Http\Controllers\AdminController@restore')->name('admin.restore');
     Route::get('/showDeleted', 'App\Http\Controllers\AdminController@getDeleted')->name('admin.showDeleted');
     Route::get('/last', 'App\Http\Controllers\AdminController@lastOrders')->name('admin.last');
     Route::get('/tripsManagement', 'App\Http\Controllers\AdminController@tripsManagement')->name('admin.tripsManagement');

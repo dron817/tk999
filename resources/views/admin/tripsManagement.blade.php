@@ -30,6 +30,18 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
+{{--                                <div class="col-6">--}}
+{{--                                    <h5>Урай - Устье-Аха (8:00)</h5>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-6">--}}
+{{--                                    <h5>Урай - Устье-Аха (8:00)</h5>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-6">--}}
+{{--                                    <h5>Урай - Устье-Аха (8:00)</h5>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-6">--}}
+{{--                                    <h5>Урай - Устье-Аха (8:00)</h5>--}}
+{{--                                </div>--}}
                                 <div class="col-sm-12">
                                     <table id="example1"
                                            class="table table-bordered table-striped dataTable dtr-inline"

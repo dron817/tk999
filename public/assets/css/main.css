@@ -99,7 +99,7 @@ a.disabled {
     margin-bottom: 10px;
 }
 #search-section{
-    background-image: url("../img/search-bg.jpg");
+    background-image: url("../img/search-bg.webp");
     background-position-y: 50%;
     background-position-x: 100%;
     background-size: cover;
@@ -171,7 +171,7 @@ a.disabled {
 
 /* BUS IMAGE SECTION -- START */
 #bus-image-section{
-    background-image: url("../img/search-bg.jpg");
+    background-image: url("../img/search-bg.webp");
     background-position-y: 50%;
     background-position-x: 100%;
     background-size: cover;
@@ -220,22 +220,22 @@ a.disabled {
     transform: scale(1.02);
 }
 #UG{
-    background-image: url("../img/UG.jpg");
+    background-image: url("../img/UG.webp");
 }
 #HM{
-    background-image: url("../img/HM.jpg");
+    background-image: url("../img/HM.webp");
 }
 #UA{
-    background-image: url("../img/UA.jpg");
+    background-image: url("../img/UA.webp");
 }
 #SV{
-    background-image: url("../img/SV.jpg");
+    background-image: url("../img/SV.webp");
 }
 #NY{
-    background-image: url("../img/NY.jpg");
+    background-image: url("../img/NY.webp");
 }
 #TA{
-    background-image: url("../img/TA.jpg");
+    background-image: url("../img/TA.webp");
 }
 /* POPULAR SECTION -- END */
 
@@ -277,16 +277,16 @@ a.disabled {
     transform: scale(1.02);
 }
 #rzd{
-    background-image: url("../img/rzd.jpg");
+    background-image: url("../img/rzd.webp");
 }
 #svrpk{
-    background-image: url("../img/svrpk.jpg");
+    background-image: url("../img/svrpk.webp");
 }
 #biletDO{
-    background-image: url("../img/biletDO.jpg");
+    background-image: url("../img/biletDO.webp");
 }
 #ya{
-    background-image: url("../img/ya.jpg");
+    background-image: url("../img/ya.webp");
 }
 /* LINKS SECTION -- END */
 
@@ -1194,3 +1194,27 @@ b.col-12{
     margin-top: 15px;
 }
 /* LK SECTION -- END */
+
+/* MODAL-BETA -- START */
+#modal-beta{
+    bottom: 0px;
+    position: fixed;
+    z-index: 10;
+    background-color: #CADFFF;
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+}
+#modal-beta p {
+    line-height: 1.4;
+    font-family: sans-serif;
+    margin: 0;
+}
+#modal-beta button {
+    padding: 5px 15px;
+    background-color: #2f7532;
+    color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+/* MODAL-BETA -- END */

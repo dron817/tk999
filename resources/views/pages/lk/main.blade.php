@@ -40,10 +40,10 @@
                             echo '
                                 <div class="col-12 row order-ticket">
                                     <span>Заказ №'.$ticket->order_id.' -
-                                    <b>Рейс: </b> '.$trips{$ticket->trip_id}->from.' - '.
-                                    $trips{$ticket->trip_id}->to.' | '.
+                                    <b>Рейс: </b> '.$trips{$ticket->trip_id-1}->from.' - '.
+                                    $trips{$ticket->trip_id-1}->to.' | '.
                                     $ticket->date.' '.
-                                    $trips{$ticket->trip_id}->from_time.
+                                    $trips{$ticket->trip_id-1}->from_time.
                                     '</span>
                             ';
                             $order_flag = $ticket->order_id;
@@ -83,10 +83,10 @@
                             echo '
                                 <div class="col-12 row order-ticket">
                                     <span>Заказ №'.$ticket->order_id.' -
-                                    <b>Рейс: </b> '.$trips{$ticket->trip_id}->from.' - '.
-                                    $trips{$ticket->trip_id}->to.' | '.
+                                    <b>Рейс: </b> '.$trips{$ticket->trip_id-1}->from.' - '.
+                                    $trips{$ticket->trip_id-1}->to.' | '.
                                     $ticket->date.' '.
-                                    $trips{$ticket->trip_id}->from_time.
+                                    $trips{$ticket->trip_id-1}->from_time.
                                     '</span>
                             ';
                             $order_flag = $ticket->order_id;

@@ -21,6 +21,7 @@
     <script src="{{ asset('/assets/js/select2.min.js') }}"></script>
 @endsection
 @section('content')
+    @include('tpl.modal-beta')
     @include('tpl.search')
 
     <section id="popular-section">

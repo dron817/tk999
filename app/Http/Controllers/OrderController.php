@@ -67,7 +67,7 @@ class OrderController extends Controller
         $order_id = $ticket_obj->getMaxOrder()+1;
         Cookie::queue('order_id', $order_id, 10);
         $PaymentController_obj = new PaymentController;
-        $payment_url = $PaymentController_obj->payCreate($order_id, $_POST['data']['price'], $_POST['data'][1]['fio'], $_POST['data'][1]['phone']);
+        $payment_url = $PaymentController_obj->payCreate($order_id, $_POST['data']['price'], $_POST['data'][1]['fio'], $_POST['data']['email']);
 
         $payment_id = substr($payment_url, -36, 36);
 
@@ -153,12 +153,12 @@ class OrderController extends Controller
     }
 
     function checkEmpty(){
-        $ticket_obj = new Ticket();
-
-        $answer = array(
-            'tickets' => $_POST['data']['place'][0];
-        );
-        return ($answer);
+//         $ticket_obj = new Ticket();
+//
+//         $answer = array(
+//             'tickets' => $_POST['data']['place'][0]
+//         );
+//         return ($answer);
     }
 
     function letRefund(){

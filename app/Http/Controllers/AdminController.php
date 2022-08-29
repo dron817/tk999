@@ -70,6 +70,16 @@ class AdminController extends Controller
         return $this->getPanel();
     }
 
+    function restore()
+    {
+        $ticket_obj = new Ticket();
+        $ticket = $ticket_obj->find($_GET['ticket_id']);
+        $ticket->deleted='0';
+        $ticket->save();
+
+        return $this->getDeleted();
+    }
+
     function getAdder()
     {
         $trip_obj = new Trip();
@@ -126,8 +136,7 @@ class AdminController extends Controller
             $ticket->payed = $paymentControllerObj->checkPayment($ticket->payment_id);
         }
 
-
-        return view('admin.last', ['tickets' => $tickets]);
+        return view('admin.deleted', ['tickets' => $tickets]);
     }
 
     function getEditor(){

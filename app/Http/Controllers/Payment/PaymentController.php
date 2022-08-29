@@ -42,7 +42,7 @@ class PaymentController extends Controller
         return redirect ( route('index'));
     }
 
-    public function payCreate($order_id = 1 , $value = 500, $fio = 'Имя не указано', $phone = '79964443105')
+    public function payCreate($order_id = 1 , $value = 500, $fio = 'Имя не указано', $email = 'myroyalfamily@ya.ru')
     {
         $client = new Client();
         $client->setAuth($this->clientId, $this->clientSecret);
@@ -64,7 +64,7 @@ class PaymentController extends Controller
             'receipt' => [
                 'customer' => [
                     'full_name' => $fio,
-                    'phone' => $phone,
+                    'email' => $email,
                 ],
                 'items' => [
                     [
@@ -137,7 +137,6 @@ class PaymentController extends Controller
             Приятной поездки!';
             $headers = "MIME-Version: 1.0" . "\r\n" ."Content-type: text/html; charset=UTF-8" . "\r\n";
             mail($to, $subject, $message, $headers);
-
             //$this->sendSMS($order_id, $tickets{0}->phone);
 
             return redirect ( route('getOrder').'?order_id='.$order_id );
@@ -145,7 +144,7 @@ class PaymentController extends Controller
     }
 
 
-    function sendSMS($order_id = 1, $phone = '79964443105'){
+    function sendSMS($order_id = 1, $phone = '79964443105'){ //не используется
         $server = 'http://gateway.api.sc/rest/';
         header ("Content-Type: text/html; charset=utf-8");
         include_once('sms/StreamClass.php');

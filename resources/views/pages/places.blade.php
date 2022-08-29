@@ -11,7 +11,7 @@
 @section('custom-js-after')
     <script src="{{ asset('/assets/js/progress-button/classie.js') }}"></script>
     <script src="{{ asset('/assets/js/progress-button/progressButton.js') }}"></script>
-    <script src="{{ asset('/assets/js/place-picker.js') }}?5"></script>
+    <script src="{{ asset('/assets/js/place-picker.js') }}?v7"></script>
     <script>
         [].slice.call( document.querySelectorAll( 'button.progress-button' ) ).forEach( function( bttn ) {
             new ProgressButton( bttn, {
@@ -193,18 +193,21 @@
                     </div>
                 @endif
             </div>
+            @if(Auth::check())
 
-            @moder
-                <div class="row justify-content-md-center">
-                    <div class="col-12 col-lg-12">
-                        <div id="adult-outer">
-                            <input type="hidden" id="author" value="{{ Auth::user()->name }}">
-                            <input type="hidden" id="admin_link" value="{{ route('admin.home') }}?trip_id={{ app('request')->input('trip_id') }}&date={{ app('request')->input('date') }}">
-                            <button class="btn btn-success" id="booking">Бронировать без оплаты</button>
+                @moder
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-lg-12">
+                            <div id="adult-outer">
+                                <input type="hidden" id="author" value="{{ auth()->user()->name }}">
+                                <input type="hidden" id="admin_link" value="{{ route('admin.home') }}?trip_id={{ app('request')->input('trip_id') }}&date={{ app('request')->input('date') }}">
+                                <button class="btn btn-success" id="booking">Бронировать без оплаты</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endmoder
+                @endmoder
+
+            @endif
 
 
             <!-- {{ $dtz = date_default_timezone_set('Asia/Yekaterinburg') }} -->

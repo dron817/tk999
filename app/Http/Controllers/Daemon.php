@@ -14,10 +14,10 @@ class Daemon extends Controller
 
         $ticket_obj = new Ticket();
         $PaymentController_obj = new PaymentController();
-        $tickets = $ticket_obj->getLastWebTickets(10);
+        $tickets = $ticket_obj->getLastWebTickets(20);
 
         $crr_time = time();
-        $time_for_paying = 900;
+        $time_for_paying = 3600;
         echo $crr_time;
 
         echo "<table border=1>";

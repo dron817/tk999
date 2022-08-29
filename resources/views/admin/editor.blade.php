@@ -123,7 +123,84 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-map-marker"></i></span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="address" value="{{ $ticket->address }}">
+                                                        @switch($ticket->trip_id)
+                                                            @case(1)
+                                                            <select id="address" class="form-control">
+                                                                <option disabled selected>Выберите остановку</option>
+                                                                <option>01.Сибирь (05:15)</option>
+                                                                <option>02.Гимназия (05:17)</option>
+                                                                <option>03.Церковь (05:19)</option>
+                                                                <option>04.ГК Нефтяник 1 (05:21)</option>
+                                                                <option>05.Аэропорт (05:23)</option>
+                                                                <option>06.Звёзды Югры (05:25)</option>
+                                                                <option>07.Трансагенство - пристань (05:27)</option>
+                                                                <option>08.Почта (05:29)</option>
+                                                                <option>09.ТЦ Юбилейный (05:31)</option>
+                                                                <option>10.Соц.Защита (05:33)</option>
+                                                                <option>11.Горбольница (05:35)</option>
+                                                                <option>12.ТПП Урайнефтегаз (05:35)</option>
+                                                                <option>13.Молодежная (05:39)</option>
+                                                                <option>14.Музей (05:41)</option>
+                                                                <option>15.Дом Ребенка (05:43)</option>
+                                                                <option>16.Архив (05:45)</option>
+                                                                <option>17.Типография (05:47)</option>
+                                                                <option>18.Гармония (05:49)</option>
+                                                                <option>19.Электросети (05:51)</option>
+                                                            </select>
+                                                            @break
+                                                            @case(2)
+                                                            <select id="address" class="form-control">
+                                                                <option disabled selected>Выберите остановку</option>
+                                                                <option>01.Сибирь (14:45)</option>
+                                                                <option>02.Гимназия (14:47)</option>
+                                                                <option>03.Церковь (14:49)</option>
+                                                                <option>04.ГК Нефтяник 1 (14:51)</option>
+                                                                <option>05.Аэропорт (14:53)</option>
+                                                                <option>06.Звёзды Югры (14:55)</option>
+                                                                <option>07.Трансагенство - пристань (14:57)</option>
+                                                                <option>08.Почта (14:59)</option>
+                                                                <option>09.ТЦ Юбилейный (15:01)</option>
+                                                                <option>10.Соц.Защита (15:03)</option>
+                                                                <option>11.Горбольница (15:05)</option>
+                                                                <option>12.ТПП Урайнефтегаз (15:07)</option>
+                                                                <option>13.Молодежная (15:09)</option>
+                                                                <option>14.Музей (15:11)</option>
+                                                                <option>15.Дом Ребенка (15:13)</option>
+                                                                <option>16.Архив (15:15)</option>
+                                                                <option>17.Типография (15:17)</option>
+                                                                <option>18.Гармония (15:19)</option>
+                                                                <option>19.Электросети (15:21)</option>
+                                                            </select>
+                                                            @break
+                                                            @case(3)
+                                                            <select id="address" class="form-control">
+                                                                <option selected>Ж/Д Вокзал</option>
+                                                            </select>
+                                                            @break
+                                                            @case(4)
+                                                            <select id="address" class="form-control">
+                                                                <option selected>Ж/Д Вокзал</option>
+                                                            </select>
+                                                            @break
+                                                            @case(8)
+                                                            <select id="address" class="form-control">
+                                                                <option disabled selected>Выберите остановку</option>
+                                                                <option>Трансагенство</option>
+                                                                <option>Окружная клиническая больница</option>
+                                                                <option>Речпорт(автовокзал)</option>
+                                                            </select>
+                                                            @break
+                                                            @case(10)
+                                                            <select id="address" class="form-control">
+                                                                <option disabled selected>Выберите остановку</option>
+                                                                <option>Трансагенство</option>
+                                                                <option>Окружная клиническая больница</option>
+                                                                <option>Речпорт(автовокзал)</option>
+                                                            </select>
+                                                            @break
+                                                            @default
+                                                            <input id="address" type="text" class="form-control">
+                                                        @endswitch
                                                     </div>
                                                 </div>
                                                 <input type="hidden" id="ticket_id" value="{{ $ticket->id }}">

@@ -44,25 +44,30 @@ class TripsController extends Controller
 
         // Получение списка маршрутов
         $trip_obj = new Trip;
+        //if (empty($request->date))
         $from = $request->from;
         $to = $request->to;
         $trips = $trip_obj->where($from, $to);
 
 
-        $tickets_obj = new Ticket;
-        foreach ($trips as $trip){
-            $num = $trip->num;
-            if ($trip->tong == 1) $trip->places = 53; else $trip->places = 20;
-            $trips_by_num = $trip_obj->getTripsByNum($num);
-            foreach ($trips_by_num as $trip_by_num){
-                $tickets = $tickets_obj->getTicketsByTrip($trip_by_num->id, $from_date_clear);
-                foreach ($tickets as $ticket){
-                    $trip->places--;
-                }
-            }
-        }
-        foreach ($trips as $trip)
-            $trip->middle = json_decode($trip->middle);
+// -------Подсчёт кол-ва оставшихся мест
+//         $tickets_obj = new Ticket;
+//         foreach ($trips as $trip){
+//             $num = $trip->num;
+//             if ($trip->tong == 1) $trip->places = 53; else $trip->places = 20;
+//             $trips_by_num = $trip_obj->getTripsByNum($num);
+//             foreach ($trips_by_num as $trip_by_num){
+//                 $tickets = $tickets_obj->getTicketsByTrip($trip_by_num->id, $from_date_clear);
+//                 foreach ($tickets as $ticket){
+//                     $trip->places--;
+//                 }
+//             }
+//         }
+
+//         foreach ($trips as $trip)
+//             $trip->middle = json_decode($trip->middle);
+
+        $trip->middle = '';
 
         return view('pages/tickets', ['tickets' => $trips, 'from' => $from, 'to' => $to, 'from_date' => $from_date,
             'from_date_long' => $from_date_long, 'to_date' => $to_date, 'after_date' => $after_date,
