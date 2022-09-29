@@ -40,7 +40,7 @@
             </div>
             <div class="data-group col-12 col-lg-6 col-md-6">
                 <label for="email">Электронная почта для отправки билетов</label>
-                <input type="text" id="email" placeholder="проверьте папку Спам">
+                <input type="email" id="email" placeholder="проверьте папку спам">
             </div>
         </div>
     </div>

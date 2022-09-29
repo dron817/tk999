@@ -19,7 +19,7 @@
     </div>
     <div class="data-group col-12 col-lg-3 col-md-6">
         <label for="doc_{{ $num }}">Номер документа</label>
-        <input type="text" id="doc_{{ $num }}">
+        <input placeholder="для отчетных документов" type="text" id="doc_{{ $num }}">
         <div class="checkbox-group">
             <div class="checkbox">
                 <input type="checkbox" class="checkbox-input" id="withOutDoc_{{ $num }}">

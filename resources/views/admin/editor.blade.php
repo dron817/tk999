@@ -13,8 +13,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
-
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Изменение билета</h3>
@@ -255,13 +253,13 @@
                                                                 "_token": $('input[name="_token"]').val()
                                                             }
                                                         }).done(function (msg) {
-                                                            if (msg['tickets'].length === 0) {
+                                                            // if (msg['tickets'].length === 0) {
                                                                 SendForm();
-                                                            }
-                                                            else{
-                                                                alert('Выбранное вами место:'+ $('#place').val() + ' - уже было занято. Пожалуйста, выберите другое.');
-                                                                return false;
-                                                            }
+                                                            // }
+                                                            // else{
+                                                            //     alert('Выбранное вами место:'+ $('#place').val() + ' - уже было занято. Пожалуйста, выберите другое.');
+                                                            //     return false;
+                                                            // }
                                                         })
                                                     }
 

@@ -11,7 +11,7 @@
     <title>ТК-999 | @yield('title')</title>
 
     <!-- CSS Styles  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/main.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/main.css') }}?V2"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/preloader.css') }}"/>

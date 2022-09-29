@@ -20,7 +20,8 @@ class TicketsExport implements FromView
         $date = $_GET['date'] ?? date("d.m.Y");
         $trip_num = $_GET['trip_num'] ?? '1';
         $trip = $trip_obj->getFirstTripByNum($_GET['trip_num']);
-        $trip_name = $_GET['date'] .' '.$trip->from.' - '.$trip->to.' ('.$trip->from_time.')';
+        $trip_name = $trip->id .' '.$trip->from.' - '.$trip->to.' ('.$trip->from_time.')';
+        $trip_date = $_GET['date'];
         if (isset($_GET['trip_id'])) $trip_num = $trip->num;
         $tickets_all = new Collection();
         $trips = $trip_obj->getTripsByNum($trip_num);
@@ -36,7 +37,8 @@ class TicketsExport implements FromView
 
         return view('admin.exel', [
                     'invoices' => $tickets,
-                    'trip_name' =>$trip_name
+                    'trip_name' =>$trip_name,
+                    'trip_date' =>$trip_date
                 ]);
         return $tickets;
     }

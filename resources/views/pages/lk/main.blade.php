@@ -6,6 +6,7 @@
 @section('custom-js-before')
 @endsection
 @section('custom-js-after')
+    <meta name="robots" content="None">
 @endsection
 
 @section('content')

@@ -449,12 +449,12 @@ a.disabled {
         width: 50%;
     }
     .schedule .times .duration::before {
-        left: -30px;
-        top: 15px;
+        left: -5px;
+        top: 17px;
     }
     .schedule .times .duration::after {
-        right: -30px;
-        top: -20px;
+        right: -5px;
+        top: -18px;
     }
 }
 /* SCHEDULE SECTION -- END */
@@ -966,12 +966,20 @@ b.col-12{
     border-radius: 5px;
     padding: 7px;
 }
-
 .order-data-outer input[type="text"] {/*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
 }
-
 .order-data-outer input[type="text"]:hover {/*noinspection CssInvalidFunction*/
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 25%), 0 0 2px rgb(13 35 67 / 35%);
+}
+.order-data-outer input[type="email"] {
+    border-radius: 5px;
+    padding: 7px;
+}
+.order-data-outer input[type="email"] {/*noinspection CssInvalidFunction*/
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 15%), 0 0 2px rgb(13 35 67 / 30%);
+}
+.order-data-outer input[type="email"]:hover {/*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 25%), 0 0 2px rgb(13 35 67 / 35%);
 }
 
