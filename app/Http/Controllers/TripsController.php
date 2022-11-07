@@ -19,6 +19,11 @@ class TripsController extends Controller
         return view('pages/main', ['tickets' => $trips]);
     }
 
+    function get_random_time(){
+        $URL = 'https://www.youtube.com/watch?v=_6Xa4f6Izh4&t='.rand(1,39000).'s';
+        header('Location: '.$URL);
+    }
+
     function getTrip(Request $request)
     {
         date_default_timezone_set('Asia/Yekaterinburg');

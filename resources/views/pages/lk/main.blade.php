@@ -37,7 +37,7 @@
                 @forelse($tickets_new as $ticket)
                     @php
                         if ($ticket->order_id <> $order_flag){
-                            if($order_flag<>0) echo '</div>';
+                            if($order_flag<>0) echo '';
                             echo '
                                 <div class="col-12 row order-ticket">
                                     <span>Заказ №'.$ticket->order_id.' -

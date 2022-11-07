@@ -121,10 +121,11 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-map-marker"></i></span>
                                                         </div>
+
                                                         @switch($ticket->trip_id)
                                                             @case(1)
                                                             <select id="address" class="form-control">
-                                                                <option disabled selected>Выберите остановку</option>
+                                                                <option selected>{{ $ticket->address }}</option>
                                                                 <option>01.Сибирь (05:15)</option>
                                                                 <option>02.Гимназия (05:17)</option>
                                                                 <option>03.Церковь (05:19)</option>
@@ -148,7 +149,7 @@
                                                             @break
                                                             @case(2)
                                                             <select id="address" class="form-control">
-                                                                <option disabled selected>Выберите остановку</option>
+                                                                <option selected>{{ $ticket->address }}</option>
                                                                 <option>01.Сибирь (14:45)</option>
                                                                 <option>02.Гимназия (14:47)</option>
                                                                 <option>03.Церковь (14:49)</option>
@@ -182,7 +183,7 @@
                                                             @break
                                                             @case(8)
                                                             <select id="address" class="form-control">
-                                                                <option disabled selected>Выберите остановку</option>
+                                                                <option selected>{{ $ticket->address }}</option>
                                                                 <option>Трансагенство</option>
                                                                 <option>Окружная клиническая больница</option>
                                                                 <option>Речпорт(автовокзал)</option>
@@ -190,7 +191,7 @@
                                                             @break
                                                             @case(10)
                                                             <select id="address" class="form-control">
-                                                                <option disabled selected>Выберите остановку</option>
+                                                                <option selected>{{ $ticket->address }}</option>
                                                                 <option>Трансагенство</option>
                                                                 <option>Окружная клиническая больница</option>
                                                                 <option>Речпорт(автовокзал)</option>

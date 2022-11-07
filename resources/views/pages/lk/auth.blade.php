@@ -32,7 +32,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-1"></div>
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <h2>Авторизация</h2>
                     <div class="row">
                         <form action="{{ $login_url }}" method="post">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-1"></div>
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <h2>Регистрация</h2>
                     <div class="row">
                         <form action="{{ $register_url }}" method="post">

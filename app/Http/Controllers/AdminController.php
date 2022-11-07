@@ -219,6 +219,8 @@ class AdminController extends Controller
         $days = implode(" ", $days_arr);
         $trip = $trips_obj->find($data->trip_id);
         $trip->days_of_week = $days;
+        $trip->dempfer_time = $data->dempfer_time;
+        $trip->off_days= $data->off_days;
         $trip->save();
 
         $trips = $trips_obj->getAllTrips();

@@ -18,6 +18,9 @@ mb_internal_encoding("UTF-8");
 
 Route::get('/', 'App\Http\Controllers\TripsController@getAll')->name('index');
 
+//Левое
+Route::get('/random_time', 'App\Http\Controllers\TripsController@get_random_time')->name('random_time');
+
 Route::get('/tickets_list', 'App\Http\Controllers\TripsController@getTrip')->name('tickets');
 Route::get('/places', 'App\Http\Controllers\PlacesController@getPlaces')->name('places');
 Route::get('/print', 'App\Http\Controllers\OrderController@print')->name('print');

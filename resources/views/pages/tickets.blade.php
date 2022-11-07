@@ -83,6 +83,12 @@
                                     $f=1;
                             }
                             if (!$f) unset($tickets_actual[$ticket_key]);
+
+                            $off_days_arr = explode(',', $ticket->off_days); //отключаем рейсы по датам
+
+                            foreach ($off_days_arr as $off_day)
+                                if ((date('d.m', strtotime($from_date_clear)))==$off_day)
+                                    unset($tickets_actual[$ticket_key]);
                     }
 
                 @endphp

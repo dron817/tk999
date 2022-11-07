@@ -14,7 +14,7 @@
         <label for="phone_{{ $num }}">Телефон</label>
         <input type="text" id="phone_{{ $num }}">
         <script>
-            $('#phone_'+{{ $num }}).mask('79999999999');
+            $('#phone_'+{{ $num }}).mask('89999999999');
         </script>
     </div>
     <div class="data-group col-12 col-lg-3 col-md-6">
