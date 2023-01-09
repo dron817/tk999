@@ -89,6 +89,15 @@ class PaymentController extends Controller
         return $payment_url;
     }
 
+    public function getPaymentStatus($payment_id = '29e9a504-000f-5111-8000-1d38829ca836')
+    {
+        if ($payment_id == '29e9a504-000f-5111-8000-1d38829ca836') return 'succeeded';
+
+        $client = new Client();
+        $client->setAuth($this->clientId, $this->clientSecret);
+        $payment = $client->getPaymentInfo($payment_id);
+        return $payment->getStatus();
+    }
     public function checkPayment($payment_id = '29e9a504-000f-5111-8000-1d38829ca836')
     {
         if ($payment_id == '29e9a504-000f-5111-8000-1d38829ca836') return 'succeeded';
@@ -96,6 +105,7 @@ class PaymentController extends Controller
         $ticket_obj = new Ticket();
         $cashed_status = $ticket_obj->getTicketByPaymentId($payment_id)->payment_status;
         if ($cashed_status == 'succeeded') return 'succeeded';
+        if ($cashed_status == 'refunded') return 'refunded';
 
        try {
             $client = new Client();

@@ -984,9 +984,14 @@ b.col-12{
 }
 .ref-btn{
     background-color: #F9A825 !important;
-    float: right;
+}
+.refunded-btn{
+    background-color: #E57373 !important;
 }
 .ref-btn img {
+    filter: invert(1);
+}
+.load-btn img {
     filter: invert(1);
 }
 /* CUSTOM CHECKBOX */
@@ -1093,6 +1098,43 @@ b.col-12{
     border-radius: 10px;
 }
 /* ORDER SECTION -- END */
+
+/* REF-TICKET SECTION -- START */
+.refund-ticket{
+    box-shadow: 0 4px 12px -4px rgb(13 35 67 / 10%), 0 0 2px rgb(13 35 67 / 10%);
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 0;
+}
+@media (max-width: 991px) {
+    .refund-ticket-right{
+        margin-top: 20px !important;
+    }
+}
+.refund-ticket td{
+    padding: 5px;
+    border: 1px solid #7F8C8D;
+}
+.refund-ticket th{
+    padding: 5px;
+    border: 1px solid #7F8C8D;
+}
+.refund-ticket a{
+    color: white;
+    border-radius: 5px;
+    background-color: #388E3C;
+    padding: 10px 15px;
+    transition: .5s;
+    font-size: 18px;
+    text-decoration: none;
+    margin-top: 20px;
+    display: inline-block;
+}
+.refund-ticket a:hover{
+    background-color: #2f7532;
+    color: white;
+}
+/* REF-SECTION -- END */
 
 /* ORDER-TICKET SECTION -- START */
 .order-ticket {/*noinspection CssInvalidFunction*/

@@ -60,9 +60,14 @@
                                 <span class="price">
                                     <p>Место: {{ $ticket->place }}</p>
                                 </span>
+                            @if($ticket->payment_status=='refunded')
+                                <a class="refunded-btn" disabled> Билет возвращён</a>
+                            @else
                             <span class="buy">
-                                        <a href="/print?ticket_id={{ $ticket->id }}">Скачать</a>
+                                <a class="ref-btn" href="/RefundPage?id={{ $ticket->id }}"><img src="assets/img/ref.png" alt=""> Возврат</a>
+                                <a class="load-btn" href="/print?ticket_id={{ $ticket->id }}"><img src="assets/img/load.png" alt=""> Скачать</a>
                             </span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -88,10 +93,6 @@
                                     $ticket->date.' '.
                                     $trips{$ticket->trip_id-1}->from_time.
                                     '</div>
-
-                                    <div class="col-6">
-                                        <a class="ref-btn" href="/letRefund?id='.$ticket->order_id.'"><img src="assets/img/ref.png" alt=""> Возврат</a>
-                                    </div>
                             ';
                             $order_flag = $ticket->order_id;
                         }
@@ -106,9 +107,13 @@
                                 <span class="price">
                                     <p>Место: {{ $ticket->place }}</p>
                                 </span>
-                            <span class="buy">
-                                        <a href="/print?ticket_id={{ $ticket->id }}">Скачать</a>
+                            @if($ticket->payment_status=='refunded')
+                                <a class="refunded-btn" disabled> Билет возвращён</a>
+                            @else
+                                <span class="buy">
+                                <a class="load-btn" href="/print?ticket_id={{ $ticket->id }}"><img src="assets/img/load.png" alt=""> Скачать</a>
                             </span>
+                            @endif
                         </div>
                     </div>
                 @empty

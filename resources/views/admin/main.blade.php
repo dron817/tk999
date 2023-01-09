@@ -299,12 +299,12 @@
                                                                                 <p>Время заказа:</p><p><b>{{ $ticket->created_at }}</b></p>
                                                                                 <p>Идентификатор платежа:</p><p><b>{{ $ticket->payment_id }}</b></p>
                                                                             </div>
-                                                                            <div
-                                                                                class="modal-footer justify-content-between">
+                                                                            <div class="modal-footer justify-content-between">
                                                                                 <button type="button"
                                                                                         class="btn btn-outline-light"
                                                                                         data-dismiss="modal">Закрыть
                                                                                 </button>
+                                                                                <a style="color:red" href="{{ route('RefundPage') }}?id={{ $ticket->id }}">Возврат билета</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>

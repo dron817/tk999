@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\URL;
+
 use STREAM;
 
 class OrderController extends Controller
@@ -60,6 +61,29 @@ class OrderController extends Controller
         return view('pages/order', ['tickets' => $tickets, 'trip' => $trip_info, 'payed' => $payed, 'payment_url' => $payment_url]);
     }
 
+    function RefundPage(Request $request){
+        date_default_timezone_set('Asia/Yekaterinburg');
+        $ticket_obj = new Ticket();
+        $ticket = $ticket_obj->getTicketByID($_GET['id']);
+        $trip_obj = new Trip();
+        $trip = $trip_obj->getTripByID($ticket->trip_id);
+
+        $k = $this->getKForRef($ticket->date, $trip->from_time);
+        $ref_cost = $ticket->buy_cost*$k;
+
+        return view('pages/refund', ['ticket' => $ticket, 'trip' => $trip, 'ref_cost' => $ref_cost]);
+    }
+
+    function getKForRef($date, $time){
+        $ticket_time = strtotime($date.' '.$time);
+        $now_time = strtotime('now');
+        $def_time = ($ticket_time - $now_time)/3600;
+        if ($def_time > 6) $k=1;
+        elseif ($def_time > 1) $k=0.5;
+        else $k=0;
+        return $k;
+    }
+
     function letBuy(Request $request): array
     {
         date_default_timezone_set('Asia/Yekaterinburg');
@@ -105,6 +129,10 @@ class OrderController extends Controller
                 $ticket_obj->email = $_POST['data']['email'];
                 $ticket_obj->date = $_POST['data']['date'];
                 $ticket_obj->trip_id = $_POST['data']['trip_id'];
+                if ($_POST['data'][$i]['tariff']=='0')
+                    $ticket_obj->buy_cost = $trip->price;
+                else
+                    $ticket_obj->buy_cost = $trip->price_kids;
                 $ticket_obj->order_id = $order_id;
                 $ticket_obj->payment_id = $payment_id;
                 $ticket_obj->author = $_POST['data']['author'];
@@ -174,14 +202,20 @@ class OrderController extends Controller
         $refund = new PaymentController();
 
         $ticket_obj = new Ticket();
+        $ticket = $ticket_obj->getTicketByID($_GET['id']);
         $trip_obj = new Trip();
-        $tickets = $ticket_obj->getTicketsByOrderID($_GET['id']);
-        $count = 0;
-        foreach ($tickets as $ticket){
-            $count += $trip_obj->getTripById($ticket->trip_id)->price;
-            $payment_id = $ticket->payment_id;
-        }
-        echo $count;
-//         return $refund->Refund($payment_id, $count);
+        $trip = $trip_obj->getTripByID($ticket->trip_id);
+
+        $payment_id = $ticket->payment_id;
+        $count = $ticket->buy_cost*$this->getKForRef($ticket->date, $trip->from_time);
+
+        $refund->Refund($payment_id, $count);
+        $ticket_obj->setPaymentStatus($payment_id, "refunded");
+
+        $ticket = $ticket_obj->find($_GET['id']);
+        $ticket->deleted='1';
+        $ticket->save();
+
+        return redirect ( route('RefundPage').'?id='.$_GET['id'] );
     }
 }
