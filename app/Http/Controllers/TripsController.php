@@ -17,7 +17,7 @@ class TripsController extends Controller
             $trip->middle = json_decode($trip->middle);
 
             $trip->string_days='';
-            if ($trip->days_of_week=='1 2 3 4 5 6 7')
+            if ($trip->days_of_week==' 1 2 3 4 5 6 7')
                 $trip->string_days='ежедневно';
             else{
                 if (str_contains($trip->days_of_week, '1'))
