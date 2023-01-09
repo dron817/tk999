@@ -31,7 +31,7 @@ class Trip extends Model
     }
     public function getAllTrips(): Collection
     {
-        return $user = DB::table('trips')->get();
+        return $user = DB::table('trips')->orderBy('num')->get();
     }
     public function getTripById($id)
     {

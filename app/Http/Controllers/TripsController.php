@@ -13,10 +13,30 @@ class TripsController extends Controller
         $trip = new Trip;
         $trips = $trip->all();
 
-        foreach ($trips as $trip)
+        foreach ($trips as $trip){
             $trip->middle = json_decode($trip->middle);
 
-        return view('pages/main', ['tickets' => $trips]);
+            $trip->string_days='';
+            if ($trip->days_of_week=='1 2 3 4 5 6 7')
+                $trip->string_days='ежедневно';
+            else{
+                if (str_contains($trip->days_of_week, '1'))
+                    $trip->string_days .= 'ПН ';
+                if (str_contains($trip->days_of_week, '2'))
+                    $trip->string_days .= 'ВТ ';
+                if (str_contains($trip->days_of_week, '3'))
+                    $trip->string_days .= 'СР ';
+                if (str_contains($trip->days_of_week, '4'))
+                    $trip->string_days .= 'ЧТ ';
+                if (str_contains($trip->days_of_week, '5'))
+                    $trip->string_days .= 'ПТ ';
+                if (str_contains($trip->days_of_week, '6'))
+                    $trip->string_days .= 'СБ ';
+                if (str_contains($trip->days_of_week, '7'))
+                    $trip->string_days .= 'ВС';
+            }
+        }
+        return view('pages/main', ['trips' => $trips]);
     }
 
     function get_random_time(){

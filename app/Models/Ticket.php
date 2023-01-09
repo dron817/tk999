@@ -91,9 +91,10 @@ class Ticket extends Model
         return DB::table('tickets')->where('author', '=', 'web')->where('deleted', '=', '0')->limit($limit)->orderBy('id', 'desc')->get();
     }
 
-    public function getLastDeletedTickets($limit = 10): Collection
+    public function getLastDeletedTickets($limit = 20): Collection
     {
-        return DB::table('tickets')->where('author', '=', 'web')->where('deleted', '=', '1')->limit($limit)->orderBy('id', 'desc')->get();
+        //return DB::table('tickets')->where('author', '=', 'web')->where('deleted', '=', '1')->limit($limit)->orderBy('id', 'desc')->get();
+        return DB::table('tickets')->where('deleted', '=', '1')->limit($limit)->orderBy('id', 'desc')->get();
     }
 
     public function isBusy($trip_id, $date, $place): bool

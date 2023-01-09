@@ -172,6 +172,16 @@ class OrderController extends Controller
 
     function letRefund(){
         $refund = new PaymentController();
-        return $refund->Refund();
+
+        $ticket_obj = new Ticket();
+        $trip_obj = new Trip();
+        $tickets = $ticket_obj->getTicketsByOrderID($_GET['id']);
+        $count = 0;
+        foreach ($tickets as $ticket){
+            $count += $trip_obj->getTripById($ticket->trip_id)->price;
+            $payment_id = $ticket->payment_id;
+        }
+        echo $count;
+//         return $refund->Refund($payment_id, $count);
     }
 }

@@ -96,42 +96,42 @@
         <div class="container">
             <h2 class="section-heading">Расписание</h2>
             <div class="row">
-                @foreach($tickets as $ticket)
-                    @if($ticket->days_of_week<>'')
+                @foreach($trips as $trip)
+                    @if($trip->days_of_week<>'')
                         <div class="col-12 schedule">
                             <span class="route">
                                 <a href="#">
                                     <span class="fa fa-bus icon" style="color:rgba(1, 87, 155, 1)"></span>
-                                    {{ $ticket->from }} - {{ $ticket->to }}
+                                    {{ $trip->from }} - {{ $trip->to }}
                                 </a>
-                                <p class="text-muted">ежедневно</p>
-                                <p>  <a data-bs-toggle="collapse" href="#route-{{ $ticket->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
+                                <p class="text-muted">{{ $trip->string_days }}</p>
+                                <p>  <a data-bs-toggle="collapse" href="#route-{{ $trip->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">Маршрут</a></p>
                             </span>
                             <div class="times">
                             <span class="from">
-                                    <p class="time">{{ $ticket->from_time }}</p>
-                                    <p class="place text-muted">{{ $ticket->from_desc }}</p>
+                                    <p class="time">{{ $trip->from_time }}</p>
+                                    <p class="place text-muted">{{ $trip->from_desc }}</p>
                             </span>
                                 <span class="duration">
-                                    <p class="text-muted">{{ $ticket->duration }}</p>
+                                    <p class="text-muted">{{ $trip->duration }}</p>
                             </span>
                                 <span class="to">
-                                <p class="time">~{{ $ticket->to_time }}</p>
-                                <p class="place text-muted">{{ $ticket->to_desc }}</p>
+                                <p class="time">~{{ $trip->to_time }}</p>
+                                <p class="place text-muted">{{ $trip->to_desc }}</p>
                             </span>
                             </div>
                             <div class="choose">
                                 <span class="price">
-                                    <p>от {{ $ticket->price }} р.</p>
+                                    <p>от {{ $trip->price }} р.</p>
                                 </span>
                                 <span class="buy">
-                                    <button onclick="location.href='{{ route('tickets') }}?from={{ $ticket->from }}&to={{ $ticket->to }}';">Выбрать дату</button>
+                                    <button onclick="location.href='{{ route('tickets') }}?from={{ $trip->from }}&to={{ $trip->to }}';">Выбрать дату</button>
                                 </span>
                             </div>
                         </div>
-                        <div class="collapse" id="route-{{ $ticket->id }}">
+                        <div class="collapse" id="route-{{ $trip->id }}">
                             <div class="card card-body">
-                                @include('tpl.trip_track', $ticket)
+                                @include('tpl.trip_track', $trip)
                             </div>
                         </div>
                     @endif

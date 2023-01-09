@@ -25,21 +25,21 @@ class PaymentController extends Controller
     private $clientId = '896857';
     private $clientSecret = 'live_AYNsgIq8BKrSNr--BFOzMA5aFCTGBucebWwh5CJqUvo';
 
-    public function Refund(){
+    public function Refund($payment_id, $count){
         $client = new Client();
         $client->setAuth($this->clientId, $this->clientSecret);
-//         $client->createRefund(
-//             array(
-//                 'amount' => array(
-//                     'value' => 1.0,
-//                     'currency' => 'RUB',
-//                 ),
-//                 'payment_id' => '2a50d3cc-000f-5000-8000-1587ce5641ce',
-//             ),
-//             uniqid('', true)
-//         );
+        $client->createRefund(
+            array(
+                'amount' => array(
+                    'value' => $count,
+                    'currency' => 'RUB',
+                ),
+                'payment_id' => $payment_id,
+            ),
+            uniqid('', true)
+        );
 
-        return redirect ( route('index'));
+        return redirect (route('lk'));
     }
 
     public function payCreate($order_id = 1 , $value = 500, $fio = 'Имя не указано', $email = 'myroyalfamily@ya.ru')

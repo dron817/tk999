@@ -42,10 +42,11 @@
                                         let days = '';
                                         let dempfer_time = $('#dt' + trip_id).val();
                                         let off_days = $('#off_d' + trip_id).val();
+                                        let price = $('#price' + trip_id).val();
                                         for (let i = 1; i <= 7; i++){
                                             if ($('#cb' + trip_id + '_' + i).is(':checked')) days=days+'_'+i;
                                         }
-                                        let url = '{{ route('admin.letEditTrip') }}' + '?trip_id=' + trip_id + '&days=' + days + '&dempfer_time=' + dempfer_time+ '&off_days=' + off_days;
+                                        let url = '{{ route('admin.letEditTrip') }}' + '?trip_id=' + trip_id + '&days=' + days + '&dempfer_time=' + dempfer_time+ '&price=' + price+ '&off_days=' + off_days;
                                         location.href = url;
                                     }
                                 </script>
@@ -70,8 +71,14 @@
                                         }
                                     @endphp
                                 </div>
+                                <br>
+                                <br>
+                                <label>Цена</label>
+                                <input class="form-control" id="price{{$trip->id}}" type="text" placeholder="" value="{{ $trip->price }}">
+                                <br>
                                 <label>Закрыть покупку за (минут)</label>
                                 <input class="form-control" id="dt{{$trip->id}}" type="text" placeholder="" value="{{ $trip->dempfer_time }}">
+                                <br>
                                 <label>Исключить поездки по датам:</label>
                                 <input class="form-control" id="off_d{{$trip->id}}" type="text" placeholder="" value="{{ $trip->off_days }}">
                                 <sub>Через запятую, без пробелов. Пример: 23.02,08.03</sub>

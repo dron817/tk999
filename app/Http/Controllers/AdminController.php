@@ -133,7 +133,8 @@ class AdminController extends Controller
             $trip_obj = new Trip();
             $crr_trip = $trip_obj->getTripById($ticket->trip_id);
             $ticket->way = $crr_trip->from.'>'.$crr_trip->to;
-            $ticket->payed = $paymentControllerObj->checkPayment($ticket->payment_id);
+            if ($ticket->author == 'web')
+                $ticket->payed = $paymentControllerObj->checkPayment($ticket->payment_id);
         }
 
         return view('admin.deleted', ['tickets' => $tickets]);
@@ -156,6 +157,7 @@ class AdminController extends Controller
                 unset($free_places[$ticket_unit->place-1]);
         }
 
+        if ($ticket->fio == '-') $ticket->fio = '';
 
         return view('admin.editor', ['ticket' => $ticket, 'free_places' => $free_places, 'trips' => $all_trips]);
     }
@@ -220,11 +222,11 @@ class AdminController extends Controller
         $trip = $trips_obj->find($data->trip_id);
         $trip->days_of_week = $days;
         $trip->dempfer_time = $data->dempfer_time;
+        $trip->price = $data->price;
         $trip->off_days= $data->off_days;
         $trip->save();
 
         $trips = $trips_obj->getAllTrips();
         return view('admin.tripsManagement', ['trips' => $trips]);
     }
-
 }

@@ -62,7 +62,7 @@
                                 </span>
                             <span class="buy">
                                         <a href="/print?ticket_id={{ $ticket->id }}">Скачать</a>
-                                </span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,6 @@
                 <p></p>
                 <p></p>
                 <h6>Прошедшие рейсы</h6>
-
                 @php $order_flag = 0; @endphp
                 @forelse($tickets_old as $ticket)
                     @php
@@ -83,12 +82,16 @@
                             if($order_flag<>0) echo '</div>';
                             echo '
                                 <div class="col-12 row order-ticket">
-                                    <span>Заказ №'.$ticket->order_id.' -
+                                    <div class="col-6">Заказ №'.$ticket->order_id.' -
                                     <b>Рейс: </b> '.$trips{$ticket->trip_id-1}->from.' - '.
                                     $trips{$ticket->trip_id-1}->to.' | '.
                                     $ticket->date.' '.
                                     $trips{$ticket->trip_id-1}->from_time.
-                                    '</span>
+                                    '</div>
+
+                                    <div class="col-6">
+                                        <a class="ref-btn" href="/letRefund?id='.$ticket->order_id.'"><img src="assets/img/ref.png" alt=""> Возврат</a>
+                                    </div>
                             ';
                             $order_flag = $ticket->order_id;
                         }
@@ -105,7 +108,7 @@
                                 </span>
                             <span class="buy">
                                         <a href="/print?ticket_id={{ $ticket->id }}">Скачать</a>
-                                </span>
+                            </span>
                         </div>
                     </div>
                 @empty

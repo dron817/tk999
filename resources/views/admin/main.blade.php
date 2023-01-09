@@ -156,16 +156,22 @@
                                                     Урай (16:00)
                                                 </option>
                                                 <option value="9" @if( $trip_num==9) selected @endif>9. Югорск - Урай
-                                                    (08:00)
+                                                    (08:00) |до 12.12|
                                                 </option>
                                                 <option value="10" @if( $trip_num==10) selected @endif>10. Урай - Югорск
-                                                    (13:50)
+                                                    (13:50) |до 12.12|
                                                 </option>
                                                 <option value="11" @if( $trip_num==11) selected @endif>11. Урай - Нягань
                                                     (05:00)
                                                 </option>
                                                 <option value="12" @if( $trip_num==12) selected @endif>12. Нягань - Урай
                                                     (14:00)
+                                                </option>
+                                                <option value="14" @if( $trip_num==14) selected @endif>14. Урай - Югорск
+                                                    (14:00) |после 12.12|
+                                                </option>
+                                                <option value="15" @if( $trip_num==15) selected @endif>15. Югорск - Урай
+                                                    (09:30) |после 12.12|
                                                 </option>
                                             </select>
                                         </div>

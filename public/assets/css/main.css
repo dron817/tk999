@@ -982,7 +982,13 @@ b.col-12{
 .order-data-outer input[type="email"]:hover {/*noinspection CssInvalidFunction*/
     box-shadow: 0 4px 12px -4px rgb(13 35 67 / 25%), 0 0 2px rgb(13 35 67 / 35%);
 }
-
+.ref-btn{
+    background-color: #F9A825 !important;
+    float: right;
+}
+.ref-btn img {
+    filter: invert(1);
+}
 /* CUSTOM CHECKBOX */
 .checkbox {
     margin: 20px 0;
