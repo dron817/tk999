@@ -40,13 +40,15 @@
                                 <script>
                                     function EditTrip(trip_id) {
                                         let days = '';
+                                        let from_time = $('#from_time' + trip_id).val();
+                                        let to_time = $('#to_time' + trip_id).val();
                                         let dempfer_time = $('#dt' + trip_id).val();
                                         let off_days = $('#off_d' + trip_id).val();
                                         let price = $('#price' + trip_id).val();
                                         for (let i = 1; i <= 7; i++){
                                             if ($('#cb' + trip_id + '_' + i).is(':checked')) days=days+'_'+i;
                                         }
-                                        let url = '{{ route('admin.letEditTrip') }}' + '?trip_id=' + trip_id + '&days=' + days + '&dempfer_time=' + dempfer_time+ '&price=' + price+ '&off_days=' + off_days;
+                                        let url = '{{ route('admin.letEditTrip') }}' + '?trip_id=' + trip_id + '&days=' + days + '&from_time=' + from_time + '&to_time=' + to_time + '&dempfer_time=' + dempfer_time+ '&price=' + price+ '&off_days=' + off_days;
                                         location.href = url;
                                     }
                                 </script>
@@ -72,6 +74,12 @@
                                     @endphp
                                 </div>
                                 <br>
+                                <br>
+                                <label>Время отправления</label>
+                                <input class="form-control" id="from_time{{$trip->id}}" type="text" placeholder="" value="{{ $trip->from_time }}">
+                                <br>
+                                <label>Время прибытия</label>
+                                <input class="form-control" id="to_time{{$trip->id}}" type="text" placeholder="" value="{{ $trip->to_time }}">
                                 <br>
                                 <label>Цена</label>
                                 <input class="form-control" id="price{{$trip->id}}" type="text" placeholder="" value="{{ $trip->price }}">

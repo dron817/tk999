@@ -102,6 +102,9 @@
                 <option>Окружная клиническая больница</option>
             </select>
             @break
+            @case(24)
+                <input disabled id="address_{{ $num }}" type="text" value="Стоянка 2-41">
+            @break
             @default
             <input id="address_{{ $num }}" type="text">
         @endswitch

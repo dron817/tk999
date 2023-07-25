@@ -29,7 +29,7 @@ class Trip extends Model
     {
         return $user = DB::table('trips')->where('num', '=', $num)->first();
     }
-    public function getAllTrips(): Collection
+    public function getAllTrips()
     {
         return $user = DB::table('trips')->orderBy('num')->get();
     }

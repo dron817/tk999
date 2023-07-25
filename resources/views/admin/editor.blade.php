@@ -106,9 +106,9 @@
                                                         </div>
                                                         <input type="text" class="form-control" id="phone" value="{{ $ticket->phone }}">
                                                     </div>
-                                                    <script>
-                                                        $('#phone').mask('79999999999');
-                                                    </script>
+{{--                                                    <script>--}}
+{{--                                                        $('#phone').mask('79999999999');--}}
+{{--                                                    </script>--}}
                                                     <label for="doc">Номер документа</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">

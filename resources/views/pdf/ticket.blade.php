@@ -49,7 +49,7 @@
                 <strong>Маршрут:</strong><br>
                 {{ $trip_info->from }} - {{ $trip_info->to }}<br><br>
                 <b>Отправление:</b> <br> {{ $trip_info->from_time }} {{ $data->date }}<br><br>
-                <b>Прибытие:</b> <br> {{ $trip_info->to_time }} {{ $data->date }}<br><br>
+                <b>Прибытие:</b> <br> {{ $trip_info->to_time }} {{ $data->finish_date }}<br><br>
                 <b>Цена:</b>
                 @if(($data->tariff==0))
                     {{ $trip_info->price }}

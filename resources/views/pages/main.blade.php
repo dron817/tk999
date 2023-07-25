@@ -109,13 +109,13 @@
                             </span>
                             <div class="times">
                             <span class="from">
-                                    <p class="time">{{ $trip->from_time }}</p>
-                                    <p class="place text-muted">{{ $trip->from_desc }}</p>
+                                <p class="time">{{ $trip->from_time }}</p>
+                                <p class="place text-muted">{{ $trip->from_desc }}</p>
                             </span>
-                                <span class="duration">
-                                    <p class="text-muted">{{ $trip->duration }}</p>
+                            <span class="duration">
+                                <p class="text-muted">{{ $trip->duration }}</p>
                             </span>
-                                <span class="to">
+                            <span class="to">
                                 <p class="time">~{{ $trip->to_time }}</p>
                                 <p class="place text-muted">{{ $trip->to_desc }}</p>
                             </span>
@@ -131,7 +131,7 @@
                         </div>
                         <div class="collapse" id="route-{{ $trip->id }}">
                             <div class="card card-body">
-                                @include('tpl.trip_track', $trip)
+{{--                                @include('tpl.trip_track', $trip)--}}
                             </div>
                         </div>
                     @endif

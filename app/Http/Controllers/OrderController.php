@@ -22,6 +22,11 @@ class OrderController extends Controller
         $trip = new Trip();
         $data = $ticket->getTicketByID($ticket_id);
         $trip_info = $trip->getTripById($data->trip_id);
+        if ($trip_info->change_date==1){
+            $unix = strtotime($data->date) + 86400;
+            $data->finish_date=date('d.m.Y', $unix);
+        }
+        else $data->finish_date=$data->date;
 
         $pdf = PDF::loadView('pdf.ticket', compact('data', 'trip_info'));
         $pdf->setPaper('A5', 'landscape');

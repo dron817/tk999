@@ -110,6 +110,7 @@ class PaymentController extends Controller
        try {
             $client = new Client();
             $client->setAuth($this->clientId, $this->clientSecret);
+
             $payment = $client->getPaymentInfo($payment_id);
             $payment_status = $payment->getStatus();
             $ticket_obj->setPaymentStatus($payment_id, $payment_status);

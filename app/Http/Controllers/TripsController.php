@@ -11,7 +11,7 @@ class TripsController extends Controller
     public function getAll()
     {
         $trip = new Trip;
-        $trips = $trip->all();
+        $trips = $trip->getAllTrips();
 
         foreach ($trips as $trip){
             $trip->middle = json_decode($trip->middle);
