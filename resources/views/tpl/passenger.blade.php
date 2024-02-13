@@ -88,11 +88,85 @@
                 <option selected>Ж/Д Вокзал</option>
             </select>
             @break
+            @case(5)
+            <select id="address_{{ $num }}">
+                <option selected>Паровозик (23:30)</option>
+                <option>Юбилейный (23:31)</option>
+                <option>Почта (23:32)</option>
+                <option>ТЭА (23:35)</option>
+                <option>Звёзды Югры (23:36)</option>
+                <option>ГК Нефтяник (23:37)</option>
+                <option>Церковь (23:38)</option>
+                <option>Гимназия (23:39)</option>
+                <option>Сибирь (23:40)</option>
+                <option>Театр (23:41)</option>
+                <option>Юность Шаима (23:41)</option>
+                <option>Дом ребёнка (23:42)</option>
+                <option>Архив (23:43)</option>
+                <option>Типография (23:44)</option>
+                <option>Гармония (23:45)</option>
+                <option>Электросети (23:46)</option>
+                <option>Новинка (23:48)</option>
+                <option>Молодёжная (23:49)</option>
+                <option>ТПП Урайнефтегаз (23:50)</option>
+                <option>Детская поликлиника (23:52)</option>
+                <option>Промбаза (23:55-00:10)</option>
+            </select>
+            @break
             @case(8)
             <select id="address_{{ $num }}">
                 <option disabled selected>Выберите остановку</option>
                 <option>Трансагенство</option>
                 <option>Окружная клиническая больница</option>
+            </select>
+            @break
+            @case(9)
+            <select id="address_{{ $num }}">
+                <option selected>Паровозик (05:50)</option>
+                <option>Юбилейный (05:51)</option>
+                <option>Почта (05:52)</option>
+                <option>ТЭА (05:53)</option>
+                <option>Звёзды Югры (05:55)</option>
+                <option>ГК Нефтяник (05:57)</option>
+                <option>Церковь (06:00)</option>
+                <option>Гимназия (06:01)</option>
+                <option>Сибирь (06:02)</option>
+                <option>Театр (06:03)</option>
+                <option>Юность Шаима (06:03)</option>
+                <option>Дом ребёнка (06:04)</option>
+                <option>Архив (06:05)</option>
+                <option>Типография (06:06)</option>
+                <option>Гармония (06:07)</option>
+                <option>Электросети (06:08)</option>
+                <option>Новинка (06:10)</option>
+                <option>Молодёжная (06:12)</option>
+                <option>ТПП Урайнефтегаз (06:13)</option>
+                <option>Детская поликлиника (06:14)</option>
+                <option>Промбаза (06:15-06:25)</option>
+            </select>
+            @break
+            @case(15)
+            <select id="address_{{ $num }}">
+                <option selected>Паровозик (05:50)</option>
+                <option>Юбилейный (05:51)</option>
+                <option>Почта (05:52)</option>
+                <option>ТЭА (05:53)</option>
+                <option>Звёзды Югры (05:55)</option>
+                <option>ГК Нефтяник (05:57)</option>
+                <option>Церковь (06:00)</option>
+                <option>Гимназия (06:01)</option>
+                <option>Сибирь (06:02)</option>
+                <option>Юность Шаима (06:03)</option>
+                <option>Дом ребёнка (06:04)</option>
+                <option>Архив (06:05)</option>
+                <option>Типография (06:06)</option>
+                <option>Гармония (06:07)</option>
+                <option>Электросети (06:08)</option>
+                <option>Новинка (06:10)</option>
+                <option>Молодёжная (06:12)</option>
+                <option>ТПП Урайнефтегаз (06:13)</option>
+                <option>Детская поликлиника (06:14)</option>
+                <option>Промбаза (06:15-06:25)</option>
             </select>
             @break
             @case(10)

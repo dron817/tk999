@@ -27,7 +27,7 @@
             <td><input type="checkbox" onclick="pickPlace(23)" @if ($ticket_buy[23]==1) disabled @endif id="23" value="23"><label for="23">23</label></td>
             <td></td>
             <td></td>
-            <td><input type="checkbox" onclick="pickPlace(31)" disabled id="31" value="31"><label for="38">31</label></td>
+            <td><input type="checkbox" onclick="pickPlace(31)" disabled id="31" value="31"><label for="31">31</label></td>
             <td><input type="checkbox" onclick="pickPlace(35)" disabled id="35" value="35"><label for="35">35</label></td>
             <td><input type="checkbox" onclick="pickPlace(39)" disabled id="39" value="39"><label for="39">39</label></td>
             <td><input type="checkbox" onclick="pickPlace(43)" disabled id="43" value="43"><label for="43">43</label></td>
@@ -79,7 +79,7 @@
             <td><input type="checkbox" onclick="pickPlace(26)" @if ($ticket_buy[26]==1) disabled @endif id="26" value="26"><label for="26">26</label></td>
             <td><input type="checkbox" onclick="pickPlace(28)" @if ($ticket_buy[28]==1) disabled @endif id="28" value="28"><label for="28">28</label></td>
             <td><input type="checkbox" onclick="pickPlace(29)" @if ($ticket_buy[29]==1) disabled @endif id="29" value="29"><label for="29">29</label></td>
-            <td><input type="checkbox" onclick="pickPlace(34)" disabled id="34" value="34"><label for="38">34</label></td>
+            <td><input type="checkbox" onclick="pickPlace(34)" disabled id="34" value="34"><label for="34">34</label></td>
             <td><input type="checkbox" onclick="pickPlace(38)" disabled id="38" value="38"><label for="38">38</label></td>
             <td><input type="checkbox" onclick="pickPlace(42)" disabled id="42" value="42"><label for="42">42</label></td>
             <td><input type="checkbox" onclick="pickPlace(46)" disabled id="46" value="46"><label for="46">46</label></td>

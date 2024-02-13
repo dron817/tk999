@@ -41,7 +41,7 @@
                 <p>{{ $date }}</p></h2>
             <div id="place-piker-outer">
                 @if ($tong==1)
-					@if ($trip_id == 2 )
+					@if ($trip_id == 2 or  $trip_id == 3)
 						@include('tpl.places.tong_bus_30')
                     @else
 						@include('tpl.places.tong_bus_40')
